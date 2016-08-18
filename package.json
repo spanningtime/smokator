@@ -17,10 +17,17 @@
     "bummer",
     "stanleypaddles"
   ],
-  "author": ["William Knight <whkdev@gmail.com>", "Jesse Seligman <jesseseligman@gmail.com>"],
+  "author": [
+    "William Knight <whkdev@gmail.com>",
+    "Jesse Seligman <jesseseligman@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/spanningtime/smokator/issues"
   },
-  "homepage": "https://github.com/spanningtime/smokator#readme"
+  "homepage": "https://github.com/spanningtime/smokator#readme",
+  "dependencies": {
+    "knex": "^0.11.10",
+    "pg": "^6.1.0"
+  }
 }
