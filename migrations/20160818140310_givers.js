@@ -12,8 +12,8 @@ exports.up = function(knex) {
       .index();
     table.string('place_id')
       .notNullable()
-      .unique()
-    table.dateTime('expiration')
+      .unique();
+    table.dateTime('expiration');
     table.timestamps(true, true);
   });
 };
