@@ -10,7 +10,7 @@ exports.up = function(knex) {
     table.integer('giver_id')
       .references('id')
       .inTable('users')
-      onDelete('CASCADE');
+      .onDelete('CASCADE');
     table.dateTime('expiration');
     table.timestamps(true, true);
   });

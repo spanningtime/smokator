@@ -26,7 +26,7 @@ exports.seed = function(knex) {
         message_text: 'Got virginia slims',
         created_at: new Date('2016-08-15 14:57:06 UTC'),
         updated_at: new Date('2016-08-15 14:57:06 UTC')
-      }
+      },
       {
         id: 4,
         user_id: 1,
