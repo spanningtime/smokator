@@ -18,7 +18,7 @@ exports.seed = function(knex) {
       {
         id: 2,
         email: 'blainelovescigs@cigs.com',
-        hashed_password: '$2a$12$Q3fh1jeJZ2Q19Yr12aVOxO54a/IvBhS01qWCqxNAZc0ABRxq0NnYq',
+        hashed_password: '$2a$12$Q3fh1jeQZ2Q19Yr12aVOxO54a/IvBhS01qWCqxNAZc0ABRxq0NnYq',
         first_name: 'Blaine',
         last_name: 'Stewart',
         phone: '2069871902',
