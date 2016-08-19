@@ -4,7 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express');
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 const path = require('path');
 
 const bodyParser = require('body-parser');
@@ -37,15 +37,15 @@ app.use(cookieParser());
 // const chats = require('./routes/chats');
 // const givers = require('./routes/givers');
 // const places = require('./routes/places');
- const token = require('./routes/token');
-// const users = require('./routes/users');
+const token = require('./routes/token');
+const users = require('./routes/users');
 
 // ROUTE HANDLERS
 // app.use(chats);
 // app.use(givers);
 // app.use(places);
- app.use(token);
-// app.use(users);
+app.use(token);
+app.use(users);
 
 app.use((_req, res) => {
   res.sendStatus(404);
