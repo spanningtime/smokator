@@ -15,9 +15,20 @@ const app = express();
 
 app.disable('x-powered-by');
 
+switch (app.get('env')) {
+  case 'development':
+    app.use(morgan('dev'));
+    break;
+
+  case 'production':
+    app.use(morgan('short'));
+    break;
+
+  default:
+}
+
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(morgan('short'));
 
 // Expose public directory to client
 // app.use(express.static(path.join(__dirname, 'public')))
