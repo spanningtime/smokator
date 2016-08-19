@@ -25,7 +25,7 @@ exports.seed = function(knex) {
         about_me: 'I just love getting together with my bros and throwing down. Boot and rally bro!',
         avatar_id: '5',
         created_at: new Date('2016-07-25 14:26:16 UTC'),
-        updated_at: new Date('2016-07-23 14:26:16 UTC')
+        updated_at: new Date('2016-07-25 14:26:16 UTC')
       }]);
     })
     .then(() => {
