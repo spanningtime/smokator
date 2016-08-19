@@ -11,8 +11,7 @@ exports.up = function(knex) {
       .onDelete('CASCADE')
       .index();
     table.string('place_id')
-      .notNullable()
-      .unique();
+      .notNullable();
     table.dateTime('expiration');
     table.timestamps(true, true);
   });
