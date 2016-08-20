@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 // Expose public directory to client
-// app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 
 // REQUIRE IN ROUTERS
 const chats = require('./routes/chats');
