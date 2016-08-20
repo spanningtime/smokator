@@ -26,7 +26,6 @@ router.post('/api/chats', (req, res, next) => {
 
 router.post('/api/chats/:chatId', (req, res, next) => {
   const chatId = Number.parseInt(req.params.chatId);
-  console.log(chatId);
   const { userId, messageText } = req.body;
   const expiration = new Date(Date.now() + 1000 * 60 * 60);
   const row = decamelizeKeys({ userId, chatId, messageText, expiration });
@@ -37,6 +36,22 @@ router.post('/api/chats/:chatId', (req, res, next) => {
       const chatMessage = camelizeKeys(rows[0]);
 
       res.send(chatMessage);
+    })
+    .catch((err) => {
+      next(boom.wrap(err));
+    });
+});
+
+router.get('/api/chats/:chatId', (req, res, next) => {
+  const chatId = Number.parseInt(req.params.chatId);
+  console.log(chatId)
+  knex('chat_messages')
+    .where('chat_id', chatId)
+    .then((messages) => {
+      if (!messages) {
+        return next();
+      }
+      res.send(messages);
     })
     .catch((err) => {
       next(boom.wrap(err));
