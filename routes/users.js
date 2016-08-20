@@ -43,4 +43,20 @@ router.post('/api/users', (req, res, next) => {
     });
 });
 
+router.get('/api/users/:userId', (req, res, next) => {
+  const userId = Number.parseInt(req.params.userId);
+
+  knex('users')
+    .where('id', userId)
+    .then((user) => {
+      if (!user) {
+        return next();
+      }
+      res.send(user);
+    })
+    .catch((err) => {
+      next(boom.wrap(err));
+    });
+});
+
 module.exports = router;
