@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "knex": "knex",
-    "nodemon": "nodemon server.js"
+    "nodemon": "nodemon server.js",
+    "resetdb": "npm run knex migrate:rollback; npm run knex migrate:latest; npm run knex seed:run"
   },
   "repository": {
     "type": "git",
