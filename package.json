@@ -1,19 +1,36 @@
 {
-  "name": "",
+  "name": "smokator",
   "version": "0.1.0",
-  "author": "",
-  "description": "",
+  "description": "An app to improve the experience of acquiring cigarettes from strangers in bars.",
+  "author": [
+    "William Knight <whkdev@gmail.com>",
+    "Jesse Seligman <jesseseligman@gmail.com>"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/spanningtime/smokator.git"
   },
   "scripts": {
     "lint": "eslint --ext .js,.jsx --ignore-pattern public",
-    "start": "brunch watch --server"
+    "start": "brunch watch --server",
+    "knex": "knex",
+    "resetdb": "npm run knex migrate:rollback; npm run knex migrate:latest; npm run knex seed:run"
   },
   "dependencies": {
+    "bcrypt-as-promised": "^1.1.0",
+    "body-parser": "^1.15.2",
+    "boom": "^3.2.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-validation": "^1.0.0",
+    "humps": "^1.1.0",
+    "joi": "^8.4.2",
+    "jsonwebtoken": "^7.1.9",
+    "knex": "^0.11.10",
     "material-ui": "^0.15.4",
+    "morgan": "^1.7.0",
+    "pg": "^6.1.0",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-tap-event-plugin": "^1.0.0"
@@ -25,6 +42,7 @@
     "babel-preset-react": "^6.11.1",
     "brunch": "^2.8.2",
     "clean-css-brunch": "^2.0.0",
+    "dotenv": "^2.0.0",
     "eslint": "^3.2.2",
     "eslint-config-ryansobol": "^8.0.0",
     "javascript-brunch": "^2.0.0",
