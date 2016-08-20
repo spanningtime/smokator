@@ -34,14 +34,14 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')))
 
 // REQUIRE IN ROUTERS
-// const chats = require('./routes/chats');
+const chats = require('./routes/chats');
 const givers = require('./routes/givers');
 // const places = require('./routes/places');
 const token = require('./routes/token');
 const users = require('./routes/users');
 
 // ROUTE HANDLERS
-// app.use(chats);
+app.use(chats);
 app.use(givers);
 // app.use(places);
 app.use(token);
