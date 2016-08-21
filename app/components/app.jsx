@@ -31,27 +31,49 @@ const App = React.createClass({
       backgroundColor: '#e5f3e9'
     };
 
+
     const styleContainer = {
       display: 'flex',
       flexDirection: 'row',
+      flexWrap: 'nowrap',
       alignContent: 'space-around',
       alignItems: 'center',
-      height: '100px',
-      paddingTop: '15px',
-      marginLeft: '40px',
+      paddingTop: '0px',
+      marginLeft: '15px',
       justifyContent: 'space-between'
     };
 
     const styleTitle = {
-      fontSize: '2em',
+      fontSize: '35px',
       color: '#ff7f66'
     };
+
+    const styleTagline = {
+      fontSize: '13px',
+      fontWeight: '400',
+      marginTop: '0px',
+      marginLeft: '0px',
+      marginBottom: '10px',
+      color: 'black'
+    }
+
+    const styleFooter = {
+      height: '20px',
+      backgroundColor: '#e5f3e9'
+    }
+
+    const styleImage = {
+      display: 'inlineBlock',
+      width: '30%',
+    }
 
     return <Paper style={stylePaper}
       >
       <div style={styleContainer}>
         <div style={styleTitle}>
           smokator
+          <img style={styleImage} src={'./images/cigarette.svg'} />
+        <h1 style={styleTagline}>Connecting drunk smokers since 1776</h1>
         </div>
         <IconButton
           iconStyle={styleMenu.iconStyle}
@@ -77,6 +99,9 @@ const App = React.createClass({
      >
 
     </AppBar>; */}
+    <div style={styleFooter}>
+
+    </div>
   }
 });
 
