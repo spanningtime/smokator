@@ -55,12 +55,12 @@ const App = React.createClass({
       marginTop: '0px',
       marginLeft: '0px',
       color: 'black'
-    }
+    };
 
     const styleFooter = {
       height: '20px',
       backgroundColor: '#e5f3e9'
-    }
+    };
 
     const styleImage = {
       display: 'inlineBlock',
@@ -68,7 +68,7 @@ const App = React.createClass({
       marginBottom: '-35px',
       marginLeft: '10px',
       marginTop: '-30px'
-    }
+    };
 
     return <Paper style={stylePaper}
       >
