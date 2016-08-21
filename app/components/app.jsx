@@ -28,7 +28,8 @@ const App = React.createClass({
     };
 
     const stylePaper = {
-      backgroundColor: '#e5f3e9'
+      backgroundColor: '#e5f3e9',
+      maxHeight: '70px'
     };
 
 
@@ -38,8 +39,8 @@ const App = React.createClass({
       flexWrap: 'nowrap',
       alignContent: 'space-around',
       alignItems: 'center',
-      paddingTop: '0px',
-      marginLeft: '15px',
+      marginTop: '0px',
+      marginLeft: '10px',
       justifyContent: 'space-between'
     };
 
@@ -53,7 +54,6 @@ const App = React.createClass({
       fontWeight: '400',
       marginTop: '0px',
       marginLeft: '0px',
-      marginBottom: '10px',
       color: 'black'
     }
 
@@ -65,6 +65,9 @@ const App = React.createClass({
     const styleImage = {
       display: 'inlineBlock',
       width: '30%',
+      marginBottom: '-35px',
+      marginLeft: '10px',
+      marginTop: '-30px'
     }
 
     return <Paper style={stylePaper}
@@ -73,7 +76,7 @@ const App = React.createClass({
         <div style={styleTitle}>
           smokator
           <img style={styleImage} src={'./images/cigarette.svg'} />
-        <h1 style={styleTagline}>Connecting drunk smokers since 1776</h1>
+          <h1 style={styleTagline}>Connecting drunk smokers since 1776</h1>
         </div>
         <IconButton
           iconStyle={styleMenu.iconStyle}
@@ -99,9 +102,9 @@ const App = React.createClass({
      >
 
     </AppBar>; */}
-    <div style={styleFooter}>
+    <Paper style={styleFooter}>
 
-    </div>
+    </Paper>
   }
 });
 
