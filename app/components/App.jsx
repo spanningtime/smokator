@@ -1,8 +1,11 @@
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
+import BottomNavigation from 'material-ui/BottomNavigation';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import Footer from 'components/Footer';
 import Paper from 'material-ui/Paper';
 import React from 'react';
+import { withRouter } from 'react-router'
 
 const App = React.createClass({
   getInitialState() {
@@ -29,7 +32,6 @@ const App = React.createClass({
 
     const stylePaper = {
       backgroundColor: '#e5f3e9',
-      maxHeight: '70px'
     };
 
 
@@ -58,7 +60,6 @@ const App = React.createClass({
     };
 
     const styleFooter = {
-      height: '20px',
       backgroundColor: '#e5f3e9'
     };
 
@@ -70,42 +71,35 @@ const App = React.createClass({
       marginTop: '-30px'
     };
 
-    return <Paper style={stylePaper}
-      >
-      <div style={styleContainer}>
-        <div style={styleTitle}>
-          smokator
-          <img style={styleImage} src={'./images/cigarette.svg'} />
-          <h1 style={styleTagline}>Connecting drunk smokers since 1776</h1>
-        </div>
-        <IconButton
-          iconStyle={styleMenu.iconStyle}
-          style={styleMenu.style}
+    const styleHey = {
+      display: 'flex',
+      flex: '1 0 auto'
+    }
+
+    return <div>
+      <Paper style={stylePaper}
         >
-          <NavigationMenu color={'#ff7f66'}/>
-        </IconButton>
-      </div>
+        <div style={styleContainer}>
+          <div style={styleTitle}>
+            smokator
+            <img style={styleImage} src={'./images/cigarette.svg'} />
+            <h1 style={styleTagline}>Connecting drunk smokers since 1776</h1>
+          </div>
+          <IconButton
+            iconStyle={styleMenu.iconStyle}
+            style={styleMenu.style}
+          >
+            <NavigationMenu color={'#ff7f66'}/>
+          </IconButton>
+        </div>
+      </Paper>
+      <Paper style={styleHey}>hey</Paper>
+      <Footer></Footer>
 
+      {this.props.children}
 
-    </Paper>;
-    {/* <AppBar
-    iconElementRight={
-      <IconButton
-        iconStyle={styleMenu.iconStyle}
-        style={styleMenu.style}
-      >
-        <NavigationMenu color={'#ff7f66'}/>
-      </IconButton>}
-    showMenuIconButton={false}
-    title="smokator"
-    titleStyle={styleTitle}
-     >
-
-    </AppBar>; */}
-    <Paper style={styleFooter}>
-
-    </Paper>
+    </div>
   }
 });
 
-export default App;
+export default withRouter(App);
