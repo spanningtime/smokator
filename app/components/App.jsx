@@ -1,8 +1,6 @@
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-import BottomNavigation from 'material-ui/BottomNavigation';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
-import Footer from 'components/Footer';
 import Paper from 'material-ui/Paper';
 import React from 'react';
 import { withRouter } from 'react-router'
@@ -94,10 +92,6 @@ const App = React.createClass({
         </div>
       </Paper>
       <Paper style={styleHey}>hey</Paper>
-      <Footer></Footer>
-
-      {this.props.children}
-
     </div>
   }
 });
