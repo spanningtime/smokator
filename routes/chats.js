@@ -3,13 +3,16 @@
 const boom = require('boom');
 const express = require('express');
 const knex = require('../knex');
+const ev = require('express-validation');
+const chatValidations = require('../validations/chats');
+const chatMessageValidations = require('../validations/chatMessages');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 const jwt = require('jsonwebtoken');
 const { checkAuth } = require('../middleware');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
-router.post('/api/chats', checkAuth, (req, res, next) => {
+router.post('/api/chats', checkAuth, ev(chatValidations.post), (req, res, next) => {
   const { bummerId, giverId } = req.body;
   const expiration = new Date(Date.now() + 1000 * 60 * 60);
   const row = decamelizeKeys({ bummerId, giverId, expiration });
@@ -25,7 +28,9 @@ router.post('/api/chats', checkAuth, (req, res, next) => {
     });
 });
 
-router.post('/api/chats/:chatId', checkAuth, (req, res, next) => {
+router.post('/api/chats/:chatId', checkAuth, ev(chatMessageValidations.post),
+  (req, res, next) => {
+
   const chatId = Number.parseInt(req.params.chatId);
   const { userId, messageText } = req.body;
   const expiration = new Date(Date.now() + 1000 * 60 * 60);
