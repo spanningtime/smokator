@@ -36,14 +36,14 @@ app.use(cookieParser());
 // REQUIRE IN ROUTERS
 const chats = require('./routes/chats');
 const givers = require('./routes/givers');
-// const places = require('./routes/places');
+const places = require('./routes/places');
 const token = require('./routes/token');
 const users = require('./routes/users');
 
 // ROUTE HANDLERS
 app.use(chats);
 app.use(givers);
-// app.use(places);
+app.use(places);
 app.use(token);
 app.use(users);
 
