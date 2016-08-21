@@ -6,6 +6,7 @@ const express = require('express');
 const knex = require('../knex');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 const jwt = require('jsonwebtoken');
+const { checkAuth } = require('../middleware.js');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -48,7 +49,7 @@ router.get('/api/givers', (req, res, next) => {
 //     });
 // })
 
-router.post('/api/givers', (req, res, next) => {
+router.post('/api/givers', checkAuth, (req, res, next) => {
   const { userId, placeId } = req.body;
   const expiration = new Date(Date.now() + 1000 * 60 * 60 * 3 );
   const row = decamelizeKeys({ userId, placeId, expiration });

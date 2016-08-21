@@ -29,7 +29,7 @@ const App = React.createClass({
 
     const stylePaper = {
       backgroundColor: '#e5f3e9'
-    }
+    };
 
     const styleContainer = {
       display: 'flex',
@@ -40,12 +40,12 @@ const App = React.createClass({
       paddingTop: '15px',
       marginLeft: '40px',
       justifyContent: 'space-between'
-    }
+    };
 
     const styleTitle = {
       fontSize: '2em',
       color: '#ff7f66'
-    }
+    };
 
     return <Paper style={stylePaper}
       >
