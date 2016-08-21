@@ -1,5 +1,5 @@
 import { Route, Router, browserHistory, IndexRoute } from 'react-router';
-import App from 'components/app';
+import App from 'components/App';
 import Footer from 'components/Footer';
 import React from 'react';
 
