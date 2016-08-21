@@ -8,6 +8,7 @@ const bcrypt = require('bcrypt-as-promised');
 const { camelizeKeys, decamelizeKeys } = require('humps');
 // const ev = require('express-validation');
 // const validations = require('../validations/topics');
+const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 
 router.post('/api/users', (req, res, next) => {
@@ -35,6 +36,24 @@ router.post('/api/users', (req, res, next) => {
       const user = camelizeKeys(rows[0]);
 
       delete user.hashedPassword;
+      console.log(user.id);
+      return user;
+    })
+    .then((user) => {
+      const expiry = new Date(Date.now() + 1000 * 60 * 60 * 3);
+
+      const token = jwt.sign({ userId: user.id}, process.env.SECRET, { expiresIn: '3h' });
+
+      res.cookie('accessToken', token, {
+        httpOnly: true,
+        expires: expiry,
+        secure: router.get('env') === 'production'
+      });
+
+      res.cookie('loggedIn', true, {
+        expires: expiry,
+        secure: router.get('env') === 'production'
+      });
 
       res.send(user);
     })
