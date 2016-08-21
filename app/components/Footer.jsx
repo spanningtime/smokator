@@ -9,17 +9,19 @@ import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
  * provided. The selected `BottomNavigationItem` is determined by application
  * state (for instance, by the URL).
  */
-class Footer extends Component {
-
+const Footer = React.createClass({
 
   render() {
-    return (
-      <Paper zDepth={1}>
+
+    const stylePaper = {
+      backgroundColor: '#e5f3e9'
+    };
+
+    return <Paper style={stylePaper} zDepth={1}>
         <BottomNavigation>
         </BottomNavigation>
       </Paper>
-    );
   }
-}
+});
 
 export default Footer;

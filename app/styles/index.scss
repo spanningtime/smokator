@@ -7,8 +7,14 @@ body {
 
 main {
   flex: 1 0 auto;
+  background: #fff7ec;
 }
 
 .hide {
   display: none;
+}
+
+#footer {
+  height: 65px;
+  background: #e5f3e9;
 }

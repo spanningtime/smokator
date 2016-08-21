@@ -8,9 +8,6 @@ const Routes = React.createClass({
   render() {
     return <Router history={browserHistory}>
       <Route component={App} path="/">
-
-        <Route component={Footer} path="/">
-        </Route>
       </Route>
     </Router>
   }
