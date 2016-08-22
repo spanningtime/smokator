@@ -11,7 +11,7 @@ import StatusButtons from 'components/StatusButtons';
 const App = React.createClass({
   getInitialState() {
     return {
-      
+
     }
   },
 
@@ -21,7 +21,7 @@ const App = React.createClass({
       iconStyle: {
         width: 48,
         height: 48,
-        paddingBottom: 0,
+        paddingBottom: 0
       },
       style: {
         width: 64,

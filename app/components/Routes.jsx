@@ -11,8 +11,8 @@ const Routes = React.createClass({
   render() {
     return <Router history={browserHistory}>
       <Route component={App} path="/">
-        <Route component={LoginForm} path="login" />
         <IndexRoute component={LoginButtons}/>
+        <Route component={LoginForm} path="login" />
         <Route component={StatusButtons} path="status" />
       </Route>
     </Router>

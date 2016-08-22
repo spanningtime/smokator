@@ -19,7 +19,6 @@ const LoginButtons = React.createClass({
     const styleButton = {
       display: 'flex',
       width: '100px',
-      textColor: 'black',
       marginBottom: '10px'
     };
 
