@@ -23,7 +23,6 @@ const Home = React.createClass({
 
     const styleButton = {
       width: '150px',
-      marginTop: '20px',
     };
 
     const styleScroll = {
