@@ -5,7 +5,8 @@ import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Paper from 'material-ui/Paper';
 import React from 'react';
 import { withRouter } from 'react-router';
-import LoginButtons from 'components/LoginButtons'
+import LoginButtons from 'components/LoginButtons';
+import StatusButtons from 'components/StatusButtons';
 
 const App = React.createClass({
   getInitialState() {
