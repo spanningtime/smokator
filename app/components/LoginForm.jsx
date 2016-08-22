@@ -4,9 +4,16 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 
+const schema = Joi.object({
+  email: Joi.string().email().trim().required(),
+  password: Joi.string().trim().required()
+});
+
 const LoginForm = React.createClass({
   getInitialState() {
     return {
+      errors: {},
+
       credentials: {
         email: '',
         password: ''
@@ -15,14 +22,50 @@ const LoginForm = React.createClass({
   },
 
   handleChange(event) {
+    const { name, value } = event.target;
     const nextCredentials = Object.assign({}, this.state.credentials, {
-      [event.target.name]: event.target.value
+      [name]: value
     });
 
     this.setState({ credentials: nextCredentials });
   },
 
+  // handleKeyPress(event) {
+  //   const { name, value } = event.target;
+  //
+  //   const nextErrors = Object.assign({}, this.state.errors)
+  //
+  //   const result = Joi.validate({ [name]: value }, schema);
+  //   if (result.error) {
+
+  //     for (const detail of result.error.details) {
+  //         nextErrors[detail.path] = detail.message;
+  //     }
+  //
+  //     return this.setState({ errors: nextErrors });
+  //   }
+
+  //   delete nextErrors[name];
+  //
+  //   this.setState({ errors: nextErrors });
+  // },
+
   handleTouchTap() {
+    const result = Joi.validate(this.state.credentials, schema, {
+      abortEarly: false,
+      allowUnknown: true
+    });
+
+    if (result.error) {
+      const nextErrors = {};
+
+      for (const detail of result.error.details) {
+        nextErrors[detail.path] = detail.message;
+      }
+
+      return this.setState({ errors: nextErrors });
+    }
+
     this.props.login(this.state.credentials);
   },
 
@@ -47,18 +90,22 @@ const LoginForm = React.createClass({
     return <div style={styleContainer}>
 
       <TextField
+        errorText={this.state.errors.email}
         floatingLabelText="Email"
         name="email"
         onChange={this.handleChange}
+        onKeyPress={this.handleKeyPress}
         style={styleTextField}
         value={this.state.credentials.email}
       >
       </TextField>
 
       <TextField
+        errorText={this.state.errors.password}
         floatingLabelText="Password"
         name="password"
         onChange={this.handleChange}
+        onKeyPress={this.handleKeyPress}
         type="password"
         value={this.state.credentials.password}
       >
