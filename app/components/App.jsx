@@ -59,7 +59,8 @@ const App = React.createClass({
 
     const styleTitle = {
       fontSize: '35px',
-      color: '#ff7f66'
+      color: '#ff7f66',
+      fontFamily: 'Varela Round'
     };
 
     const styleTagline = {
@@ -67,7 +68,8 @@ const App = React.createClass({
       fontWeight: '400',
       marginTop: '0px',
       marginLeft: '0px',
-      color: 'black'
+      color: 'black',
+      fontFamily: 'Roboto'
     };
 
     const styleFooter = {

@@ -9,33 +9,81 @@ const Givers = React.createClass({
   render() {
 
     const flexContainer = {
-      display: 'flex',
-      flexDirection: 'column',
-      flexWrap: 'wrap',
-      // justifyContent: 'center',
-      alignContent: 'center',
-      alignItems: 'center',
-      height: '70vh'
+      minWidth: '100px',
+      maxWidth: '160px',
+      margin: '0 auto'
+      // display: 'flex',
+      // flexDirection: 'row',
+      // flexWrap: 'wrap',
+      // alignContent: 'center',
+      // alignItems: 'center',
+      // height: '70vh'
     }
 
     const styleItem = {
       backgroundColor: '#e5f3e9',
-      borderRadius: '5px'
+      borderRadius: '5px',
+      boxShadow: '0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)',
+      display: 'flex',
+      alignItems: 'center',
+      alignContent: 'center',
+      flexDirection: 'row',
+      marginBottom: '20px'
     }
 
-    return <div style={flexContainer}>
-      <List>
-        <div style={styleItem}>
-          <ListItem
-            disabled={true}
-            leftAvatar={
-              <img src="images/hen.svg" />
-            }
-          >
-          Blaine
-          </ListItem>
-        </div>
-      </List>
+    const styleAvatar = {
+      maxHeight: '40px',
+      position: 'none',
+      margin: '0 auto'
+    }
+
+    const styleListItem = {
+      fontFamily: 'helvetica',
+      fontSize: '25px',
+      fontWeight: '200'
+    }
+
+    const styleTitle = {
+      textAlign: 'center',
+      fontFamily: 'helvetica',
+      fontSize: '25px',
+      fontWeight: '200',
+      marginBottom: '30px'
+    }
+
+    return <div>
+      <h1 style={styleTitle}>Givers currently @ Temple</h1>
+      <div style={flexContainer}>
+        <List>
+          <div style={styleItem}>
+          <img src="images/hen.svg" style={styleAvatar}/>
+            <ListItem
+              style={styleListItem}
+              disabled={true}
+            >
+            John
+            </ListItem>
+          </div>
+          <div style={styleItem}>
+          <img src="images/burger.svg" style={styleAvatar}/>
+            <ListItem
+              style={styleListItem}
+              disabled={true}
+            >
+            Blaine
+            </ListItem>
+          </div>
+          <div style={styleItem}>
+          <img src="images/pizza.svg" style={styleAvatar}/>
+            <ListItem
+              style={styleListItem}
+              disabled={true}
+            >
+            Shane
+            </ListItem>
+          </div>
+        </List>
+      </div>
     </div>
   }
 });
