@@ -5,6 +5,22 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 
 const LoginForm = React.createClass({
+  getInitialState() {
+    return {
+      credentials: {
+        email: '',
+        password: ''
+      }
+    }
+  },
+
+  handleChange(event) {
+    const nextCredentials = Object.assign({}, this.state.credentials, {
+      [event.target.name]: event.target.value
+    });
+
+    this.setState({ credentials: nextCredentials });
+  },
 
   render() {
     const styleContainer = {
@@ -25,9 +41,30 @@ const LoginForm = React.createClass({
     };
 
     return <div style={styleContainer}>
-      <TextField style ={styleTextField} floatingLabelText="Email"></TextField>
-      <TextField floatingLabelText="Password"></TextField>
-      <RaisedButton primary={true} style={styleButton} label="Login"></RaisedButton>
+
+      <TextField
+        floatingLabelText="Email"
+        name="email"
+        onChange={this.handleChange}
+        style={styleTextField}
+        value={this.state.credentials.email}
+      >
+      </TextField>
+
+      <TextField
+        floatingLabelText="Password"
+        name="password"
+        onChange={this.handleChange}
+        type="password"
+        value={this.state.credentials.password}
+      >
+      </TextField>
+
+      <RaisedButton
+        primary={true}
+        label="Login"
+        style={styleButton}
+      />
     </div>
   }
 })
