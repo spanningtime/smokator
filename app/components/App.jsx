@@ -2,7 +2,6 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import BottomNavigation from 'material-ui/BottomNavigation';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
-import Footer from 'components/Footer';
 import Paper from 'material-ui/Paper';
 import React from 'react';
 import { withRouter } from 'react-router';
@@ -71,12 +70,7 @@ const App = React.createClass({
       marginTop: '-30px'
     };
 
-    const styleHey = {
-      display: 'flex',
-      flex: '1 0 auto'
-    }
-
-    return <div style={{position: 'relative'}}>
+    return <div >
       <Paper style={stylePaper}
         >
         <div style={styleContainer}>
@@ -95,7 +89,6 @@ const App = React.createClass({
       </Paper>
 
       {this.props.children}
-
     </div>
   }
 });

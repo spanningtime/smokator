@@ -1,12 +1,5 @@
 body {
   margin: 0;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-main {
-  flex: 1 0 auto;
   background: #fff7ec;
 }
 
@@ -15,6 +8,9 @@ main {
 }
 
 #footer {
+  position: absolute;
+  bottom: 0;
   height: 65px;
+  width: 100%;
   background: #e5f3e9;
 }
