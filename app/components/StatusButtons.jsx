@@ -22,12 +22,15 @@ const StatusButtons = React.createClass({
       marginBottom: '10px',
       fontFamily: 'Mallanna',
       fontWeight: '200'
+    }
 
-    };
+    const styleLabel = {
+      fontWeight: '200'
+    }
 
     return <div style={flexContainer}>
-      <RaisedButton label="I want a cigarette" primary={true} style={styleButton}  />
-      <RaisedButton label="I have cigarettes to give" primary={true} style={styleButton}  />
+      <RaisedButton label="I want a cigarette" primary={true} style={styleButton} labelStyle={styleLabel}  />
+      <RaisedButton label="I have cigarettes to give" primary={true} style={styleButton} labelStyle={styleLabel}  />
     </div>
   }
 });
