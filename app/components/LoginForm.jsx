@@ -39,7 +39,7 @@ const LoginForm = React.createClass({
   //   if (result.error) {
 
   //     for (const detail of result.error.details) {
-  //         nextErrors[detail.path] = detail.message;
+  //        nextErrors[detail.path] = detail.message;
   //     }
   //
   //     return this.setState({ errors: nextErrors });
@@ -65,6 +65,8 @@ const LoginForm = React.createClass({
 
       return this.setState({ errors: nextErrors });
     }
+
+    this.setState({ errors: {} });
 
     this.props.login(this.state.credentials);
   },

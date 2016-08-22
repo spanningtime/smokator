@@ -7,12 +7,13 @@ import Paper from 'material-ui/Paper';
 import React from 'react';
 import { withRouter } from 'react-router';
 import LoginButtons from 'components/LoginButtons';
+import Snackbar from 'material-ui/Snackbar';
 import StatusButtons from 'components/StatusButtons';
 
 const App = React.createClass({
   getInitialState() {
     return {
-
+      open: false
     }
   },
 
@@ -23,6 +24,7 @@ const App = React.createClass({
       })
       .catch((err) => {
         if (err.response.status === 401) {
+          this.setState({ open: true });
           console.log('Invalid login info.');
         }
         else {
@@ -107,9 +109,19 @@ const App = React.createClass({
         </div>
       </Paper>
 
+      <Snackbar
+          open={this.state.open}
+          message="Invalid login credentials."
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+          bodyStyle={{ color: 'white' }}
+        />
+
       {React.cloneElement(this.props.children, {
         login: this.login
       })}
+
+
     </div>
   }
 });
