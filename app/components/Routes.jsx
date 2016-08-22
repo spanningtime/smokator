@@ -4,6 +4,7 @@ import React from 'react';
 import LoginForm from 'components/LoginForm';
 import LoginButtons from 'components/LoginButtons';
 import StatusButtons from 'components/StatusButtons';
+import Home from 'components/Home';
 
 
 
@@ -14,6 +15,7 @@ const Routes = React.createClass({
         <IndexRoute component={LoginButtons}/>
         <Route component={LoginForm} path="login" />
         <Route component={StatusButtons} path="status" />
+        <Route component={Home} path="home" />
       </Route>
     </Router>
   }
