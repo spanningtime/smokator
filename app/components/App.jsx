@@ -11,18 +11,46 @@ import Snackbar from 'material-ui/Snackbar';
 import StatusButtons from 'components/StatusButtons';
 
 const App = React.createClass({
+
   getInitialState() {
     return {
       open: false,
       givers: [],
-      selectedPlaceId: 'ChIJG2K5JrtqkFQRsT22hSRqrrc'
+      bars: [],
+      selectedPlaceId: 'ChIJG2K5JrtqkFQRsT22hSRqrrc',
+      coords: null
     }
+  },
+
+  componentDidMount() {
+    this.getLocation();
+  },
+
+  getLocation() {
+    if (!navigator.geolocation) {
+      return console.log('Geolocation is not supported by your browser.');
+    }
+
+    const success = (position) => {
+      const { latitude, longitude } = position.coords;
+      const nextCoords = Object.assign({}, { latitude, longitude });
+
+
+      this.setState({ coords: nextCoords });
+      this.getBars();
+    };
+
+    const failure = () => {
+      console.log('Could not obtain your location.');
+    }
+
+    navigator.geolocation.getCurrentPosition(success, failure);
   },
 
   getGivers() {
     axios.get(`/api/givers/${this.state.selectedPlaceId}`)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         // this.setState({ givers: })
       })
       .catch((err) => {
@@ -30,6 +58,17 @@ const App = React.createClass({
       });
   },
 
+  getBars() {
+    const { latitude, longitude } = this.state.coords;
+
+    axios.get(`/api/places/${latitude},${longitude}`)
+      .then((res) => {
+        this.setState({ bars: res.data });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
 
   login(credentials) {
     axios.post('/api/token', credentials)
@@ -134,7 +173,9 @@ const App = React.createClass({
       {React.cloneElement(this.props.children, {
         login: this.login,
         selectedPlaceId: this.state.selectedPlaceId,
-        getGivers: this.getGivers
+        getGivers: this.getGivers,
+        getBars: this.getBars,
+        bars: this.state.bars
       })}
 
 

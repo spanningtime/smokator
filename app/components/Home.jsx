@@ -5,6 +5,7 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
+import weakKey from 'weak-key';
 
 const Home = React.createClass({
 
@@ -66,110 +67,22 @@ const Home = React.createClass({
         <RaisedButton primary={true} style={styleButton} label="Set Smokation"></RaisedButton>
       </div>
       <div style={styleScroll}>
-        <div style={flexContainer}>
-          <List>
-            <div style={styleItem}>
-              <img src="images/glass.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Temple
-              </ListItem>
-            </div>
-          </List>
-        </div>
-        <div style={flexContainer}>
-          <List>
-            <div style={styleItem}>
-              <img src="images/glass.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Temple
-              </ListItem>
-            </div>
-          </List>
-        </div>
-        <div style={flexContainer}>
-          <List>
-            <div style={styleItem}>
-              <img src="images/glass.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Temple
-              </ListItem>
-            </div>
-          </List>
-        </div>
-        <div style={flexContainer}>
-          <List>
-            <div style={styleItem}>
-              <img src="images/glass.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Temple
-              </ListItem>
-            </div>
-          </List>
-        </div>
-        <div style={flexContainer}>
-          <List>
-            <div style={styleItem}>
-              <img src="images/glass.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Temple
-              </ListItem>
-            </div>
-          </List>
-        </div>
-        <div style={flexContainer}>
-          <List>
-            <div style={styleItem}>
-            <img src="images/glass.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Trinity
-              </ListItem>
-            </div>
-          </List>
-        </div>
-        <div style={flexContainer}>
-          <List>
-            <div style={styleItem}>
-            <img src="images/glass.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Alstadt
-              </ListItem>
-            </div>
-          </List>
-        </div>
-        <div style={flexContainer}>
-          <List>
-            <div style={styleItem}>
-            <img src="images/glass.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Merchant's Cafe
-              </ListItem>
-            </div>
-          </List>
-        </div>
+        {this.props.bars.map((bar) => {
+          return <div key={weakKey(bar)} style={flexContainer}>
+            <List value={bar.placeId}>
+              <div style={styleItem}>
+                <img src="images/glass.svg" style={styleAvatar}/>
+                <ListItem
+                  style={styleListItem}
+                  disabled={true}
+                >
+                {bar.name}
+                </ListItem>
+              </div>
+            </List>
+          </div>
+        })}
+
       </div>
     </div>
   }

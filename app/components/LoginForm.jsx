@@ -4,10 +4,10 @@ import React from 'react';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 
-const schema = Joi.object({
+const schema = {
   email: Joi.string().email().trim().required(),
   password: Joi.string().trim().required()
-});
+};
 
 const LoginForm = React.createClass({
   getInitialState() {
@@ -28,27 +28,22 @@ const LoginForm = React.createClass({
     });
 
     this.setState({ credentials: nextCredentials });
+
+    const nextErrors = Object.assign({}, this.state.errors)
+    const result = Joi.validate({ [name]: value }, { [name]: schema[name] });
+
+    if (result.error) {
+
+      for (const detail of result.error.details) {
+         nextErrors[detail.path] = detail.message;
+      }
+
+      return this.setState({ errors: nextErrors });
+    }
+
+    delete nextErrors[name];
+    this.setState({ errors: nextErrors });
   },
-
-  // handleKeyPress(event) {
-  //   const { name, value } = event.target;
-  //
-  //   const nextErrors = Object.assign({}, this.state.errors)
-  //
-  //   const result = Joi.validate({ [name]: value }, schema);
-  //   if (result.error) {
-
-  //     for (const detail of result.error.details) {
-  //        nextErrors[detail.path] = detail.message;
-  //     }
-  //
-  //     return this.setState({ errors: nextErrors });
-  //   }
-
-  //   delete nextErrors[name];
-  //
-  //   this.setState({ errors: nextErrors });
-  // },
 
   handleTouchTap() {
     const result = Joi.validate(this.state.credentials, schema, {
@@ -107,7 +102,6 @@ const LoginForm = React.createClass({
         floatingLabelText="Password"
         name="password"
         onChange={this.handleChange}
-        onKeyPress={this.handleKeyPress}
         type="password"
         value={this.state.credentials.password}
       >

@@ -9,9 +9,8 @@ const request = require('request-promise');
 
 const router = express.Router(); //eslint-disable-line new-cap
 
-router.get('/api/places', (req, res, next) => {
-  console.log('hello');
-  const { location } = req.body
+router.get('/api/places/:location', (req, res, next) => {
+  const { location } = req.params
 
   request({ uri:
     `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=100&type=bar&key=AIzaSyAFgyrpeZwrVMRD9zu5o8qNFOVH6FlO1Ps`,

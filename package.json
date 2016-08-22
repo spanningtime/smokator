@@ -37,7 +37,8 @@
     "react-router": "^2.7.0",
     "react-tap-event-plugin": "^1.0.0",
     "request-promise": "^4.1.1",
-    "simple-assign": "^0.1.0"
+    "simple-assign": "^0.1.0",
+    "weak-key": "^1.0.0"
   },
   "devDependencies": {
     "auto-reload-brunch": "^2.7.1",
