@@ -48,7 +48,7 @@ const Givers = React.createClass({
       fontFamily: 'Mallanna',
       fontSize: '25px',
       fontWeight: '200',
-      marginBottom: '10px'
+      marginBottom: '10px',
     }
 
     const styleScroll = {
