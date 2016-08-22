@@ -19,6 +19,7 @@ const App = React.createClass({
   login(credentials) {
     axios.post('api/token', credentials)
       .then((res) => {
+        this.props.router.push('/');
         return console.log('logged in');
       })
       .catch((err) => {
