@@ -11,7 +11,7 @@ import StatusButtons from 'components/StatusButtons';
 const App = React.createClass({
   getInitialState() {
     return {
-      isLoggedIn: true,
+      
     }
   },
 
@@ -22,7 +22,6 @@ const App = React.createClass({
         width: 48,
         height: 48,
         paddingBottom: 0,
-        display: this.state.isLoggedIn ? 'inline-block' : 'none'
       },
       style: {
         width: 64,
