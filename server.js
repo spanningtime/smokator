@@ -33,10 +33,6 @@ app.use(cookieParser());
 // Expose public directory to client
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use((_req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 // REQUIRE IN ROUTERS
 const chats = require('./routes/chats');
 const givers = require('./routes/givers');
@@ -50,6 +46,10 @@ app.use(givers);
 app.use(places);
 app.use(token);
 app.use(users);
+
+app.use((_req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 app.use((_req, res) => {
   res.sendStatus(404);

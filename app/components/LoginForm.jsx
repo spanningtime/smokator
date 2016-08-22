@@ -22,6 +22,10 @@ const LoginForm = React.createClass({
     this.setState({ credentials: nextCredentials });
   },
 
+  handleTouchTap() {
+    this.props.login(this.state.credentials);
+  },
+
   render() {
     const styleContainer = {
       height: '70vh',
@@ -63,8 +67,10 @@ const LoginForm = React.createClass({
       <RaisedButton
         primary={true}
         label="Login"
+        onTouchTap={this.handleTouchTap}
         style={styleButton}
       />
+
     </div>
   }
 })

@@ -1,4 +1,5 @@
 import AppBar from 'material-ui/AppBar';
+import axios from 'axios';
 import IconButton from 'material-ui/IconButton';
 import BottomNavigation from 'material-ui/BottomNavigation';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
@@ -13,6 +14,16 @@ const App = React.createClass({
     return {
 
     }
+  },
+
+  login(credentials) {
+    axios.post('api/token', credentials)
+      .then((res) => {
+        return console.log('logged in');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   },
 
   render() {
@@ -89,7 +100,9 @@ const App = React.createClass({
         </div>
       </Paper>
 
-      {this.props.children}
+      {React.cloneElement(this.props.children, {
+        login: this.login
+      })}
     </div>
   }
 });
