@@ -6,6 +6,7 @@ import LoginButtons from 'components/LoginButtons';
 import StatusButtons from 'components/StatusButtons';
 import Home from 'components/Home';
 import Givers from 'components/Givers';
+import Profile from 'components/Profile';
 
 
 
@@ -18,6 +19,7 @@ const Routes = React.createClass({
         <Route component={StatusButtons} path="status" />
         <Route component={Home} path="home" />
         <Route component={Givers} path="givers" />
+        <Route component={Profile} path="profile" />
       </Route>
     </Router>
   }
