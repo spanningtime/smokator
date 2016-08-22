@@ -10,8 +10,8 @@ const { checkAuth } = require('../middleware.js');
 
 const router = express.Router(); // eslint-disable-line new-cap
 
-router.get('/api/givers', (req, res, next) => {
-  const placeId = (req.body.placeId);
+router.get('/api/givers/:placeId', (req, res, next) => {
+  const placeId = (req.params.placeId);
 
   knex.select('first_name', 'about_me', 'avatar_id', 'phone', 'user_id', 'place_id', 'expiration')
     .from('users')

@@ -13,12 +13,26 @@ import StatusButtons from 'components/StatusButtons';
 const App = React.createClass({
   getInitialState() {
     return {
-      open: false
+      open: false,
+      givers: [],
+      selectedPlaceId: 'ChIJG2K5JrtqkFQRsT22hSRqrrc'
     }
   },
 
+  getGivers() {
+    axios.get(`/api/givers/${this.state.selectedPlaceId}`)
+      .then((res) => {
+        console.log(res);
+        // this.setState({ givers: })
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+
   login(credentials) {
-    axios.post('api/token', credentials)
+    axios.post('/api/token', credentials)
       .then((res) => {
         return this.props.router.push('/home');
       })
@@ -30,7 +44,7 @@ const App = React.createClass({
         else {
           console.log('uh oh we messed up.');
         }
-      })
+      });
   },
 
   render() {
@@ -118,7 +132,9 @@ const App = React.createClass({
         />
 
       {React.cloneElement(this.props.children, {
-        login: this.login
+        login: this.login,
+        selectedPlaceId: this.state.selectedPlaceId,
+        getGivers: this.getGivers
       })}
 
 

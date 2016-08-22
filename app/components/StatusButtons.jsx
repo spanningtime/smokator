@@ -4,6 +4,10 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const StatusButtons = React.createClass({
+  handleTouchTap() {
+    this.props.getGivers();
+  },
+
   render() {
 
     const flexContainer = {
@@ -29,7 +33,13 @@ const StatusButtons = React.createClass({
     }
 
     return <div style={flexContainer}>
-      <RaisedButton label="I want a cigarette" primary={true} style={styleButton} labelStyle={styleLabel}  />
+      <RaisedButton
+        label="I want a cigarette"
+        labelStyle={styleLabel}
+        onTouchTap={this.handleTouchTap}
+        primary={true}
+        style={styleButton}
+      />
       <RaisedButton label="I have cigarettes to give" primary={true} style={styleButton} labelStyle={styleLabel}  />
     </div>
   }
