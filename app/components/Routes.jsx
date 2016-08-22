@@ -5,6 +5,7 @@ import LoginForm from 'components/LoginForm';
 import LoginButtons from 'components/LoginButtons';
 import StatusButtons from 'components/StatusButtons';
 import Home from 'components/Home';
+import Givers from 'components/Givers';
 
 
 
@@ -16,6 +17,7 @@ const Routes = React.createClass({
         <Route component={LoginForm} path="login" />
         <Route component={StatusButtons} path="status" />
         <Route component={Home} path="home" />
+        <Route component={Givers} path="givers" />
       </Route>
     </Router>
   }
