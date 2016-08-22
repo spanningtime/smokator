@@ -23,11 +23,13 @@ const Home = React.createClass({
 
     const styleButton = {
       width: '150px',
+      marginTop: '0px',
+      marginBottom: '15px'
     };
 
     const styleScroll = {
       overflow: 'scroll',
-      height: '60vh'
+      height: '54vh'
     };
 
     const flexContainer = {
