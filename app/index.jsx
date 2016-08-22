@@ -8,9 +8,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 const muiTheme = getMuiTheme({
-  raisedButton: {
-    textColor: 'black'
-  },
 
   palette: {
     primary1Color: '#e5f3e9',

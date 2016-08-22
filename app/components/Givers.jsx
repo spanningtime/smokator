@@ -38,14 +38,14 @@ const Givers = React.createClass({
     }
 
     const styleListItem = {
-      fontFamily: 'helvetica',
+      fontFamily: 'Mallanna',
       fontSize: '25px',
       fontWeight: '200'
     }
 
     const styleTitle = {
       textAlign: 'center',
-      fontFamily: 'helvetica',
+      fontFamily: 'Mallanna',
       fontSize: '25px',
       fontWeight: '200',
       marginBottom: '30px'

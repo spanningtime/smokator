@@ -18,14 +18,16 @@ const StatusButtons = React.createClass({
 
     const styleButton = {
       display: 'flex',
-      width: '175px',
-      textColor: 'black',
-      marginBottom: '10px'
+      width: '235px',
+      marginBottom: '10px',
+      fontFamily: 'Mallanna',
+      fontWeight: '200'
+
     };
 
     return <div style={flexContainer}>
-      <RaisedButton label="I want a cig" primary={true} style={styleButton}  />
-      <RaisedButton label="I have cigs to give" primary={true} style={styleButton}  />
+      <RaisedButton label="I want a cigarette" primary={true} style={styleButton}  />
+      <RaisedButton label="I have cigarettes to give" primary={true} style={styleButton}  />
     </div>
   }
 });
