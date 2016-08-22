@@ -19,11 +19,15 @@ const App = React.createClass({
   login(credentials) {
     axios.post('api/token', credentials)
       .then((res) => {
-        this.props.router.push('/');
-        return console.log('logged in');
+        return this.props.router.push('/home');
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.status === 401) {
+          console.log('Invalid login info.');
+        }
+        else {
+          console.log('uh oh we messed up.');
+        }
       })
   },
 

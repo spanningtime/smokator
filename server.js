@@ -56,8 +56,9 @@ app.use((_req, res) => {
 });
 
 app.use((err, _req, res, _next) => {
+
   if (err.status || err.output && err.output.statusCode) {
-    return res.status(err.status || err.output.statusCode).send(err.message);
+    return res.status(err.status || err.output.statusCode).send(err);
   }
 
   console.error(err.stack);
