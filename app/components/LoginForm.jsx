@@ -15,15 +15,19 @@ const LoginForm = React.createClass({
       justifyContent: 'center'
     };
 
+    const styleTextField = {
+      marginBottom: '10px'
+    }
+
     const styleButton = {
       width: '100px',
-      marginTop: '60px'
+      marginTop: '20px'
     };
 
     return <div style={styleContainer}>
-      <TextField floatingLabelText="Email"></TextField>
+      <TextField style ={styleTextField} floatingLabelText="Email"></TextField>
       <TextField floatingLabelText="Password"></TextField>
-      <RaisedButton style={styleButton} label="damnit"></RaisedButton>
+      <RaisedButton primary={true} style={styleButton} label="Login"></RaisedButton>
     </div>
   }
 })
