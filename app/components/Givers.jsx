@@ -10,7 +10,7 @@ const Givers = React.createClass({
 
     const flexContainer = {
       minWidth: '100px',
-      maxWidth: '160px',
+      maxWidth: '180px',
       margin: '0 auto'
       // display: 'flex',
       // flexDirection: 'row',
@@ -48,41 +48,102 @@ const Givers = React.createClass({
       fontFamily: 'Mallanna',
       fontSize: '25px',
       fontWeight: '200',
-      marginBottom: '30px'
+      marginBottom: '10px'
+    }
+
+    const styleScroll = {
+      overflow: 'scroll',
+      height: '65vh'
     }
 
     return <div>
       <h1 style={styleTitle}>Givers currently @ Temple</h1>
-      <div style={flexContainer}>
-        <List>
-          <div style={styleItem}>
-          <img src="images/hen.svg" style={styleAvatar}/>
-            <ListItem
-              style={styleListItem}
-              disabled={true}
-            >
-            John
-            </ListItem>
-          </div>
-          <div style={styleItem}>
-          <img src="images/burger.svg" style={styleAvatar}/>
-            <ListItem
-              style={styleListItem}
-              disabled={true}
-            >
-            Blaine
-            </ListItem>
-          </div>
-          <div style={styleItem}>
-          <img src="images/pizza.svg" style={styleAvatar}/>
-            <ListItem
-              style={styleListItem}
-              disabled={true}
-            >
-            Shane
-            </ListItem>
-          </div>
-        </List>
+      <div style={styleScroll}>
+        <div style={flexContainer}>
+          <List>
+            <div style={styleItem}>
+            <img src="images/hen.svg" style={styleAvatar}/>
+              <ListItem
+                style={styleListItem}
+                disabled={true}
+              >
+              John
+              </ListItem>
+            </div>
+            <div style={styleItem}>
+            <img src="images/burger.svg" style={styleAvatar}/>
+              <ListItem
+                style={styleListItem}
+                disabled={true}
+              >
+              Blaine
+              </ListItem>
+            </div>
+            <div style={styleItem}>
+            <img src="images/pizza.svg" style={styleAvatar}/>
+              <ListItem
+                style={styleListItem}
+                disabled={true}
+              >
+              Shane
+              </ListItem>
+            </div>
+            <div style={styleItem}>
+            <img src="images/hen.svg" style={styleAvatar}/>
+              <ListItem
+                style={styleListItem}
+                disabled={true}
+              >
+              Matthew
+              </ListItem>
+            </div>
+            <div style={styleItem}>
+            <img src="images/burger.svg" style={styleAvatar}/>
+              <ListItem
+                style={styleListItem}
+                disabled={true}
+              >
+              Blaine
+              </ListItem>
+            </div>
+            <div style={styleItem}>
+            <img src="images/pizza.svg" style={styleAvatar}/>
+              <ListItem
+                style={styleListItem}
+                disabled={true}
+              >
+              Wolfgang
+              </ListItem>
+            </div>
+            <div style={styleItem}>
+            <img src="images/hen.svg" style={styleAvatar}/>
+              <ListItem
+                style={styleListItem}
+                disabled={true}
+              >
+              John
+              </ListItem>
+            </div>
+            <div style={styleItem}>
+            <img src="images/burger.svg" style={styleAvatar}/>
+              <ListItem
+                style={styleListItem}
+                disabled={true}
+              >
+              Blaine
+              </ListItem>
+            </div>
+            <div style={styleItem}>
+            <img src="images/pizza.svg" style={styleAvatar}/>
+              <ListItem
+                style={styleListItem}
+                disabled={true}
+              >
+              Shane
+              </ListItem>
+            </div>
+          </List>
+        </div>
       </div>
     </div>
   }
