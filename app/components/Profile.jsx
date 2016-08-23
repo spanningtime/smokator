@@ -63,7 +63,7 @@ const Profile = React.createClass({
      });
 
      const thisGiver = thisGiverArr[0];
-     
+
     return <div style={flexContainer}>
       <div>
         <div style={styleDiv}>
@@ -71,7 +71,12 @@ const Profile = React.createClass({
           <img src="./images/cigarette.svg" style={styleAvatar}/>
         </div>
         <p style={styleBio}>{thisGiver.aboutMe}</p>
-          <RaisedButton label="Chat" primary={true} style={styleButton} />
+
+        <RaisedButton
+          label="Chat"
+          primary={true}
+          style={styleButton}
+        />
       </div>
     </div>
   }
