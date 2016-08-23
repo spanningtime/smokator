@@ -23,7 +23,7 @@ const Routes = React.createClass({
         <Route component={Givers} path="givers" />
         <Route component={Profile} path="profile" />
         <Route component={Register} path="register" />
-        <Route component={ChatWindow} path="chats.." />
+        <Route component={ChatWindow} path="chats" />
       </Route>
     </Router>
   }
