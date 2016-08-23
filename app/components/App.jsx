@@ -86,6 +86,16 @@ const App = React.createClass({
       });
   },
 
+  register(user) {
+    axios.post('/api/users', user)
+      .then((res) => {
+        return this.props.router.push('/home');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
   updateBar(nextBar) {
     this.setState({ bar: nextBar });
     this.getGivers();
@@ -180,7 +190,8 @@ const App = React.createClass({
         getGivers: this.getGivers,
         getBars: this.getBars,
         bars: this.state.bars,
-        bar: this.state.bar
+        bar: this.state.bar,
+        register: this.register
       })}
 
 

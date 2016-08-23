@@ -83,26 +83,27 @@ const LoginForm = React.createClass({
       marginTop: '20px'
     };
 
+    const { credentials, errors } =this.state.credentials;
+
     return <div style={styleContainer}>
 
       <TextField
-        errorText={this.state.errors.email}
+        errorText={errors.email}
         floatingLabelText="Email"
         name="email"
         onChange={this.handleChange}
-        onKeyPress={this.handleKeyPress}
         style={styleTextField}
-        value={this.state.credentials.email}
+        value={credentials.email}
       >
       </TextField>
 
       <TextField
-        errorText={this.state.errors.password}
+        errorText={errors.password}
         floatingLabelText="Password"
         name="password"
         onChange={this.handleChange}
         type="password"
-        value={this.state.credentials.password}
+        value={credentials.password}
       >
       </TextField>
 
