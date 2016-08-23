@@ -37,29 +37,42 @@ const ChatWindow = React.createClass({
     };
 
     const styleChatFrame = {
-      border: '2px solid black',
-      overflow: 'none',
-      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
+      // border: '2px solid black',
       height: '55vh'
     }
 
+    const styleScroll = {
+      overflow: 'scroll',
+      height: '50vh'
+    }
+
     const styleBummer = {
-      overflow: 'auto',
-      position: 'absolute',
-      bottom: '0',
-      maxHeight: '55vh'
+      backgroundColor: '#ff7f66',
+      padding: '5px',
+      borderRadius: '5px',
+      marginRight: '5px',
+      marginBottom: '10px',
+      boxShadow: 'rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px',
+      maxWidth: '200px'
     }
 
     const styleGiver = {
-      overflow: 'auto',
-      position: 'absolute',
-      bottom: '0',
-      maxHeight: '55'
+      backgroundColor: '#e5f3e9',
+      padding: '5px',
+      borderRadius: '5px',
+      marginLeft: '5px',
+      marginBottom: '10px',
+      boxShadow: 'rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px',
+      maxWidth: '200px'
     }
 
     const styleDiv = {
       marginTop: '10px',
       borderBottom: '2px solid #ff7f66',
+
     };
 
 
@@ -72,7 +85,18 @@ const ChatWindow = React.createClass({
       overflow: 'scroll',
       height: '10vh',
       margin: '0 auto'
-    }
+    };
+
+    const styleMessageContainer = {
+      display: 'flex',
+      flexDirection: 'column',
+      alignContent: 'flex-end',
+      alignItems: 'flex-end'
+    };
+
+    const styleOl = {
+      paddingLeft: '0px'
+    };
 
 
 
@@ -83,15 +107,64 @@ const ChatWindow = React.createClass({
         </div>
 
         <div style={styleChatFrame}>
+          <ol style={styleOl}>
+            <div style={styleScroll}>
 
-          <div style={styleBummer}>
-            <p>Hey are you still here?</p>
-          </div>
+              <li style={styleMessageContainer}>
+                <div style={styleBummer}>
+                  <p>Hey are you still here becauseh yeah wooooooo oh yeah wooo?</p>
+                </div>
+              </li>
 
-          <div style={styleGiver}>
-            <p>Yeah</p>
-          </div>
+              <li>
+                <div style={styleGiver}>
+                  <p>Yeah wooo wejlakjf yasdofjsdalkf wioeru kjsfdl jlskdjf</p>
+                </div>
+              </li>
 
+              <li>
+                <div style={styleGiver}>
+                  <p>Got Virginia Slims</p>
+                </div>
+              </li>
+
+              <li style={styleMessageContainer}>
+                <div style={styleBummer}>
+                  <p>Hey are you still here?</p>
+                </div>
+              </li>
+
+              <li>
+                <div style={styleGiver}>
+                  <p>Yeah</p>
+                </div>
+              </li>
+
+              <li>
+                <div style={styleGiver}>
+                  <p>Got Virginia Slims</p>
+                </div>
+              </li>
+
+              <li style={styleMessageContainer}>
+                <div style={styleBummer}>
+                  <p>Hey are you still here?</p>
+                </div>
+              </li>
+
+              <li>
+                <div style={styleGiver}>
+                  <p>Yeah</p>
+                </div>
+              </li>
+
+              <li>
+                <div style={styleGiver}>
+                  <p>Got Virginia Slims</p>
+                </div>
+              </li>
+            </div>
+          </ol>
         </div>
 
         <div style={styleChatInput}>
