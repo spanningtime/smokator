@@ -108,7 +108,7 @@ const ChatWindow = React.createClass({
 
         <div style={styleChatFrame}>
           <ol style={styleOl}>
-            <div style={styleScroll}>
+            <div id="scroll" style={styleScroll}>
 
               <li style={styleMessageContainer}>
                 <div style={styleBummer}>

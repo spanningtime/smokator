@@ -12,7 +12,7 @@ const StatusButtons = React.createClass({
 
   handleTouchTapGiver() {
     this.props.postGiver()
-  }
+  },
 
   render() {
 
