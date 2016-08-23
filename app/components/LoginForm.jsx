@@ -83,7 +83,7 @@ const LoginForm = React.createClass({
       marginTop: '20px'
     };
 
-    const { credentials, errors } =this.state.credentials;
+    const { credentials, errors } =this.state;
 
     return <div style={styleContainer}>
 

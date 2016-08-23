@@ -6,9 +6,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const StatusButtons = React.createClass({
 
-  handleTouchTap() {
+  handleTouchTapBummer() {
     this.props.router.push('/givers')
   },
+
+  handleTouchTapGiver() {
+    this.props.postGiver()
+  }
 
   render() {
 
@@ -38,11 +42,17 @@ const StatusButtons = React.createClass({
       <RaisedButton
         label="I want a cigarette"
         labelStyle={styleLabel}
-        onTouchTap={this.handleTouchTap}
+        onTouchTap={this.handleTouchTapBummer}
         primary={true}
         style={styleButton}
       />
-      <RaisedButton label="I have cigarettes to give" primary={true} style={styleButton} labelStyle={styleLabel}  />
+      <RaisedButton
+        label="I have cigarettes to give"
+        labelStyle={styleLabel}
+        onTouchTap={this.handleTouchTapGiver}
+        primary={true}
+        style={styleButton}
+      />
     </div>
   }
 });

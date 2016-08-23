@@ -51,12 +51,10 @@ const ChatWindow = React.createClass({
     }
 
     const styleGiver = {
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'nowrap',
-      justifyContent: 'flex-end',
-      alignContent: 'flex-end',
-      alignItems: 'space-around'
+      overflow: 'auto',
+      position: 'absolute',
+      bottom: '0',
+      maxHeight: '55'
     }
 
     const styleDiv = {
@@ -83,13 +81,17 @@ const ChatWindow = React.createClass({
         <div style={styleDiv}>
           <h1 style={styleTitle}>Blaine</h1>
         </div>
+
         <div style={styleChatFrame}>
+
           <div style={styleBummer}>
             <p>Hey are you still here?</p>
           </div>
+
           <div style={styleGiver}>
             <p>Yeah</p>
           </div>
+
         </div>
 
         <div style={styleChatInput}>
