@@ -21,7 +21,7 @@ router.get('/api/givers/:placeId', (req, res, next) => {
     .orderBy('first_name')
     .then((rows) => {
       const givers = camelizeKeys(rows);
-      console.log(givers);
+
       res.send(givers);
     })
     .catch((err) => {

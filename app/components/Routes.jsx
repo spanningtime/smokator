@@ -21,7 +21,7 @@ const Routes = React.createClass({
         <Route component={StatusButtons} path="status" />
         <Route component={Home} path="home" />
         <Route component={Givers} path="givers" />
-        <Route component={Profile} path="profile" />
+        <Route component={Profile} path="giver/:userId" />
         <Route component={Register} path="register" />
         <Route component={ChatWindow} path="chats" />
       </Route>

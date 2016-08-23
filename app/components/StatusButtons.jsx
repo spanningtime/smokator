@@ -7,12 +7,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const StatusButtons = React.createClass({
 
   handleTouchTapBummer() {
+    this.props.getGivers();
     this.props.router.push('/givers')
   },
 
   handleTouchTapGiver() {
     this.props.postGiver()
-  }
+  },
 
   render() {
 

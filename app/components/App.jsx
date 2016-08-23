@@ -5,6 +5,7 @@ import BottomNavigation from 'material-ui/BottomNavigation';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Paper from 'material-ui/Paper';
 import React from 'react';
+import cookie from 'react-cookie';
 import { withRouter } from 'react-router';
 import LoginButtons from 'components/LoginButtons';
 import Snackbar from 'material-ui/Snackbar';
@@ -50,8 +51,7 @@ const App = React.createClass({
   getGivers() {
     axios.get(`/api/givers/${this.state.bar.placeId}`)
       .then((res) => {
-        console.log(res);
-        //this.setState({ givers: res.data });
+        this.setState({ givers: res.data });
       })
       .catch((err) => {
         console.error(err);
@@ -86,9 +86,25 @@ const App = React.createClass({
       });
   },
 
+  postGiver() {
+    const giver = {
+      placeId: this.state.bar.placeId,
+      userId: cookie.load('userId')
+    };
+
+    axios.post('api/givers', giver)
+      .then((res) => {
+        // this.props.router.push('/givers/success');
+      })
+      .catch((err) => {
+        console.log('post user error');
+      })
+  },
+
   register(user) {
     axios.post('/api/users', user)
       .then((res) => {
+        this.setState({ userId: res.data.userId });
         return this.props.router.push('/home');
       })
       .catch((err) => {
@@ -98,7 +114,6 @@ const App = React.createClass({
 
   updateBar(nextBar) {
     this.setState({ bar: nextBar });
-    this.getGivers();
     this.props.router.push('/status');
   },
 
@@ -191,7 +206,9 @@ const App = React.createClass({
         getBars: this.getBars,
         bars: this.state.bars,
         bar: this.state.bar,
-        register: this.register
+        givers: this.state.givers,
+        register: this.register,
+        postGiver: this.postGiver
       })}
 
 

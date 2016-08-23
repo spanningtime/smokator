@@ -58,13 +58,19 @@ const Profile = React.createClass({
       fontFamily: 'Mallanna',
     };
 
+     const thisGiverArr = this.props.givers.filter((giver) => {
+       return giver.userId === Number.parseInt(this.props.params.userId);
+     });
+
+     const thisGiver = thisGiverArr[0];
+     
     return <div style={flexContainer}>
       <div>
         <div style={styleDiv}>
-          <h1 style={styleTitle}>Blaine</h1>
-          <img src="images/burger.svg" style={styleAvatar}/>
+          <h1 style={styleTitle}>{thisGiver.firstName}</h1>
+          <img src="./images/cigarette.svg" style={styleAvatar}/>
         </div>
-        <p style={styleBio}>I used to do drugs. I still do but I used to too. Gimme money at: www.venmo.com</p>
+        <p style={styleBio}>{thisGiver.aboutMe}</p>
           <RaisedButton label="Chat" primary={true} style={styleButton} />
       </div>
     </div>

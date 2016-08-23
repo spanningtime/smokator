@@ -94,7 +94,7 @@ const Home = React.createClass({
             style={flexContainer}
             >
             <List
-              onTouchTap={this.handleTouchTapSelect.bind(null, bar)}
+              onTouchTap={() => this.handleTouchTapSelect(bar)}
             >
               <div
                 style={styleItem}>

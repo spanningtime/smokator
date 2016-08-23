@@ -1,11 +1,14 @@
 import React from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Link } from 'react-router';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import Avatar from 'material-ui/Avatar';
+import weakKey from 'weak-key';
 
 const Givers = React.createClass({
+
   render() {
 
     const flexContainer = {
@@ -56,92 +59,27 @@ const Givers = React.createClass({
       height: '65vh'
     }
 
+    const { givers } = this.props;
+
     return <div>
       <h1 style={styleTitle}>Givers currently @ {this.props.bar.name}</h1>
       <div style={styleScroll}>
         <div style={flexContainer}>
           <List>
-            <div style={styleItem}>
-              <img src="images/hen.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              John
-              </ListItem>
-            </div>
-            <div style={styleItem}>
-            <img src="images/burger.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Blaine
-              </ListItem>
-            </div>
-            <div style={styleItem}>
-            <img src="images/pizza.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Shane
-              </ListItem>
-            </div>
-            <div style={styleItem}>
-            <img src="images/hen.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Matthew
-              </ListItem>
-            </div>
-            <div style={styleItem}>
-            <img src="images/burger.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Blaine
-              </ListItem>
-            </div>
-            <div style={styleItem}>
-            <img src="images/pizza.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Wolfgang
-              </ListItem>
-            </div>
-            <div style={styleItem}>
-            <img src="images/hen.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              John
-              </ListItem>
-            </div>
-            <div style={styleItem}>
-            <img src="images/burger.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Blaine
-              </ListItem>
-            </div>
-            <div style={styleItem}>
-            <img src="images/pizza.svg" style={styleAvatar}/>
-              <ListItem
-                style={styleListItem}
-                disabled={true}
-              >
-              Shane
-              </ListItem>
-            </div>
+            {givers.map((giver) => {
+
+              return  <Link key={weakKey(giver)} to={`/giver/${giver.userId}`}>
+                <div style={styleItem}>
+                  <img src={"images/cigarette.svg"} style={styleAvatar}/>
+                  <ListItem
+                    disabled={true}
+                    style={styleListItem}
+                  >
+                    {giver.firstName}
+                  </ListItem>
+                </div>
+              </Link>
+            })}
           </List>
         </div>
       </div>
