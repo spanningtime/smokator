@@ -62,7 +62,7 @@ const Givers = React.createClass({
         <div style={flexContainer}>
           <List>
             <div style={styleItem}>
-            <img src="images/hen.svg" style={styleAvatar}/>
+              <img src="images/hen.svg" style={styleAvatar}/>
               <ListItem
                 style={styleListItem}
                 disabled={true}

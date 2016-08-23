@@ -1,12 +1,13 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const StatusButtons = React.createClass({
-  
+
   handleTouchTap() {
-    this.props.getGivers();
+    this.props.router.push('/givers')
   },
 
   render() {
@@ -46,4 +47,4 @@ const StatusButtons = React.createClass({
   }
 });
 
-export default StatusButtons;
+export default withRouter(StatusButtons);

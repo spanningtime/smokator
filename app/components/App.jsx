@@ -50,8 +50,8 @@ const App = React.createClass({
   getGivers() {
     axios.get(`/api/givers/${this.state.bar.placeId}`)
       .then((res) => {
-        console.log(res.data);
-        // this.setState({ givers: })
+        console.log(res);
+        //this.setState({ givers: res.data });
       })
       .catch((err) => {
         console.error(err);
@@ -88,7 +88,8 @@ const App = React.createClass({
 
   updateBar(nextBar) {
     this.setState({ bar: nextBar });
-    this.props.router.push('/givers');
+    this.getGivers();
+    this.props.router.push('/status');
   },
 
   render() {
