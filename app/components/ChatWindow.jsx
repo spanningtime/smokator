@@ -6,6 +6,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 
 const ChatWindow = React.createClass({
+  componentDidMount() {
+    const scroll = document.getElementById('scroll');
+    scroll.scrollTop = scroll.scrollHeight;
+  },
 
   render() {
 
@@ -41,7 +45,7 @@ const ChatWindow = React.createClass({
       flexDirection: 'column',
       justifyContent: 'flex-end',
       // border: '2px solid black',
-      height: '55vh'
+      height: '55vh',
     }
 
     const styleScroll = {
@@ -55,17 +59,14 @@ const ChatWindow = React.createClass({
       borderRadius: '5px',
       marginRight: '5px',
       marginBottom: '10px',
-      boxShadow: 'rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px',
       maxWidth: '200px'
     }
 
     const styleGiver = {
       backgroundColor: '#e5f3e9',
       padding: '5px',
-      borderRadius: '5px',
       marginLeft: '5px',
       marginBottom: '10px',
-      boxShadow: 'rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px',
       maxWidth: '200px'
     }
 
@@ -84,7 +85,7 @@ const ChatWindow = React.createClass({
       display: 'flex',
       overflow: 'scroll',
       height: '10vh',
-      margin: '0 auto'
+      margin: '0 auto',
     };
 
     const styleMessageContainer = {
