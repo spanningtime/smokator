@@ -57,7 +57,7 @@ const Givers = React.createClass({
     }
 
     return <div>
-      <h1 style={styleTitle}>Givers currently @ Temple</h1>
+      <h1 style={styleTitle}>Givers currently @ {this.props.bar.name}</h1>
       <div style={styleScroll}>
         <div style={flexContainer}>
           <List>

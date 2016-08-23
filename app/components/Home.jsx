@@ -8,6 +8,23 @@ import ListItem from 'material-ui/List/ListItem';
 import weakKey from 'weak-key';
 
 const Home = React.createClass({
+  getInitialState() {
+    return {
+      selectedBar: null
+    }
+  },
+
+  handleTouchTapSelect(bar) {
+    const nextBar = Object.assign({}, bar)
+    this.setState({ selectedBar: nextBar });
+  },
+
+  handleTouchTapSubmit() {
+    if (!this.state.selectedBar) {
+      return;
+    }
+    this.props.updateBar(this.state.selectedBar);
+  },
 
   render() {
     const styleContainer = {
@@ -24,7 +41,7 @@ const Home = React.createClass({
 
     const styleButton = {
       width: '150px',
-      marginTop: '0px',
+      marginTop: '25px',
       marginBottom: '15px'
     };
 
@@ -63,14 +80,24 @@ const Home = React.createClass({
 
     return <div>
       <div style={styleContainer}>
-        <TextField style ={styleTextField} floatingLabelText="What's your smokation?"></TextField>
-        <RaisedButton primary={true} style={styleButton} label="Set Smokation"></RaisedButton>
+        <RaisedButton
+          label="Set Smokation"
+          onTouchTap={this.handleTouchTapSubmit}
+          primary={true}
+          style={styleButton}
+        />
       </div>
       <div style={styleScroll}>
         {this.props.bars.map((bar) => {
-          return <div key={weakKey(bar)} style={flexContainer}>
-            <List value={bar.placeId}>
-              <div style={styleItem}>
+          return <div
+            key={weakKey(bar)}
+            style={flexContainer}
+            >
+            <List
+              onTouchTap={this.handleTouchTapSelect.bind(null, bar)}
+            >
+              <div
+                style={styleItem}>
                 <img src="images/glass.svg" style={styleAvatar}/>
                 <ListItem
                   style={styleListItem}

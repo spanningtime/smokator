@@ -14,10 +14,10 @@ const App = React.createClass({
 
   getInitialState() {
     return {
-      open: false,
+      loginSnackbarOpen: false,
       givers: [],
       bars: [],
-      selectedPlaceId: 'ChIJG2K5JrtqkFQRsT22hSRqrrc',
+      bar: { placeId: '', name: '' },
       coords: null
     }
   },
@@ -48,7 +48,7 @@ const App = React.createClass({
   },
 
   getGivers() {
-    axios.get(`/api/givers/${this.state.selectedPlaceId}`)
+    axios.get(`/api/givers/${this.state.bar.placeId}`)
       .then((res) => {
         console.log(res.data);
         // this.setState({ givers: })
@@ -77,13 +77,18 @@ const App = React.createClass({
       })
       .catch((err) => {
         if (err.response.status === 401) {
-          this.setState({ open: true });
-          console.log('Invalid login info.');
+          this.setState({ loginSnackbarOpen: true });
+          setTimeout(function() { this.setState({ loginSnackbarOpen: false }); }.bind(this), 4000);
         }
         else {
           console.log('uh oh we messed up.');
         }
       });
+  },
+
+  updateBar(nextBar) {
+    this.setState({ bar: nextBar });
+    this.props.router.push('/givers');
   },
 
   render() {
@@ -163,19 +168,18 @@ const App = React.createClass({
       </Paper>
 
       <Snackbar
-          open={this.state.open}
+          open={this.state.loginSnackbarOpen}
           message="Invalid login credentials."
-          autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
           bodyStyle={{ color: 'white' }}
         />
 
       {React.cloneElement(this.props.children, {
         login: this.login,
-        selectedPlaceId: this.state.selectedPlaceId,
+        updateBar: this.updateBar,
         getGivers: this.getGivers,
         getBars: this.getBars,
-        bars: this.state.bars
+        bars: this.state.bars,
+        bar: this.state.bar
       })}
 
 

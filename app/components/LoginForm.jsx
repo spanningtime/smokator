@@ -13,7 +13,6 @@ const LoginForm = React.createClass({
   getInitialState() {
     return {
       errors: {},
-
       credentials: {
         email: '',
         password: ''
