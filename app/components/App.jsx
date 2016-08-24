@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper';
 import React from 'react';
 import cookie from 'react-cookie';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router';
 import LoginButtons from 'components/LoginButtons';
 import Snackbar from 'material-ui/Snackbar';
 import StatusButtons from 'components/StatusButtons';
@@ -289,10 +290,13 @@ const App = React.createClass({
                 <img style={styleDrawerCig} src={'./images/cigarette.svg'} />
               </div>
             </MenuItem>
-            <MenuItem
-              onTouchTap={this.handleClose}
-              style={styleDrawerText}
-              >Home</MenuItem>
+            <Link to="/home" style={{textDecoration: 'none'}}>
+              <MenuItem
+                onTouchTap={this.handleClose}
+                style={styleDrawerText}
+                >New Bar
+              </MenuItem>
+            </Link>
 
             <MenuItem
               onTouchTap={this.handleClose, this.getProfile}

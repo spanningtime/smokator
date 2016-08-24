@@ -182,6 +182,7 @@ const ChatWindow = React.createClass({
           </ol>
         </div>
 
+
         <div style={styleChatInput}>
           <TextField
             multiLine={true}
