@@ -15,8 +15,8 @@ const Home = React.createClass({
   },
 
   handleTouchTapSelect(bar) {
-    const nextBar = Object.assign({}, bar)
-    this.setState({ selectedBar: nextBar });
+
+    this.setState({ selectedBar: bar });
   },
 
   handleTouchTapSubmit() {
@@ -24,6 +24,18 @@ const Home = React.createClass({
       return;
     }
     this.props.updateBar(this.state.selectedBar);
+  },
+
+  handleTouchTapBorder(event) {
+    console.log(event.target)
+    event.target.style = {
+      backgroundColor: '#e5f3e9',
+      borderRadius: '5px',
+      display: 'flex',
+      alignItems: 'center',
+      alignContent: 'center',
+      flexDirection: 'row',
+    }
   },
 
   render() {
@@ -75,7 +87,17 @@ const Home = React.createClass({
     const styleListItem = {
       fontFamily: 'Mallanna',
       fontSize: '20px',
-      fontWeight: '200'
+      fontWeight: '200',
+    }
+
+    const styleItemSelected = {
+      backgroundColor: '#e5f3e9',
+      borderRadius: '5px',
+      display: 'flex',
+      alignItems: 'center',
+      alignContent: 'center',
+      flexDirection: 'row',
+      boxShadow: '0 0 10px rgba(255, 127, 102, 1)'
     }
 
     return <div>
@@ -88,7 +110,31 @@ const Home = React.createClass({
         />
       </div>
       <div style={styleScroll}>
+
         {this.props.bars.map((bar) => {
+          if (bar === this.state.selectedBar ) {
+            return <div
+              key={weakKey(bar)}
+              style={flexContainer}
+              >
+              <List
+                onTouchTap={() => this.handleTouchTapSelect(bar)}
+              >
+                <div
+                  style={styleItemSelected}
+                  >
+                  <img src="images/glass.svg" style={styleAvatar}/>
+                  <ListItem
+                    style={styleListItem}
+                    disabled={true}
+                  >
+                  {bar.name}
+                  </ListItem>
+                </div>
+              </List>
+            </div>
+          }
+
           return <div
             key={weakKey(bar)}
             style={flexContainer}
@@ -97,7 +143,8 @@ const Home = React.createClass({
               onTouchTap={() => this.handleTouchTapSelect(bar)}
             >
               <div
-                style={styleItem}>
+                style={styleItem}
+                >
                 <img src="images/glass.svg" style={styleAvatar}/>
                 <ListItem
                   style={styleListItem}
