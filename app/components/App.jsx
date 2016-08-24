@@ -109,7 +109,6 @@ const App = React.createClass({
     const userId = cookie.load('userId');
     axios.get(`/api/users/${userId}`)
       .then((res) => {
-        console.log(res.data)
         this.setState({ user: res.data });
       })
       .catch((err) => {
