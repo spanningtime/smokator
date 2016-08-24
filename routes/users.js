@@ -42,7 +42,7 @@ router.post('/api/users', (req, res, next) => {
     .then((user) => {
       const expiry = new Date(Date.now() + 1000 * 60 * 60 * 3);
 
-      const token = jwt.sign({ userId: user.id}, process.env.SECRET, { expiresIn: '3h' });
+      const token = jwt.sign({ userId: user.id}, process.env.SESSION_SECRET, { expiresIn: '3h' });
 
       res.cookie('accessToken', token, {
         httpOnly: true,
