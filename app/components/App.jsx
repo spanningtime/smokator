@@ -139,7 +139,6 @@ const App = React.createClass({
   register(user) {
     axios.post('/api/users', user)
       .then((res) => {
-        this.setState({ userId: res.data.userId });
         return this.props.router.push('/home');
       })
       .catch((err) => {
