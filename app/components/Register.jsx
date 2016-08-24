@@ -85,15 +85,20 @@ const Register = React.createClass({
       marginTop: '20px'
     };
 
+    const styleLabel = {
+      borderColor: '#ff7f66'
+    };
+
     const { user, errors } = this.state;
 
     return <div style={styleContainer}>
       <TextField
         errorText={errors.email}
         name="email"
-        floatingLabelText="Email"
+        placeholder="Email"
         onChange={this.handleChange}
         style={styleTextField}
+        underlineFocusStyle={styleLabel}
         value={user.email}
       >
       </TextField>
@@ -101,9 +106,10 @@ const Register = React.createClass({
       <TextField
         errorText={errors.password}
         name="password"
-        floatingLabelText="Password"
+        placeholder="Password"
         onChange={this.handleChange}
         type="password"
+        underlineFocusStyle={styleLabel}
         style={styleTextField}
         value={user.password}
       >
@@ -112,8 +118,9 @@ const Register = React.createClass({
       <TextField
         errorText={errors.firstName}
         name="firstName"
-        floatingLabelText="First Name"
+        placeholder="First Name"
         onChange={this.handleChange}
+        underlineFocusStyle={styleLabel}
         style={styleTextField}
         value={user.firstName}
       >
@@ -122,8 +129,9 @@ const Register = React.createClass({
       <TextField
         errorText={errors.lastName}
         name="lastName"
-        floatingLabelText="Last Name"
+        placeholder="Last Name"
         onChange={this.handleChange}
+        underlineFocusStyle={styleLabel}
         style={styleTextField}
         value={user.lastName}
       >
@@ -132,8 +140,9 @@ const Register = React.createClass({
       <TextField
         errorText={errors.phone}
         name="phone"
-        floatingLabelText="Phone Number"
+        placeholder="Phone Number"
         onChange={this.handleChange}
+        underlineFocusStyle={styleLabel}
         style={styleTextField}
         value={user.phone}
       >
