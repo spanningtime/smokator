@@ -49,16 +49,23 @@ router.get('/api/givers/:placeId', (req, res, next) => {
 //     });
 // })
 
-router.post('/api/givers', checkAuth, (req, res, next) => {
+router.post('/api/givers', (req, res, next) => {
   const { userId, placeId } = req.body;
   const expiration = new Date(Date.now() + 1000 * 60 * 60 * 3 );
   const row = decamelizeKeys({ userId, placeId, expiration });
 
   knex('givers')
-    .insert(row, '*')
-    .then((rows) => {
-      const giver = camelizeKeys(rows[0]);
+    .where('user_id', userId)
+    .del()
+    .then(() => {
+      return knex('givers')
+        .insert(row, '*')
+        .then((rows) => {
+          const giver = camelizeKeys(rows[0]);
 
+        })
+    })
+    .then((giver) => {
       res.send(giver);
     })
     .catch((err) => {
