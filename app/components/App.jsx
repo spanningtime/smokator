@@ -22,7 +22,8 @@ const App = React.createClass({
       bars: [],
       bar: { placeId: '', name: '' },
       coords: null,
-      open: false
+      open: false,
+      // userInfo: []
     }
   },
 
@@ -145,6 +146,19 @@ const App = React.createClass({
       });
   },
 
+// ****** William's Code ******
+  // getProfile() {
+  //   const userId = cookie.load('userId');
+  //
+  //   axios.get(`/api/user/${userId}`)
+  //     .then((res) => {
+  //       this.setState({ userInfo: res.data })
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     })
+  // },
+
   updateBar(nextBar) {
     this.setState({ bar: nextBar });
     this.props.router.push('/status');
@@ -238,15 +252,22 @@ const App = React.createClass({
       textAlign: 'center'
     }
 
+    const styleSnackBar = {
+      backgroundColor: '#ff7f66',
+      textAlign: 'center',
+      height: '65px'
+    }
+
     return <div >
-      <Paper style={stylePaper}
-        >
+      <Paper style={stylePaper}>
         <div style={styleContainer}>
+
           <div style={styleTitle}>
             smokator
             <img style={styleImage} src={'./images/cigarette.svg'} />
             <h1 style={styleTagline}>Connecting drunk smokers since 1776</h1>
           </div>
+
           <IconButton
             iconStyle={styleMenu.iconStyle}
             style={styleMenu.style}
@@ -254,6 +275,7 @@ const App = React.createClass({
           >
             <NavigationMenu color={'#ff7f66'}/>
           </IconButton>
+
           <Drawer
             docked={false}
             width={200}
@@ -268,21 +290,27 @@ const App = React.createClass({
               </div>
             </MenuItem>
             <MenuItem
-            onTouchTap={this.handleClose}
-            style={styleDrawerText}
-            >Profile</MenuItem>
+              onTouchTap={this.handleClose}
+              style={styleDrawerText}
+              >Home</MenuItem>
+
             <MenuItem
-            onTouchTap={this.handleClose}
-            style={styleDrawerText}
-            >Log Out</MenuItem>
+              onTouchTap={this.handleClose, this.getProfile}
+              style={styleDrawerText}
+              >Profile</MenuItem>
+            <MenuItem
+              onTouchTap={this.handleClose}
+              style={styleDrawerText}
+              >Log Out</MenuItem>
           </Drawer>
+
         </div>
       </Paper>
 
       <Snackbar
           open={this.state.loginSnackbarOpen}
           message="Invalid login credentials."
-          bodyStyle={{ color: 'white' }}
+          bodyStyle={styleSnackBar}
         />
 
       {React.cloneElement(this.props.children, {
@@ -299,6 +327,7 @@ const App = React.createClass({
         sendMessage: this.sendMessage,
         socket: this.socket,
         joinChat: this.joinChat
+        // getProfile: this.getProfile
       })}
 
 

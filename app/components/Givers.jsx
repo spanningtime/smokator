@@ -68,7 +68,7 @@ const Givers = React.createClass({
           <List>
             {givers.map((giver) => {
 
-              return  <Link key={weakKey(giver)} to={`/giver/${giver.userId}`}>
+              return  <Link key={weakKey(giver)} to={`/profile/${giver.userId}`}>
                 <div style={styleItem}>
                   <img src={"images/cigarette.svg"} style={styleAvatar}/>
                   <ListItem
