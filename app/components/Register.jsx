@@ -5,11 +5,11 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const schema = {
-  email: Joi.string().email().trim().required(),
-  password: Joi.string().trim().required(),
-  phone: Joi.string().trim().required().min(10),
-  firstName: Joi.string().trim().required(),
-  lastName: Joi.string().trim().required()
+  email: Joi.string().email().trim().required().label('Email'),
+  password: Joi.string().trim().required().label('Password'),
+  phone: Joi.string().trim().required().min(10).label('Phone number'),
+  firstName: Joi.string().trim().required().label('First name'),
+  lastName: Joi.string().trim().required().label('Last Name')
 };
 
 const Register = React.createClass({
