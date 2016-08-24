@@ -10,6 +10,8 @@ import { withRouter } from 'react-router';
 import LoginButtons from 'components/LoginButtons';
 import Snackbar from 'material-ui/Snackbar';
 import StatusButtons from 'components/StatusButtons';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 
 const App = React.createClass({
 
@@ -19,7 +21,8 @@ const App = React.createClass({
       givers: [],
       bars: [],
       bar: { placeId: '', name: '' },
-      coords: null
+      coords: null,
+      open: false
     }
   },
 
@@ -117,6 +120,14 @@ const App = React.createClass({
     this.props.router.push('/status');
   },
 
+  handleToggle() { this.setState({open: !this.state.open});
+  },
+
+  handleClose() {
+  this.setState({open: false});
+  },
+
+
   render() {
 
     const styleMenu = {
@@ -175,6 +186,10 @@ const App = React.createClass({
       marginTop: '-30px'
     };
 
+    const styleDrawer = {
+      backgroundColor: '#fff7ec'
+    }
+
     return <div >
       <Paper style={stylePaper}
         >
@@ -187,9 +202,21 @@ const App = React.createClass({
           <IconButton
             iconStyle={styleMenu.iconStyle}
             style={styleMenu.style}
+            onTouchTap={this.handleToggle}
           >
             <NavigationMenu color={'#ff7f66'}/>
           </IconButton>
+          <Drawer
+            docked={false}
+            width={200}
+            openSecondary={true}
+            open={this.state.open}
+            onRequestChange={(open) => this.setState({open})}
+            containerStyle={styleDrawer}
+          >
+            <MenuItem onTouchTap={this.handleClose}>Profile</MenuItem>
+            <MenuItem onTouchTap={this.handleClose}>Log Out</MenuItem>
+          </Drawer>
         </div>
       </Paper>
 
