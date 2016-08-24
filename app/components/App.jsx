@@ -190,6 +190,24 @@ const App = React.createClass({
       backgroundColor: '#fff7ec'
     }
 
+    const styleDrawerCigContainer = {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+      alignItems: 'center'
+    }
+
+    const styleDrawerCig = {
+      width: '70%',
+      marginTop: '-30px',
+      marginBottom: '-30px',
+      padding: '0',
+    }
+
+    const styleDrawerText = {
+      textAlign: 'center'
+    }
+
     return <div >
       <Paper style={stylePaper}
         >
@@ -214,8 +232,19 @@ const App = React.createClass({
             onRequestChange={(open) => this.setState({open})}
             containerStyle={styleDrawer}
           >
-            <MenuItem onTouchTap={this.handleClose}>Profile</MenuItem>
-            <MenuItem onTouchTap={this.handleClose}>Log Out</MenuItem>
+            <MenuItem>
+              <div style={styleDrawerCigContainer}>
+                <img style={styleDrawerCig} src={'./images/cigarette.svg'} />
+              </div>
+            </MenuItem>
+            <MenuItem
+            onTouchTap={this.handleClose}
+            style={styleDrawerText}
+            >Profile</MenuItem>
+            <MenuItem
+            onTouchTap={this.handleClose}
+            style={styleDrawerText}
+            >Log Out</MenuItem>
           </Drawer>
         </div>
       </Paper>
