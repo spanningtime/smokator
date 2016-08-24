@@ -32,24 +32,21 @@ const StatusButtons = React.createClass({
       width: '235px',
       marginBottom: '10px',
       fontFamily: 'Mallanna',
-      fontWeight: '200'
+      fontWeight: '200',
+      marginBottom: '30px',
     }
 
-    const styleLabel = {
-      fontWeight: '200'
-    }
+
 
     return <div style={flexContainer}>
       <RaisedButton
         label="I want a cigarette"
-        labelStyle={styleLabel}
         onTouchTap={this.handleTouchTapBummer}
         primary={true}
         style={styleButton}
       />
       <RaisedButton
         label="I have cigarettes to give"
-        labelStyle={styleLabel}
         onTouchTap={this.handleTouchTapGiver}
         primary={true}
         style={styleButton}

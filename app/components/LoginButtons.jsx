@@ -21,13 +21,15 @@ const LoginButtons = React.createClass({
     const styleButton = {
       display: 'flex',
       width: '100px',
-      marginBottom: '10px'
+      marginBottom: '30px'
     };
 
     return <div style={flexContainer}>
+
       <Link to="/login" style={{textDecoration: 'none'}}>
         <RaisedButton label="Login" primary={true} style={styleButton} />
       </Link>
+
       <Link to="/register" style={{textDecoration: 'none'}}>
         <RaisedButton label="Register" primary={true} style={styleButton} />
       </Link>
