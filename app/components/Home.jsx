@@ -8,22 +8,9 @@ import ListItem from 'material-ui/List/ListItem';
 import weakKey from 'weak-key';
 
 const Home = React.createClass({
-  getInitialState() {
-    return {
-      selectedBar: null
-    }
-  },
 
-  handleTouchTapSelect(bar) {
-
-    this.setState({ selectedBar: bar });
-  },
-
-  handleTouchTapSubmit() {
-    if (!this.state.selectedBar) {
-      return;
-    }
-    this.props.updateBar(this.state.selectedBar);
+  handleTouchTap(bar) {
+    this.props.updateBar(bar);
   },
 
   handleTouchTapBorder(event) {
@@ -90,57 +77,19 @@ const Home = React.createClass({
       fontWeight: '200',
     }
 
-    const styleItemSelected = {
-      backgroundColor: '#e5f3e9',
-      borderRadius: '5px',
-      display: 'flex',
-      alignItems: 'center',
-      alignContent: 'center',
-      flexDirection: 'row',
-      boxShadow: '0 0 10px rgba(255, 127, 102, 1)'
-    }
-
     return <div>
       <div style={styleContainer}>
-        <RaisedButton
-          label="Set Smokation"
-          onTouchTap={this.handleTouchTapSubmit}
-          primary={true}
-          style={styleButton}
-        />
+        <h1>Select Smokation</h1>
       </div>
       <div style={styleScroll}>
 
         {this.props.bars.map((bar) => {
-          if (bar === this.state.selectedBar ) {
-            return <div
-              key={weakKey(bar)}
-              style={flexContainer}
-              >
-              <List
-                onTouchTap={() => this.handleTouchTapSelect(bar)}
-              >
-                <div
-                  style={styleItemSelected}
-                  >
-                  <img src="images/glass.svg" style={styleAvatar}/>
-                  <ListItem
-                    style={styleListItem}
-                    disabled={true}
-                  >
-                  {bar.name}
-                  </ListItem>
-                </div>
-              </List>
-            </div>
-          }
-
           return <div
             key={weakKey(bar)}
             style={flexContainer}
             >
             <List
-              onTouchTap={() => this.handleTouchTapSelect(bar)}
+              onTouchTap={() => this.handleTouchTap(bar)}
             >
               <div
                 style={styleItem}

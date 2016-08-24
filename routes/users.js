@@ -36,7 +36,6 @@ router.post('/api/users', (req, res, next) => {
       const user = camelizeKeys(rows[0]);
 
       delete user.hashedPassword;
-      console.log(user.id);
       return user;
     })
     .then((user) => {
