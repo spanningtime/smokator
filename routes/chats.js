@@ -53,10 +53,13 @@ router.get('/api/chats/:chatId', (req, res, next) => {
   console.log(chatId)
   knex('chat_messages')
     .where('chat_id', chatId)
-    .then((messages) => {
-      if (!messages) {
+    .then((rows) => {
+      if (!rows) {
         return next();
       }
+
+      const messages = camelizeKeys(rows);
+
       res.send(messages);
     })
     .catch((err) => {

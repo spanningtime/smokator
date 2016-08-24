@@ -31,13 +31,13 @@ const ChatWindow = React.createClass({
     const scroll = document.getElementById('scroll');
     scroll.scrollTop = scroll.scrollHeight;
 
-    // axios.get(`api/chats/${this.props.params.chatId}`)
-    //   .then((res) => {
-    //     this.setState({ chatMessages: res.data });
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
+    axios.get(`/api/chats/${this.props.params.chatId}`)
+      .then((res) => {
+        this.setState({ chatMessages: res.data });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   },
 
   handleChange(event) {
