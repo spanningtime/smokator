@@ -39,6 +39,7 @@ const StatusButtons = React.createClass({
 
 
     return <div style={flexContainer}>
+      <h1>Your location: {this.props.bar.name}</h1>
       <RaisedButton
         label="I want a cigarette"
         onTouchTap={this.handleTouchTapBummer}
