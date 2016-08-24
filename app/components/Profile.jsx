@@ -78,7 +78,8 @@ const Profile = React.createClass({
       <div>
         <div style={styleDiv}>
           <h1 style={styleTitle}>{user.firstName}</h1>
-          <img src="./images/cigarette.svg" style={styleAvatar}/>
+          <h1 style={styleTitle}>{thisGiver.firstName}</h1>
+
         </div>
         <p style={styleBio}>{user.aboutMe}</p>
 
