@@ -46,23 +46,29 @@ const LoginForm = React.createClass({
       marginTop: '20px'
     };
 
+    const styleLabel = {
+      borderColor: '#ff7f66'
+    };
+
     const { credentials } = this.state;
 
     return <div style={styleContainer}>
 
       <TextField
-        floatingLabelText="Email"
+        placeholder="Email"
         name="email"
         onChange={this.handleChange}
         style={styleTextField}
+        underlineFocusStyle={styleLabel}
         type="email"
         value={credentials.email}
       />
 
       <TextField
-        floatingLabelText="Password"
+        placeholder="Password"
         name="password"
         onChange={this.handleChange}
+        underlineFocusStyle={styleLabel}
         type="password"
         value={credentials.password}
       />

@@ -22,18 +22,20 @@ const ChatWindow = React.createClass({
       const nextChatMessages = this.state.chatMessages.concat(data);
 
       this.setState({ chatMessages: nextChatMessages });
+      const scroll = document.getElementById('scroll');
+      scroll.scrollTop = scroll.scrollHeight;
     });
 
     this.props.joinChat(this.props.params.chatId);
   },
 
   componentDidMount() {
-    const scroll = document.getElementById('scroll');
-    scroll.scrollTop = scroll.scrollHeight;
 
     axios.get(`/api/chats/${this.props.params.chatId}`)
       .then((res) => {
         this.setState({ chatMessages: res.data });
+        // const scroll = document.getElementById('scroll');
+        // scroll.scrollTop = scroll.scrollHeight;
       })
       .catch((err) => {
         console.error(err);
@@ -130,7 +132,6 @@ const ChatWindow = React.createClass({
     const styleDiv = {
       marginTop: '10px',
       borderBottom: '2px solid #ff7f66',
-
     };
 
 
@@ -163,8 +164,8 @@ const ChatWindow = React.createClass({
         </div>
 
         <div style={styleChatFrame}>
-          <ol style={styleOl}>
-            <div id="scroll" style={styleScroll}>
+          <ol style={styleOl} >
+            <div id="scroll" style={styleScroll} >
 
             {this.state.chatMessages.map((message) => {
               if (message.userId === cookie.load('userId')) {
