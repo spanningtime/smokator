@@ -43,7 +43,6 @@ const Register = React.createClass({
     }
 
     this.setState({ errors: {} });
-    console.log('hads');
     this.props.register(this.state.user);
   },
 

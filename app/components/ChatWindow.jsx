@@ -155,7 +155,7 @@ const ChatWindow = React.createClass({
     return <div style={flexContainer}>
       <div>
         <div style={styleDiv}>
-          <h1 style={styleTitle}>Blaine</h1>
+          <h1 style={styleTitle}>Mitch</h1>
         </div>
 
         <div style={styleChatFrame}>
