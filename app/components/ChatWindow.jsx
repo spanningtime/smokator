@@ -45,6 +45,10 @@ const ChatWindow = React.createClass({
   },
 
   sendMessage() {
+    if (this.state.messageText.trim() === '') {
+      return;
+    }
+
     const message = {
       chatId: this.props.params.chatId,
       messageText: this.state.messageText,
