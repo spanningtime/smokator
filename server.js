@@ -7,11 +7,37 @@ const express = require('express');
 const port = process.env.PORT || 8080;
 const path = require('path');
 
+
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 
 const app = express();
+
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+io.sockets.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('subscribe', function(data) {
+    const { chatId } = data;
+
+    if (true) {
+      socket.join(chatId);
+      io.sockets.in(chatId).emit('success', { chatId });
+    }
+  });
+
+  socket.on('chat message', (data) => {
+    io.sockets.in(data.chatId).emit('post message', data);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('a user disconnected');
+  });
+});
+
 
 app.disable('x-powered-by');
 
@@ -65,7 +91,7 @@ app.use((err, _req, res, _next) => {
   res.sendStatus(500);
 });
 
-app.listen(port, () => {
+http.listen(port, () => {
   console.log('Listening on port,', port);
 });
 

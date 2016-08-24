@@ -1,14 +1,67 @@
 import React from 'react';
+import axios from 'axios';
+import cookie from 'react-cookie';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
+import weakKey from 'weak-key';
 
 const ChatWindow = React.createClass({
+  getInitialState() {
+    return {
+      chatMessages: [],
+      messageText: ''
+    }
+  },
+
+  componentWillMount() {
+    this.props.socket.on('post message', (data) => {
+
+      const nextChatMessages = this.state.chatMessages.concat(data);
+
+      this.setState({ chatMessages: nextChatMessages });
+    });
+
+    this.props.joinChat(this.props.params.chatId);
+  },
+
   componentDidMount() {
     const scroll = document.getElementById('scroll');
     scroll.scrollTop = scroll.scrollHeight;
+
+    // axios.get(`api/chats/${this.props.params.chatId}`)
+    //   .then((res) => {
+    //     this.setState({ chatMessages: res.data });
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
+  },
+
+  handleChange(event) {
+    this.setState({ messageText: event.target.value });
+  },
+
+  sendMessage() {
+    const message = {
+      chatId: this.props.params.chatId,
+      messageText: this.state.messageText,
+      userId: cookie.load('userId')
+    }
+
+    this.props.socket.emit('chat message', message)
+
+    axios.post(`/api/chats/${this.props.params.chatId}`, message)
+      .then((res) => {
+        console.log('message saved');
+      })
+      .catch((err) => {
+        console.error('message not saved');
+      });
+
+    this.setState({ messageText: '' });
   },
 
   render() {
@@ -99,8 +152,6 @@ const ChatWindow = React.createClass({
       paddingLeft: '0px'
     };
 
-
-
     return <div style={flexContainer}>
       <div>
         <div style={styleDiv}>
@@ -111,73 +162,39 @@ const ChatWindow = React.createClass({
           <ol style={styleOl}>
             <div id="scroll" style={styleScroll}>
 
-              <li style={styleMessageContainer}>
-                <div style={styleBummer}>
-                  <p>Hey are you still here becauseh yeah wooooooo oh yeah wooo?</p>
-                </div>
-              </li>
+            {this.state.chatMessages.map((message) => {
+              if (message.userId === cookie.load('userId')) {
+                return <li key={weakKey(message)} style={styleMessageContainer}>
+                  <div style={styleBummer}>
+                    <p>{message.messageText}</p>
+                  </div>
+                </li>
+              }
 
-              <li>
+              return <li key={weakKey(message)}>
                 <div style={styleGiver}>
-                  <p>Yeah wooo wejlakjf yasdofjsdalkf wioeru kjsfdl jlskdjf</p>
+                  <p>{message.messageText}</p>
                 </div>
               </li>
+            })}
 
-              <li>
-                <div style={styleGiver}>
-                  <p>Got Virginia Slims</p>
-                </div>
-              </li>
-
-              <li style={styleMessageContainer}>
-                <div style={styleBummer}>
-                  <p>Hey are you still here?</p>
-                </div>
-              </li>
-
-              <li>
-                <div style={styleGiver}>
-                  <p>Yeah</p>
-                </div>
-              </li>
-
-              <li>
-                <div style={styleGiver}>
-                  <p>Got Virginia Slims</p>
-                </div>
-              </li>
-
-              <li style={styleMessageContainer}>
-                <div style={styleBummer}>
-                  <p>Hey are you still here?</p>
-                </div>
-              </li>
-
-              <li>
-                <div style={styleGiver}>
-                  <p>Yeah</p>
-                </div>
-              </li>
-
-              <li>
-                <div style={styleGiver}>
-                  <p>Got Virginia Slims</p>
-                </div>
-              </li>
             </div>
           </ol>
         </div>
 
         <div style={styleChatInput}>
           <TextField
-            name="message"
             multiLine={true}
+            name="message"
+            onChange={this.handleChange}
             rows={1}
             style={styleChatInput.underlineStyle}
+            value={this.state.messageText}
           />
           <div style={styleButton}>
             <RaisedButton
             label="Send"
+            onTouchTap={this.sendMessage}
             primary={true}
             />
           </div>

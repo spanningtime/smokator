@@ -39,6 +39,7 @@
     "react-tap-event-plugin": "^1.0.0",
     "request-promise": "^4.1.1",
     "simple-assign": "^0.1.0",
+    "socket.io": "^1.4.8",
     "weak-key": "^1.0.0"
   },
   "devDependencies": {

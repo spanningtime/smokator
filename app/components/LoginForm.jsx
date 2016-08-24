@@ -93,6 +93,7 @@ const LoginForm = React.createClass({
         name="email"
         onChange={this.handleChange}
         style={styleTextField}
+        type="email"
         value={credentials.email}
       >
       </TextField>

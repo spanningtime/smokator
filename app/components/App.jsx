@@ -30,6 +30,36 @@ const App = React.createClass({
     this.getLocation();
   },
 
+  componentWillMount() {
+    this.socket = io();
+
+    this.socket.on('success', (data) => {
+      this.props.router.push(`/chats/${data.chatId}`);
+    });
+
+  },
+
+  createChat(giverId) {
+    const request = { giverId: giverId, bummerId: cookie.load('userId') };
+
+    axios.post('/api/chats', request)
+      .then((res) => {
+
+        this.socket.emit('subscribe', {
+          chatId: res.data.id
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  joinChat(chatId) {
+    this.socket.emit('subscribe', {
+      chatId: chatId
+    })
+  },
+
   getLocation() {
     if (!navigator.geolocation) {
       return console.log('Geolocation is not supported by your browser.');
@@ -264,7 +294,11 @@ const App = React.createClass({
         bar: this.state.bar,
         givers: this.state.givers,
         register: this.register,
-        postGiver: this.postGiver
+        postGiver: this.postGiver,
+        createChat: this.createChat,
+        sendMessage: this.sendMessage,
+        socket: this.socket,
+        joinChat: this.joinChat
       })}
 
 
