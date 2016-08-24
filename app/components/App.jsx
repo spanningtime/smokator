@@ -24,7 +24,7 @@ const App = React.createClass({
       bar: { placeId: '', name: '' },
       coords: null,
       open: false,
-      // userInfo: []
+      user: {}
     }
   },
 
@@ -105,9 +105,22 @@ const App = React.createClass({
       });
   },
 
+  getProfile() {
+    const userId = cookie.load('userId');
+    axios.get(`/api/users/${userId}`)
+      .then((res) => {
+        console.log(res.data)
+        this.setState({ user: res.data });
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  },
+
   login(credentials) {
     axios.post('/api/token', credentials)
       .then((res) => {
+        this.getProfile();
         return this.props.router.push('/home');
       })
       .catch((err) => {
@@ -146,19 +159,6 @@ const App = React.createClass({
       });
   },
 
-// ****** William's Code ******
-  // getProfile() {
-  //   const userId = cookie.load('userId');
-  //
-  //   axios.get(`/api/user/${userId}`)
-  //     .then((res) => {
-  //       this.setState({ userInfo: res.data })
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     })
-  // },
-
   updateBar(nextBar) {
     this.setState({ bar: nextBar });
     this.props.router.push('/status');
@@ -173,7 +173,6 @@ const App = React.createClass({
 
 
   render() {
-
     const styleMenu = {
       iconStyle: {
         width: 48,
@@ -289,6 +288,7 @@ const App = React.createClass({
                 <img style={styleDrawerCig} src={'./images/cigarette.svg'} />
               </div>
             </MenuItem>
+
             <Link to="/home" style={{textDecoration: 'none'}}>
               <MenuItem
                 onTouchTap={this.handleClose}
@@ -297,14 +297,19 @@ const App = React.createClass({
               </MenuItem>
             </Link>
 
-            <MenuItem
-              onTouchTap={this.handleClose, this.getProfile}
-              style={styleDrawerText}
-              >Profile</MenuItem>
+            <Link to={`/profile/${cookie.load('userId')}`}>
+              <MenuItem
+                onTouchTap={this.handleClose, this.getProfile}
+                style={styleDrawerText}
+                >Profile
+              </MenuItem>
+            </Link>
+
             <MenuItem
               onTouchTap={this.handleClose}
               style={styleDrawerText}
-              >Log Out</MenuItem>
+              >Log Out
+            </MenuItem>
           </Drawer>
 
         </div>
@@ -329,8 +334,8 @@ const App = React.createClass({
         createChat: this.createChat,
         sendMessage: this.sendMessage,
         socket: this.socket,
-        joinChat: this.joinChat
-        // getProfile: this.getProfile
+        joinChat: this.joinChat,
+        user: this.state.user,
       })}
 
 

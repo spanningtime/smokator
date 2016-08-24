@@ -67,10 +67,11 @@ router.get('/api/users/:userId', (req, res, next) => {
 
   knex('users')
     .where('id', userId)
-    .then((user) => {
-      if (!user) {
+    .then((rows) => {
+      if (!rows) {
         return next();
       }
+      const user = camelizeKeys(rows[0])
       res.send(user);
     })
     .catch((err) => {

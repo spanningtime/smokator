@@ -61,19 +61,26 @@ const Profile = React.createClass({
       fontFamily: 'Mallanna',
     };
 
-     const thisGiverArr = this.props.givers.filter((giver) => {
-       return giver.userId === Number.parseInt(this.props.params.userId);
-     });
+    let user;
 
-     const thisGiver = thisGiverArr[0];
+    if (this.props.user.id === Number.parseInt(this.props.params.userId)) {
+      user = this.props.user;
+    }
+
+    else {
+      const thisGiverArr = this.props.givers.filter((giver) => {
+        return giver.userId === Number.parseInt(this.props.params.userId);
+      });
+      user = thisGiverArr[0];
+    }
 
     return <div style={flexContainer}>
       <div>
         <div style={styleDiv}>
-          <h1 style={styleTitle}>{thisGiver.firstName}</h1>
+          <h1 style={styleTitle}>{user.firstName}</h1>
           <img src="./images/cigarette.svg" style={styleAvatar}/>
         </div>
-        <p style={styleBio}>{thisGiver.aboutMe}</p>
+        <p style={styleBio}>{user.aboutMe}</p>
 
         <RaisedButton
           label="Chat"
