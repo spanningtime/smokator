@@ -12,6 +12,8 @@
     "url": "git+https://github.com/spanningtime/smokator.git"
   },
   "scripts": {
+    "nf": "nf start",
+    "heroku-postbuild": "brunch build --production; knex migrate: latest",
     "lint": "eslint --ext .js,.jsx --ignore-pattern public",
     "start": "brunch watch --server",
     "knex": "knex",
@@ -52,8 +54,12 @@
     "dotenv": "^2.0.0",
     "eslint": "^3.2.2",
     "eslint-config-ryansobol": "^8.0.0",
+    "foreman": "^1.4.1",
     "javascript-brunch": "^2.0.0",
     "sass-brunch": "^2.6.3",
     "uglify-js-brunch": "^2.0.1"
+  },
+  "engines": {
+    "node": "6.4.0"
   }
 }
