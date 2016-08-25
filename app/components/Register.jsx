@@ -76,13 +76,22 @@ const Register = React.createClass({
     scroll.scrollTop = scroll.scrollHeight;
   },
 
+  // handleFocus() {
+  //   if (window.screen.height < 400) {
+  //     console.log("<400");
+  //   }
+  //   document.getElementById('footer').style.display = "none";
+  // },
+
+
   render() {
     const styleContainer = {
-      height: '70vh',
+      // height: '70vh',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      marginTop: '50px'
     };
 
     const styleBigTextField = {
@@ -106,6 +115,7 @@ const Register = React.createClass({
         name="email"
         placeholder="Email"
         onChange={this.handleChange}
+        // onFocus={this.handleFocus}
         underlineFocusStyle={styleLabel}
         value={user.email}
       >
