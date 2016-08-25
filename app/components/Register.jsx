@@ -69,6 +69,11 @@ const Register = React.createClass({
     this.setState({ errors: nextErrors });
   },
 
+  handleScroll(){
+    const scroll = document.getElementById('scroll');
+    scroll.scrollTop = scroll.scrollHeight;
+  },
+
   render() {
     const styleContainer = {
       height: '70vh',
@@ -80,6 +85,11 @@ const Register = React.createClass({
 
     const styleTextField = {
     };
+
+    const styleBigTextField = {
+      overflow: 'scroll',
+      height: '10vh'
+    }
 
     const styleButton = {
       marginTop: '20px'
@@ -147,6 +157,22 @@ const Register = React.createClass({
         value={user.phone}
       >
       </TextField>
+
+      <div id="scroll" style={styleBigTextField}>
+        <TextField
+          // errorText={errors.phone}
+          name="About Me"
+          placeholder="About Me"
+          onChange={this.handleChange}
+          multiLine={true}
+          rows={2}
+          underlineFocusStyle={styleLabel}
+          onChange={this.handleScroll}
+          // value={user.phone}
+          >
+        </TextField>
+      </div>
+
 
       <RaisedButton
         primary={true}
