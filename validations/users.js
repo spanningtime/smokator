@@ -4,13 +4,22 @@ const Joi = require('joi');
 
 module.exports.post = {
   body: {
-    userId: Joi.number()
-      .integer()
-      .positive()
-      .label('userId')
+    firstName: Joi.string()
+      .trim()
       .required(),
-    placeId: Joi.string()
-      .label('placeId')
+    lastName: Joi.string()
+      .trim()
+      .required(),
+    phone: Joi.string()
+      .trim()
       .required()
+      .min(10),
+    email: Joi.string()
+      .trim()
+      .required(),
+    password: Joi.string()
+      .trim()
+      .required()
+      .min(5)
   }
 };

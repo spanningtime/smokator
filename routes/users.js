@@ -11,7 +11,7 @@ const validations = require('../validations/users');
 const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 
-router.post('/api/users', (req, res, next) => {
+router.post('/api/users', ev(validations.post), (req, res, next) => {
   const { email, password } = req.body;
 
   knex('users')
