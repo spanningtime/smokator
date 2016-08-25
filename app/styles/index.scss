@@ -4,11 +4,18 @@ body {
 }
 
 ol li {
-  display: flex;
+  text-align: center;
+  list-style-type: none;
 }
 
 .hide {
   display: none;
+}
+
+li span {
+  color: #ff7f66;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 #footer {
