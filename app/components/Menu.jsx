@@ -113,6 +113,6 @@ const Menu = React.createClass({
     </Drawer>
 
   }
-})
+});
 
 export default Menu;
