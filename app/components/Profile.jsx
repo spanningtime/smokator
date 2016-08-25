@@ -5,6 +5,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const Profile = React.createClass({
+
   handleTouchTap() {
     this.props.createChat(this.props.params.userId);
   },
@@ -61,9 +62,14 @@ const Profile = React.createClass({
       fontFamily: 'Mallanna',
     };
 
+    const styleShowButton = {
+      display: 'none'
+    }
+
     let user;
 
     if (this.props.user.id === Number.parseInt(this.props.params.userId)) {
+      styleButton.display = 'none';
       user = this.props.user;
     }
 
