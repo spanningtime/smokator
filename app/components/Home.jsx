@@ -83,12 +83,13 @@ const Home = React.createClass({
       textShadow: '2px 2px #e5f3e9',
       fontSize: '2.5em',
       fontWeight: '200',
-      borderBottom: '2px solid #ff7f66'
+      borderBottom: '2px solid #ff7f66',
+      marginTop: '0px'
     }
 
     return <div>
       <div style={styleContainer}>
-        <h1 style={styleTitle}>Select Location</h1>
+        <h1 style={styleTitle}>Check In</h1>
       </div>
       <div style={styleScroll}>
 

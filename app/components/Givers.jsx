@@ -61,12 +61,31 @@ const Givers = React.createClass({
       height: '65vh'
     }
 
+    const styleGiversTitle = {
+        display: 'inline-block',
+        fontFamily: 'Mallanna',
+        color: 'black',
+        textShadow: '2px 2px #e5f3e9',
+        fontSize: '2.5em',
+        fontWeight: '200',
+        borderBottom: '2px solid #ff7f66',
+        marginTop: '0px',
+    }
+
+    const styleGiversTitleContainer = {
+      textAlign: 'center'
+    }
+
     const { givers } = this.props;
 
     return <div>
       <div>
-        <h1 style={styleTitle}>Givers @ {this.props.bar.name}</h1>
+        <h1 style={styleTitle}>{this.props.bar.name}</h1>
       </div>
+      <div style={styleGiversTitleContainer}>
+        <h1 style={styleGiversTitle}>Givers</h1>
+      </div>
+
       <div style={styleScroll}>
         <div style={flexContainer}>
           <List>
