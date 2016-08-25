@@ -83,6 +83,7 @@ app.use((_req, res) => {
 app.use((err, _req, res, _next) => {
 
   if (err.status || err.output && err.output.statusCode) {
+    console.log(err);
     return res.status(err.status || err.output.statusCode).send(err);
   }
 

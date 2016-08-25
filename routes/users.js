@@ -6,8 +6,8 @@ const router = express.Router();
 const boom = require('boom');
 const bcrypt = require('bcrypt-as-promised');
 const { camelizeKeys, decamelizeKeys } = require('humps');
-// const ev = require('express-validation');
-// const validations = require('../validations/topics');
+const ev = require('express-validation');
+const validations = require('../validations/users');
 const jwt = require('jsonwebtoken');
 const knex = require('../knex');
 
