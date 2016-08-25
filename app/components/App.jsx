@@ -299,9 +299,15 @@ const App = React.createClass({
       textAlign: 'center'
     }
 
+    const styleMenuAbout {
+      textAlign: 'center',
+      textDecoration: 'none'
+    }
+
     if (!cookie.load('loggedIn')) {
       styleMenuItem.display = 'none';
     }
+
 
     return <div >
       <Paper style={stylePaper}>
@@ -341,7 +347,7 @@ const App = React.createClass({
               >
               <MenuItem
                 onTouchTap={this.handleClose}
-                style={styleMenuItem}
+                style={styleMenuAbout}
                 >About
               </MenuItem>
             </Link>
