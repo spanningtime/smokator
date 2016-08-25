@@ -182,7 +182,7 @@ const App = React.createClass({
 
     axios.post('api/givers', giver)
       .then((res) => {
-        // this.props.router.push('/givers/success');
+        return;
       })
       .catch((err) => {
         console.log('post user error');
@@ -273,40 +273,49 @@ const App = React.createClass({
 
     const styleDrawer = {
       backgroundColor: '#fff7ec'
-    }
+    };
 
     const styleDrawerCigContainer = {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-start',
       alignItems: 'center'
-    }
+    };
 
     const styleDrawerCig = {
       width: '70%',
       marginTop: '-30px',
       marginBottom: '-30px',
       padding: '0',
-    }
+    };
 
     const styleSnackBar = {
       backgroundColor: '#ff7f66',
       textAlign: 'center',
       height: '65px'
-    }
+    };
 
     const styleMenuItem = {
       textDecoration: 'none',
       textAlign: 'center'
-    }
+    };
 
     const styleMenuAbout = {
       textAlign: 'center',
       textDecoration: 'none'
-    }
+    };
+
+    const styleMenuLogin = {
+      textAlign: 'center',
+      textDecoration: 'none'
+    };
 
     if (!cookie.load('loggedIn')) {
       styleMenuItem.display = 'none';
+      styleMenuLogin.display = 'block';
+    }
+    else {
+      styleMenuLogin.display = 'none';
     }
 
 
@@ -377,6 +386,18 @@ const App = React.createClass({
               style={styleMenuItem}
               >Log Out
             </MenuItem>
+
+            <Link
+              to={'/login'}
+              style={{textDecoration: 'none'}}
+            >
+              <MenuItem
+                onTouchTap={this.handleClose}
+                style={styleMenuLogin}
+                >Log In
+              </MenuItem>
+            </Link>
+
           </Drawer>
 
         </div>
