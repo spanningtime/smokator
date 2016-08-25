@@ -100,7 +100,7 @@ const Menu = React.createClass({
       </MenuItem>
 
       <Link
-        to={'/login'}
+        to={'/'}
         style={{textDecoration: 'none'}}
       >
         <MenuItem
