@@ -25,8 +25,7 @@ const App = React.createClass({
       coords: null,
       open: false,
       user: {},
-      chats: {},
-      bummer: ''
+      chatMembers: {}
     }
   },
 
@@ -49,10 +48,11 @@ const App = React.createClass({
   joinChat(chatId) {
     this.socket.emit('subscribe', chatId);
 
-    axios.get(`/api/users/bummer/${chatId}`)
+    axios.get(`/api/users/chats/${chatId}`)
       .then((res) => {
-        this.setState({ bummer: res.data.bummer });
-        console.log(res);
+        const nextChatMembers = Object.assign({}, res.data);
+
+        this.setState({ chatMembers: nextChatMembers });
       })
       .catch((err) => {
         console.log(err);
@@ -67,10 +67,6 @@ const App = React.createClass({
       .then((res) => {
 
         chatInfo.id = res.data.id;
-
-        const nextChats = Object.assign({}, this.state.chats, { [chatInfo.id]: chatInfo })
-
-        this.setState({ chats: nextChats });
 
         this.socket.emit('subscribe', chatInfo.id);
 
@@ -407,8 +403,7 @@ const App = React.createClass({
         socket: this.socket,
         joinChat: this.joinChat,
         user: this.state.user,
-        chats: this.state.chats,
-        bummer: this.state.bummer
+        chatMembers: this.state.chatMembers
       })}
 
 

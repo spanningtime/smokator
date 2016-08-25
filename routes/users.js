@@ -73,7 +73,7 @@ router.get('/api/users/:userId', (req, res, next) => {
       const user = camelizeKeys(rows[0])
 
       delete user.hashedPassword;
-      
+
       res.send(user);
     })
     .catch((err) => {
@@ -81,32 +81,39 @@ router.get('/api/users/:userId', (req, res, next) => {
     });
 });
 
-router.get('/api/users/bummer/:chatId', (req, res, next) => {
+router.get('/api/users/chats/:chatId', (req, res, next) => {
   const chatId = Number.parseInt(req.params.chatId);
 
   knex('chats')
     .where('id', chatId)
     .first()
     .then((row) => {
-
-      const { bummerId } = camelizeKeys(row);
-
-      return bummerId;
+      return camelizeKeys(row);
     })
-    .then((bummerId) => {
+    .then((chat) => {
       return knex('users')
-        .where('id', bummerId)
-        .first()
-        .then((row) => {
-          if (!row) {
+        .where('id', chat.bummerId)
+        .orWhere('id', chat.giverId)
+        .then((rows) => {
+          if (!rows) {
             return next();
           }
 
-          const user = {
-            bummer: camelizeKeys(row).firstName
+          const users = {
+            bummerId: chat.bummerId,
+            giverId: chat.giverId
           };
 
-          res.send(user);
+          for (const row of rows) {
+            if (row.id === chat.bummerId) {
+              users.bummerName = row.first_name;
+            }
+            else {
+              users.giverName = row.first_name;
+            }
+          }
+
+          res.send(users);
         })
     })
     .catch((err) => {

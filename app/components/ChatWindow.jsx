@@ -158,13 +158,13 @@ const ChatWindow = React.createClass({
 
     let contact;
 
-    const chatInfo = this.props.chats[this.props.params.chatId]
+    const { chatMembers } = this.props;
 
-    if (chatInfo) {
-      contact = chatInfo.giverName;
+    if (this.props.user.id === chatMembers.bummerId) {
+      contact = chatMembers.giverName;
     }
     else {
-      contact = this.props.bummer;
+      contact = chatMembers.bummerName;
     }
 
     return <div style={flexContainer}>
