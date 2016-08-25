@@ -126,7 +126,6 @@ const App = React.createClass({
     const userId = cookie.load('userId');
     axios.get(`/api/users/${userId}`)
       .then((res) => {
-        console.log(res.data)
         this.setState({ user: res.data });
       })
       .catch((err) => {
@@ -148,6 +147,17 @@ const App = React.createClass({
         else {
           console.log('uh oh we messed up.');
         }
+      });
+  },
+
+  logout() {
+    axios.delete('/api/token')
+      .then(() => {
+        this.handleClose();
+        this.props.router.push('/');
+      })
+      .catch((err) => {
+        console.error(err);
       });
   },
 
@@ -275,6 +285,15 @@ const App = React.createClass({
       height: '65px'
     }
 
+    const styleLogout = {
+      textDecoration: 'none',
+      textAlign: 'center'
+    }
+
+    if (!cookie.load('loggedIn')) {
+      styleLogout.display = 'none';
+    }
+
     return <div >
       <Paper style={stylePaper}>
         <div style={styleContainer}>
@@ -327,9 +346,8 @@ const App = React.createClass({
             </Link>
 
             <MenuItem
-              style={{textDecoration: 'none'}}
-              onTouchTap={this.handleClose}
-              style={styleDrawerText}
+              onTouchTap={this.logout}
+              style={styleLogout}
               >Log Out
             </MenuItem>
           </Drawer>
