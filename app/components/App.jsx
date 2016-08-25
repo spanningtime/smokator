@@ -297,7 +297,6 @@ const App = React.createClass({
           </IconButton>
 
           <Menu
-            handleToggle={this.handleToggle}
             handleClose={this.handleClose}
             logout={this.logout}
             open={this.state.open}
