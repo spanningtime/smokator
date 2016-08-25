@@ -21,7 +21,9 @@ const Register = React.createClass({
         password: '',
         phone: '',
         firstName: '',
-        lastName: ''
+        lastName: '',
+        aboutMe: ''
+
       }
     }
   },
@@ -83,13 +85,10 @@ const Register = React.createClass({
       justifyContent: 'center'
     };
 
-    const styleTextField = {
-    };
-
     const styleBigTextField = {
       overflow: 'scroll',
       height: '10vh'
-    }
+    };
 
     const styleButton = {
       marginTop: '20px'
@@ -107,7 +106,6 @@ const Register = React.createClass({
         name="email"
         placeholder="Email"
         onChange={this.handleChange}
-        style={styleTextField}
         underlineFocusStyle={styleLabel}
         value={user.email}
       >
@@ -120,7 +118,6 @@ const Register = React.createClass({
         onChange={this.handleChange}
         type="password"
         underlineFocusStyle={styleLabel}
-        style={styleTextField}
         value={user.password}
       >
       </TextField>
@@ -131,7 +128,6 @@ const Register = React.createClass({
         placeholder="First Name"
         onChange={this.handleChange}
         underlineFocusStyle={styleLabel}
-        style={styleTextField}
         value={user.firstName}
       >
       </TextField>
@@ -142,7 +138,6 @@ const Register = React.createClass({
         placeholder="Last Name"
         onChange={this.handleChange}
         underlineFocusStyle={styleLabel}
-        style={styleTextField}
         value={user.lastName}
       >
       </TextField>
@@ -153,22 +148,23 @@ const Register = React.createClass({
         placeholder="Phone Number"
         onChange={this.handleChange}
         underlineFocusStyle={styleLabel}
-        style={styleTextField}
         value={user.phone}
       >
       </TextField>
 
-      <div id="scroll" style={styleBigTextField}>
+      <div id="scroll"
+        style={styleBigTextField}
+        onChange={this.handleScroll}
+      >
         <TextField
           // errorText={errors.phone}
-          name="About Me"
+          name="aboutMe"
           placeholder="About Me"
           onChange={this.handleChange}
           multiLine={true}
           rows={2}
           underlineFocusStyle={styleLabel}
-          onChange={this.handleScroll}
-          // value={user.phone}
+          value={user.aboutMe}
           >
         </TextField>
       </div>
