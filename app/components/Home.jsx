@@ -77,9 +77,18 @@ const Home = React.createClass({
       fontWeight: '200',
     }
 
+    const styleTitle = {
+      fontFamily: 'Mallanna',
+      color: 'black',
+      textShadow: '2px 2px #e5f3e9',
+      fontSize: '2.5em',
+      fontWeight: '200',
+      borderBottom: '2px solid #ff7f66'
+    }
+
     return <div>
       <div style={styleContainer}>
-        <h1>Select Smokation</h1>
+        <h1 style={styleTitle}>Select Location</h1>
       </div>
       <div style={styleScroll}>
 
