@@ -164,7 +164,7 @@ const ChatWindow = React.createClass({
       contact = chatInfo.giverName;
     }
     else {
-      contact = 'R. Kelly';
+      contact = this.props.bummer;
     }
 
     return <div style={flexContainer}>

@@ -25,7 +25,8 @@ const App = React.createClass({
       coords: null,
       open: false,
       user: {},
-      chats: {}
+      chats: {},
+      bummer: ''
     }
   },
 
@@ -40,18 +41,22 @@ const App = React.createClass({
       this.props.router.push(`/chats/${chatId}`);
     });
 
+    if (cookie.load('loggedIn')) {
+      this.getProfile();
+    }
   },
 
   joinChat(chatId) {
     this.socket.emit('subscribe', chatId);
 
-    // axios.get(`api/users/bummer/${this.props.params.chatId}`)
-    //   .then((res) => {
-    //     this.setState({ bummer: res.data });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axios.get(`/api/users/bummer/${chatId}`)
+      .then((res) => {
+        this.setState({ bummer: res.data.bummer });
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 
   createChat(chatInfo) {
@@ -134,7 +139,7 @@ const App = React.createClass({
       });
   },
 
-  getProfile() {
+    getProfile() {
     const userId = cookie.load('userId');
     axios.get(`/api/users/${userId}`)
       .then((res) => {
@@ -402,7 +407,8 @@ const App = React.createClass({
         socket: this.socket,
         joinChat: this.joinChat,
         user: this.state.user,
-        chats: this.state.chats
+        chats: this.state.chats,
+        bummer: this.state.bummer
       })}
 
 

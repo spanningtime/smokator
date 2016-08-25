@@ -71,6 +71,9 @@ router.get('/api/users/:userId', (req, res, next) => {
         return next();
       }
       const user = camelizeKeys(rows[0])
+
+      delete user.hashedPassword;
+      
       res.send(user);
     })
     .catch((err) => {
@@ -98,8 +101,10 @@ router.get('/api/users/bummer/:chatId', (req, res, next) => {
           if (!row) {
             return next();
           }
-          
-          const user = camelizeKeys(row).firstName;
+
+          const user = {
+            bummer: camelizeKeys(row).firstName
+          };
 
           res.send(user);
         })
