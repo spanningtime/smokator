@@ -297,15 +297,19 @@ const App = React.createClass({
               </MenuItem>
             </Link>
 
-            <Link to={`/profile/${cookie.load('userId')}`}>
+            <Link
+              to={`/profile/${cookie.load('userId')}`}
+              style={{textDecoration: 'none'}}
+              >
               <MenuItem
-                onTouchTap={this.handleClose, this.getProfile}
+                onTouchTap={this.handleClose}
                 style={styleDrawerText}
                 >Profile
               </MenuItem>
             </Link>
 
             <MenuItem
+              style={{textDecoration: 'none'}}
               onTouchTap={this.handleClose}
               style={styleDrawerText}
               >Log Out
