@@ -35,8 +35,6 @@ const ChatWindow = React.createClass({
     axios.get(`/api/chats/${this.props.params.chatId}`)
       .then((res) => {
         this.setState({ chatMessages: res.data });
-        // const scroll = document.getElementById('scroll');
-        // scroll.scrollTop = scroll.scrollHeight;
       })
       .catch((err) => {
         console.error(err);

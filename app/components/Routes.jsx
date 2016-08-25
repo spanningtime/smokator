@@ -9,6 +9,7 @@ import Givers from 'components/Givers';
 import Profile from 'components/Profile';
 import Register from 'components/Register';
 import ChatWindow from 'components/ChatWindow';
+import GiversWaiting from 'components/GiversWaiting';
 
 
 
@@ -24,6 +25,7 @@ const Routes = React.createClass({
         <Route component={Profile} path="profile/:userId" />
         <Route component={Register} path="register" />
         <Route component={ChatWindow} path="chats/:chatId" />
+        <Route component={GiversWaiting} path="givers/waiting" />
       </Route>
     </Router>
   }
