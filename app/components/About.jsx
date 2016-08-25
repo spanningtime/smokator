@@ -2,7 +2,6 @@ import React from 'react';
 
 const About = React.createClass({
   render() {
-
     const styleTitle = {
       textAlign: 'center',
       display: 'inline-block',
@@ -13,11 +12,11 @@ const About = React.createClass({
       fontWeight: '200',
       borderBottom: '2px solid #ff7f66',
       marginTop: '0px'
-    }
+    };
 
     const styleDiv = {
       textAlign: 'center'
-    }
+    };
 
     const styleText = {
       fontFamily: 'Mallanna',
@@ -26,7 +25,7 @@ const About = React.createClass({
       paddingRight: '10px',
       marginTop: '0px',
       marginBottom: '0px'
-    }
+    };
 
     const styleTextHow = {
       display: 'inline-block',
@@ -34,24 +33,24 @@ const About = React.createClass({
       fontFamily: 'Mallanna',
       fontSize: '22px',
       paddingLeft: '0px',
-      marginTop: '0px',
+      marginTop: '30px',
       marginBottom: '15px',
       fontWeight: 'bold'
-    }
+    };
 
+    return <div style={styleDiv}>
+      <h1 style={styleTitle}>About Smokator</h1>
+       {/* eslint-disable-next-line max-len  */}
+      <p style={styleText}>Smokator is here to help you to acquire cigarettes from strangers in a bar.</p>
+      <p style={styleTextHow}>How?</p>
+      <ol style={styleText}>
+        <li><span>-</span> LOGIN <span>-</span></li>
+        <li><span>-</span>BUM OR GIVE<span>-</span></li>
+        <li><span>-</span>CHAT<span>-</span></li>
+        <li><span>-</span>SMOKE<span>-</span></li>
+      </ol>
 
-  return <div style={styleDiv}>
-    <h1 style={styleTitle}>About Smokator</h1>
-    <p style={styleText}>Smokator is here to help you to acquire cigarettes from strangers in a bar.</p><br></br>
-    <p style={styleTextHow}>How?</p>
-    <ol style={styleText}>
-      <li><span>-</span> LOGIN <span>-</span></li>
-      <li><span>-</span>BUM OR GIVE<span>-</span></li>
-      <li><span>-</span>CHAT<span>-</span></li>
-      <li><span>-</span>SMOKE<span>-</span></li>
-    </ol>
-
-  </div>
+    </div>;
   }
 });
 
