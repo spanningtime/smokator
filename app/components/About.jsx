@@ -22,7 +22,8 @@ const About = React.createClass({
     const styleText = {
       fontFamily: 'Mallanna',
       fontSize: '18px',
-      paddingLeft: '0px',
+      paddingLeft: '10px',
+      paddingRight: '10px',
       marginTop: '0px',
       marginBottom: '0px'
     }

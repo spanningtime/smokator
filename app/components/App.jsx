@@ -335,6 +335,17 @@ const App = React.createClass({
               </div>
             </MenuItem>
 
+            <Link
+              to="about"
+              style={{textDecoration: 'none'}}
+              >
+              <MenuItem
+                onTouchTap={this.handleClose}
+                style={styleDrawerText}
+                >About
+              </MenuItem>
+            </Link>
+
             <Link to="/home" style={{textDecoration: 'none'}}>
               <MenuItem
                 onTouchTap={this.handleClose}
