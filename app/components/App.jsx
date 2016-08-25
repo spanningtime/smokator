@@ -341,7 +341,7 @@ const App = React.createClass({
               >
               <MenuItem
                 onTouchTap={this.handleClose}
-                style={styleDrawerText}
+                style={styleMenuItem}
                 >About
               </MenuItem>
             </Link>
