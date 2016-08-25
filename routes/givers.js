@@ -63,6 +63,7 @@ router.post('/api/givers', (req, res, next) => {
         .then((rows) => {
           const giver = camelizeKeys(rows[0]);
 
+          return giver;
         })
     })
     .then((giver) => {

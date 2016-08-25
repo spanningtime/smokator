@@ -41,7 +41,22 @@ const App = React.createClass({
 
   },
 
-  createChat(giverId) {
+  sendInvite(phone, chatId) {
+    const data = {
+      number: phone,
+      message: `Message from Smokator: Someone wants a cig! chat with them at https://smokator.herokuapp.com/chats/${chatId}`
+    }
+
+    axios.post('http://textbelt.com/text', data)
+      .then((res) => {
+        return;
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+  },
+
+  createChat(giverId, phone) {
     const request = { giverId: giverId, bummerId: cookie.load('userId') };
 
     axios.post('/api/chats', request)
@@ -50,6 +65,8 @@ const App = React.createClass({
         this.socket.emit('subscribe', {
           chatId: res.data.id
         });
+
+        this.sendInvite(phone, res.data.id);
       })
       .catch((err) => {
         console.error(err);
@@ -164,11 +181,12 @@ const App = React.createClass({
     this.props.router.push('/status');
   },
 
-  handleToggle() { this.setState({open: !this.state.open});
+  handleToggle() {
+    this.setState({ open: !this.state.open });
   },
 
   handleClose() {
-  this.setState({open: false});
+    this.setState({open: false});
   },
 
 

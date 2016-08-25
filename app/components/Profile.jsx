@@ -6,8 +6,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const Profile = React.createClass({
 
-  handleTouchTap() {
-    this.props.createChat(this.props.params.userId);
+  handleTouchTap(userId, phone) {
+    this.props.createChat(userId, phone);
   },
 
   render() {
@@ -88,7 +88,7 @@ const Profile = React.createClass({
         <p style={styleBio}>{user.aboutMe}</p>
         <RaisedButton
           label="Chat"
-          onTouchTap={this.handleTouchTap}
+          onTouchTap={() => this.handleTouchTap(user.userId, user.phone)}
           primary={true}
           style={styleButton}
         />
