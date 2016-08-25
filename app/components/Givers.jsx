@@ -47,11 +47,13 @@ const Givers = React.createClass({
     }
 
     const styleTitle = {
-      textAlign: 'center',
       fontFamily: 'Mallanna',
-      fontSize: '25px',
+      color: 'black',
+      fontSize: '1em',
       fontWeight: '200',
-      marginBottom: '10px',
+      borderBottom: '2px solid #ff7f66',
+      marginTop: '10px',
+      textAlign: 'center'
     }
 
     const styleScroll = {
@@ -62,7 +64,9 @@ const Givers = React.createClass({
     const { givers } = this.props;
 
     return <div>
-      <h1 style={styleTitle}>Givers currently @ {this.props.bar.name}</h1>
+      <div>
+        <h1 style={styleTitle}>Givers @ {this.props.bar.name}</h1>
+      </div>
       <div style={styleScroll}>
         <div style={flexContainer}>
           <List>

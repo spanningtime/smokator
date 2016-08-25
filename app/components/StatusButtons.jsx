@@ -29,29 +29,47 @@ const StatusButtons = React.createClass({
 
     const styleButton = {
       display: 'flex',
-      width: '235px',
+      width: '200px',
       marginBottom: '10px',
       fontFamily: 'Mallanna',
       fontWeight: '200',
       marginBottom: '30px',
     }
 
+    const styleTitle = {
+      fontFamily: 'Mallanna',
+      color: 'black',
+      fontSize: '1em',
+      fontWeight: '200',
+      marginTop: '10px',
+      margin: '0 auto'
+    }
 
+    const styleTitleContainer = {
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      borderBottom: '2px solid #ff7f66',
+    }
 
-    return <div style={flexContainer}>
-      <h1>Your location: {this.props.bar.name}</h1>
-      <RaisedButton
-        label="I want a cigarette"
-        onTouchTap={this.handleTouchTapBummer}
-        primary={true}
-        style={styleButton}
-      />
-      <RaisedButton
-        label="I have cigarettes to give"
-        onTouchTap={this.handleTouchTapGiver}
-        primary={true}
-        style={styleButton}
-      />
+    return <div>
+      <div style={styleTitleContainer}>
+        <h1 style={styleTitle}>{this.props.bar.name}</h1>
+      </div>
+      <div style={flexContainer}>
+        <RaisedButton
+          label="Bum a cigarette"
+          onTouchTap={this.handleTouchTapBummer}
+          primary={true}
+          style={styleButton}
+        />
+        <RaisedButton
+          label="Give a cigarette"
+          onTouchTap={this.handleTouchTapGiver}
+          primary={true}
+          style={styleButton}
+        />
+      </div>
     </div>
   }
 });

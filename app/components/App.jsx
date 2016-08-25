@@ -227,7 +227,8 @@ const App = React.createClass({
     };
 
     const stylePaper = {
-      backgroundColor: '#e5f3e9'
+      backgroundColor: '#e5f3e9',
+      marginBottom: '10px'
     };
 
 
