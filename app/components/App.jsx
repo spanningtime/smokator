@@ -275,23 +275,19 @@ const App = React.createClass({
       padding: '0',
     }
 
-    const styleDrawerText = {
-      textAlign: 'center'
-    }
-
     const styleSnackBar = {
       backgroundColor: '#ff7f66',
       textAlign: 'center',
       height: '65px'
     }
 
-    const styleLogout = {
+    const styleMenuItem = {
       textDecoration: 'none',
       textAlign: 'center'
     }
 
     if (!cookie.load('loggedIn')) {
-      styleLogout.display = 'none';
+      styleMenuItem.display = 'none';
     }
 
     return <div >
@@ -329,7 +325,7 @@ const App = React.createClass({
             <Link to="/home" style={{textDecoration: 'none'}}>
               <MenuItem
                 onTouchTap={this.handleClose}
-                style={styleDrawerText}
+                style={styleMenuItem}
                 >New Bar
               </MenuItem>
             </Link>
@@ -340,14 +336,14 @@ const App = React.createClass({
               >
               <MenuItem
                 onTouchTap={this.handleClose}
-                style={styleDrawerText}
+                style={styleMenuItem}
                 >Profile
               </MenuItem>
             </Link>
 
             <MenuItem
               onTouchTap={this.logout}
-              style={styleLogout}
+              style={styleMenuItem}
               >Log Out
             </MenuItem>
           </Drawer>
