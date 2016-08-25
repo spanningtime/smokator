@@ -20,12 +20,11 @@ const io = require('socket.io')(http);
 io.sockets.on('connection', (socket) => {
   console.log('a user connected');
 
-  socket.on('subscribe', function(data) {
-    const { chatId } = data;
+  socket.on('subscribe', (chatId) => {
 
     if (true) {
       socket.join(chatId);
-      io.sockets.in(chatId).emit('success', { chatId });
+      io.sockets.in(chatId).emit('success', chatId);
     }
   });
 

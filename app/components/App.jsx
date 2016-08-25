@@ -24,7 +24,8 @@ const App = React.createClass({
       bar: { placeId: '', name: '' },
       coords: null,
       open: false,
-      user: {}
+      user: {},
+      chats: {}
     }
   },
 
@@ -35,16 +36,50 @@ const App = React.createClass({
   componentWillMount() {
     this.socket = io();
 
-    this.socket.on('success', (data) => {
-      this.props.router.push(`/chats/${data.chatId}`);
+    this.socket.on('success', (chatId) => {
+      this.props.router.push(`/chats/${chatId}`);
     });
 
   },
 
-  sendInvite(phone, chatId) {
+  joinChat(chatId) {
+    this.socket.emit('subscribe', chatId);
+
+    // axios.get(`api/users/bummer/${this.props.params.chatId}`)
+    //   .then((res) => {
+    //     this.setState({ bummer: res.data });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  },
+
+  createChat(chatInfo) {
+
+    const request = { giverId: chatInfo.giverId, bummerId: chatInfo.bummerId };
+
+    axios.post('/api/chats', request)
+      .then((res) => {
+
+        chatInfo.id = res.data.id;
+
+        const nextChats = Object.assign({}, this.state.chats, { [chatInfo.id]: chatInfo })
+
+        this.setState({ chats: nextChats });
+
+        this.socket.emit('subscribe', chatInfo.id);
+
+        this.sendInvite(chatInfo);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  },
+
+  sendInvite(chatInfo) {
     const data = {
-      number: phone,
-      message: `Message from Smokator: Someone wants a cig! chat with them at https://smokator.herokuapp.com/chats/${chatId}`
+      number: chatInfo.phone,
+      message: `Message from Smokator: ${chatInfo.bummerName} wants a cig! chat with them at https://smokator.herokuapp.com/chats/${chatInfo.id}`
     }
 
     axios.post('http://textbelt.com/text', data)
@@ -54,29 +89,6 @@ const App = React.createClass({
       .catch((err) => {
         console.error(err);
       })
-  },
-
-  createChat(giverId, phone) {
-    const request = { giverId: giverId, bummerId: cookie.load('userId') };
-
-    axios.post('/api/chats', request)
-      .then((res) => {
-
-        this.socket.emit('subscribe', {
-          chatId: res.data.id
-        });
-
-        this.sendInvite(phone, res.data.id);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  },
-
-  joinChat(chatId) {
-    this.socket.emit('subscribe', {
-      chatId: chatId
-    })
   },
 
   getLocation() {
@@ -372,6 +384,7 @@ const App = React.createClass({
         socket: this.socket,
         joinChat: this.joinChat,
         user: this.state.user,
+        chats: this.state.chats
       })}
 
 

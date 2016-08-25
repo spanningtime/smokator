@@ -6,8 +6,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const Profile = React.createClass({
 
-  handleTouchTap(userId, phone) {
-    this.props.createChat(userId, phone);
+  handleTouchTap(chatInfo) {
+    this.props.createChat(chatInfo);
   },
 
   render() {
@@ -62,33 +62,38 @@ const Profile = React.createClass({
       fontFamily: 'Mallanna',
     };
 
-    const styleShowButton = {
-      display: 'none'
-    }
-
-    let user;
+    let profileOwner;
 
     if (this.props.user.id === Number.parseInt(this.props.params.userId)) {
       styleButton.display = 'none';
-      user = this.props.user;
+      profileOwner = this.props.user;
     }
 
     else {
       const thisGiverArr = this.props.givers.filter((giver) => {
         return giver.userId === Number.parseInt(this.props.params.userId);
       });
-      user = thisGiverArr[0];
+      profileOwner = thisGiverArr[0];
+
     }
+
+    const chatInfo = {
+      bummerId: this.props.user.id,
+      bummerName: this.props.user.firstName,
+      giverId: profileOwner.userId,
+      giverName: profileOwner.firstName,
+      phone: profileOwner.phone
+    };
 
     return <div style={flexContainer}>
       <div>
         <div style={styleDiv}>
-          <h1 style={styleTitle}>{user.firstName}</h1>
+          <h1 style={styleTitle}>{profileOwner.firstName}</h1>
         </div>
-        <p style={styleBio}>{user.aboutMe}</p>
+        <p style={styleBio}>{profileOwner.aboutMe}</p>
         <RaisedButton
           label="Chat"
-          onTouchTap={() => this.handleTouchTap(user.userId, user.phone)}
+          onTouchTap={() => this.handleTouchTap(chatInfo)}
           primary={true}
           style={styleButton}
         />

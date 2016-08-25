@@ -78,4 +78,35 @@ router.get('/api/users/:userId', (req, res, next) => {
     });
 });
 
+router.get('/api/users/bummer/:chatId', (req, res, next) => {
+  const chatId = Number.parseInt(req.params.chatId);
+
+  knex('chats')
+    .where('id', chatId)
+    .first()
+    .then((row) => {
+
+      const { bummerId } = camelizeKeys(row);
+
+      return bummerId;
+    })
+    .then((bummerId) => {
+      return knex('users')
+        .where('id', bummerId)
+        .first()
+        .then((row) => {
+          if (!row) {
+            return next();
+          }
+          
+          const user = camelizeKeys(row).firstName;
+
+          res.send(user);
+        })
+    })
+    .catch((err) => {
+      next(boom.wrap(err));
+    });
+});
+
 module.exports = router;

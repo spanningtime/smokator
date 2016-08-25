@@ -26,6 +26,7 @@ const ChatWindow = React.createClass({
       scroll.scrollTop = scroll.scrollHeight;
     });
 
+
     this.props.joinChat(this.props.params.chatId);
   },
 
@@ -157,10 +158,21 @@ const ChatWindow = React.createClass({
       paddingLeft: '0px'
     };
 
+    let contact;
+
+    const chatInfo = this.props.chats[this.props.params.chatId]
+
+    if (chatInfo) {
+      contact = chatInfo.giverName;
+    }
+    else {
+      contact = 'R. Kelly';
+    }
+
     return <div style={flexContainer}>
       <div>
         <div style={styleDiv}>
-          <h1 style={styleTitle}>Mitch</h1>
+          <h1 style={styleTitle}>{contact}</h1>
         </div>
 
         <div style={styleChatFrame}>
