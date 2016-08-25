@@ -8,11 +8,12 @@ const StatusButtons = React.createClass({
 
   handleTouchTapBummer() {
     this.props.getGivers();
-    this.props.router.push('/givers')
+    this.props.router.push('/givers');
   },
 
   handleTouchTapGiver() {
-    this.props.postGiver()
+    this.props.postGiver();
+    this.props.router.push('/waiting');
   },
 
   render() {
@@ -25,7 +26,7 @@ const StatusButtons = React.createClass({
       alignContent: 'center',
       alignItems: 'center',
       height: '70vh'
-    }
+    };
 
     const styleButton = {
       display: 'flex',
@@ -34,7 +35,7 @@ const StatusButtons = React.createClass({
       fontFamily: 'Mallanna',
       fontWeight: '200',
       marginBottom: '30px',
-    }
+    };
 
     const styleTitle = {
       fontFamily: 'Mallanna',
@@ -43,14 +44,14 @@ const StatusButtons = React.createClass({
       fontWeight: '200',
       marginTop: '10px',
       margin: '0 auto'
-    }
+    };
 
     const styleTitleContainer = {
       display: 'flex',
       justifyContent: 'flex-start',
       alignItems: 'center',
       borderBottom: '2px solid #ff7f66',
-    }
+    };
 
     return <div>
       <div style={styleTitleContainer}>

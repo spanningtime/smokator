@@ -20,13 +20,13 @@ const Routes = React.createClass({
       <Route component={App} path="/">
         <IndexRoute component={LoginButtons}/>
         <Route component={LoginForm} path="login" />
-        <Route component={StatusButtons} path="status" />
+        <Route component={StatusButtons} path="status"/>
+        <Route component={GiversWaiting} path="waiting" />
         <Route component={Home} path="home" />
         <Route component={Givers} path="givers" />
         <Route component={Profile} path="profile/:userId" />
         <Route component={Register} path="register" />
         <Route component={ChatWindow} path="chats/:chatId" />
-        <Route component={GiversWaiting} path="givers/waiting" />
         <Route component={About} path="about" />
       </Route>
     </Router>
