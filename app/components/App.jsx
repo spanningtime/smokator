@@ -11,8 +11,7 @@ import { Link } from 'react-router';
 import LoginButtons from 'components/LoginButtons';
 import Snackbar from 'material-ui/Snackbar';
 import StatusButtons from 'components/StatusButtons';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
+import Menu from 'components/Menu';
 
 const App = React.createClass({
 
@@ -23,7 +22,6 @@ const App = React.createClass({
       bars: [],
       bar: { placeId: '', name: '' },
       coords: null,
-      open: false,
       user: {},
       chatMembers: {}
     }
@@ -209,9 +207,12 @@ const App = React.createClass({
   },
 
   handleClose() {
-    this.setState({open: false});
+    this.setState({ open: false });
   },
 
+  requestChange(open) {
+    this.setState({open});
+  },
 
   render() {
     const styleMenu = {
@@ -271,53 +272,11 @@ const App = React.createClass({
       marginTop: '-30px'
     };
 
-    const styleDrawer = {
-      backgroundColor: '#fff7ec'
-    };
-
-    const styleDrawerCigContainer = {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'flex-start',
-      alignItems: 'center'
-    };
-
-    const styleDrawerCig = {
-      width: '70%',
-      marginTop: '-30px',
-      marginBottom: '-30px',
-      padding: '0',
-    };
-
     const styleSnackBar = {
       backgroundColor: '#ff7f66',
       textAlign: 'center',
       height: '65px'
     };
-
-    const styleMenuItem = {
-      textDecoration: 'none',
-      textAlign: 'center'
-    };
-
-    const styleMenuAbout = {
-      textAlign: 'center',
-      textDecoration: 'none'
-    };
-
-    const styleMenuLogin = {
-      textAlign: 'center',
-      textDecoration: 'none'
-    };
-
-    if (!cookie.load('loggedIn')) {
-      styleMenuItem.display = 'none';
-      styleMenuLogin.display = 'block';
-    }
-    else {
-      styleMenuLogin.display = 'none';
-    }
-
 
     return <div >
       <Paper style={stylePaper}>
@@ -337,68 +296,13 @@ const App = React.createClass({
             <NavigationMenu color={'#ff7f66'}/>
           </IconButton>
 
-          <Drawer
-            docked={false}
-            width={200}
-            openSecondary={true}
+          <Menu
+            handleToggle={this.handleToggle}
+            handleClose={this.handleClose}
+            logout={this.logout}
             open={this.state.open}
-            onRequestChange={(open) => this.setState({open})}
-            containerStyle={styleDrawer}
-          >
-            <MenuItem>
-              <div style={styleDrawerCigContainer}>
-                <img style={styleDrawerCig} src={'./images/cigarette.svg'} />
-              </div>
-            </MenuItem>
-
-            <Link
-              to="about"
-              style={{textDecoration: 'none'}}
-              >
-              <MenuItem
-                onTouchTap={this.handleClose}
-                style={styleMenuAbout}
-                >About
-              </MenuItem>
-            </Link>
-
-            <Link to="/home" style={{textDecoration: 'none'}}>
-              <MenuItem
-                onTouchTap={this.handleClose}
-                style={styleMenuItem}
-                >New Bar
-              </MenuItem>
-            </Link>
-
-            <Link
-              to={`/profile/${cookie.load('userId')}`}
-              style={{textDecoration: 'none'}}
-              >
-              <MenuItem
-                onTouchTap={this.handleClose}
-                style={styleMenuItem}
-                >Profile
-              </MenuItem>
-            </Link>
-
-            <MenuItem
-              onTouchTap={this.logout}
-              style={styleMenuItem}
-              >Log Out
-            </MenuItem>
-
-            <Link
-              to={'/login'}
-              style={{textDecoration: 'none'}}
-            >
-              <MenuItem
-                onTouchTap={this.handleClose}
-                style={styleMenuLogin}
-                >Log In
-              </MenuItem>
-            </Link>
-
-          </Drawer>
+            requestChange={this.requestChange}
+          />
 
         </div>
       </Paper>
