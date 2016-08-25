@@ -123,6 +123,7 @@ const ChatWindow = React.createClass({
     const styleGiver = {
       backgroundColor: '#e5f3e9',
       padding: '5px',
+      borderRadius: '5px',
       marginLeft: '5px',
       marginBottom: '10px',
       maxWidth: '200px'
@@ -186,7 +187,7 @@ const ChatWindow = React.createClass({
                 </li>
               }
 
-              return <li key={weakKey(message)}>
+              return <li key={weakKey(message)} style={{ display: 'flex' }}>
                 <div style={styleGiver}>
                   <p>{message.messageText}</p>
                 </div>

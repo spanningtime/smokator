@@ -300,7 +300,7 @@ const App = React.createClass({
       textAlign: 'center'
     }
 
-    const styleMenuAbout {
+    const styleMenuAbout = {
       textAlign: 'center',
       textDecoration: 'none'
     }
