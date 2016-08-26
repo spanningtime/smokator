@@ -67,9 +67,9 @@ const LoginForm = React.createClass({
 
       <TextField
         name="email"
-        onBlur={this.handleBlur}
+        // onBlur={this.handleBlur}
         onChange={this.handleChange}
-        onFocus={this.handleFocus}
+        // onFocus={this.handleFocus}
         placeholder="Email"
         style={styleTextField}
         type="email"
@@ -79,9 +79,9 @@ const LoginForm = React.createClass({
 
       <TextField
         name="password"
-        onBlur={this.handleBlur}
+        // onBlur={this.handleBlur}
         onChange={this.handleChange}
-        onFocus={this.handleFocus}
+        // onFocus={this.handleFocus}
         placeholder="Password"
         type="password"
         underlineFocusStyle={styleLabel}

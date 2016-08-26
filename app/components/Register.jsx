@@ -140,9 +140,9 @@ const Register = React.createClass({
       <TextField
         errorText={errors.email}
         name="email"
-        onBlur={this.handleBlur}
+        // onBlur={this.handleBlur}
         onChange={this.handleChange}
-        onFocus={this.handleFocus}
+        // onFocus={this.handleFocus}
         placeholder="Email"
         underlineFocusStyle={styleLabel}
         value={user.email}
@@ -151,9 +151,9 @@ const Register = React.createClass({
       <TextField
         errorText={errors.password}
         name="password"
-        onBlur={this.handleBlur}
+        // onBlur={this.handleBlur}
         onChange={this.handleChange}
-        onFocus={this.handleFocus}
+        // onFocus={this.handleFocus}
         placeholder="Password"
         type="password"
         underlineFocusStyle={styleLabel}
@@ -163,9 +163,9 @@ const Register = React.createClass({
       <TextField
         errorText={errors.firstName}
         name="firstName"
-        onBlur={this.handleBlur}
+        // onBlur={this.handleBlur}
         onChange={this.handleChange}
-        onFocus={this.handleFocus}
+        // onFocus={this.handleFocus}
         placeholder="First Name"
         underlineFocusStyle={styleLabel}
         value={user.firstName}
@@ -174,9 +174,9 @@ const Register = React.createClass({
       <TextField
         errorText={errors.lastName}
         name="lastName"
-        onBlur={this.handleBlur}
+        // onBlur={this.handleBlur}
         onChange={this.handleChange}
-        onFocus={this.handleFocus}
+        // onFocus={this.handleFocus}
         placeholder="Last Name"
         underlineFocusStyle={styleLabel}
         value={user.lastName}
@@ -185,9 +185,9 @@ const Register = React.createClass({
       <TextField
         errorText={errors.phone}
         name="phone"
-        onBlur={this.handleBlur}
+        // onBlur={this.handleBlur}
         onChange={this.handleChange}
-        onFocus={this.handleFocus}
+        // onFocus={this.handleFocus}
         placeholder="Phone Number"
         underlineFocusStyle={styleLabel}
         value={user.phone}
@@ -199,13 +199,11 @@ const Register = React.createClass({
         style={styleBigTextField}
       >
         <TextField
-
-          // errorText={errors.phone}
           multiLine={true}
           name="aboutMe"
-          onBlur={this.handleBlur}
+          // onBlur={this.handleBlur}
           onChange={this.handleChange}
-          onFocus={this.handleFocus}
+          // onFocus={this.handleFocus}
           placeholder="About Me"
           rows={2}
           underlineFocusStyle={styleLabel}
