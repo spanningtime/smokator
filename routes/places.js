@@ -10,7 +10,7 @@ router.get('/api/places/:location', (req, res, next) => {
   const { location } = req.params;
 
   request({ uri: // eslint-disable-next-line max-len
-    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=1500&type=bar&key=AIzaSyAFgyrpeZwrVMRD9zu5o8qNFOVH6FlO1Ps`,
+    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=500&type=bar&key=AIzaSyAFgyrpeZwrVMRD9zu5o8qNFOVH6FlO1Ps`,
     json: true })
       .then((response) => {
         if (response.results.length === 0) { // eslint-disable-next-line max-len
