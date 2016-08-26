@@ -47,6 +47,15 @@ app.use(cookieParser());
 // Expose public directory to client
 app.use(express.static(path.join(__dirname, 'public')));
 
+// CSRF protection
+app.use('/api', (req, res, next) => {
+  if (/json/.test(req.get('Accept'))) {
+    return next();
+  }
+
+  res.sendStatus(406);
+});
+
 // REQUIRE IN ROUTERS
 const chats = require('./routes/chats');
 const givers = require('./routes/givers');
