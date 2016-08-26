@@ -1,10 +1,6 @@
-import Joi from 'joi';
-import RaisedButton from 'material-ui/RaisedButton';
-import React from 'react';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
+import React from 'react';
 import weakKey from 'weak-key';
 
 const Home = React.createClass({
@@ -14,15 +10,14 @@ const Home = React.createClass({
   },
 
   handleTouchTapBorder(event) {
-    console.log(event.target)
     event.target.style = {
       backgroundColor: '#e5f3e9',
       borderRadius: '5px',
       display: 'flex',
       alignItems: 'center',
       alignContent: 'center',
-      flexDirection: 'row',
-    }
+      flexDirection: 'row'
+    };
   },
 
   render() {
@@ -30,18 +25,7 @@ const Home = React.createClass({
       // height: '70vh',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
-    };
-
-    const styleTextField = {
-      marginBottom: '10px',
-      textAlign: 'center'
-    };
-
-    const styleButton = {
-      width: '150px',
-      marginTop: '25px',
-      marginBottom: '15px'
+      alignItems: 'center'
     };
 
     const styleScroll = {
@@ -53,7 +37,7 @@ const Home = React.createClass({
       minWidth: '100px',
       maxWidth: '180px',
       margin: '0 auto'
-    }
+    };
 
     const styleItem = {
       backgroundColor: '#e5f3e9',
@@ -62,20 +46,20 @@ const Home = React.createClass({
       display: 'flex',
       alignItems: 'center',
       alignContent: 'center',
-      flexDirection: 'row',
-    }
+      flexDirection: 'row'
+    };
 
     const styleAvatar = {
       maxHeight: '40px',
       position: 'none',
       margin: '0 auto'
-    }
+    };
 
     const styleListItem = {
       fontFamily: 'Mallanna',
       fontSize: '20px',
-      fontWeight: '200',
-    }
+      fontWeight: '200'
+    };
 
     const styleTitle = {
       fontFamily: 'Mallanna',
@@ -85,8 +69,9 @@ const Home = React.createClass({
       fontWeight: '200',
       borderBottom: '2px solid #ff7f66',
       marginTop: '0px'
-    }
+    };
 
+    /* eslint-disable react/jsx-no-bind */
     return <div>
       <div style={styleContainer}>
         <h1 style={styleTitle}>Check In</h1>
@@ -97,28 +82,30 @@ const Home = React.createClass({
           return <div
             key={weakKey(bar)}
             style={flexContainer}
-            >
+          >
             <List
               onTouchTap={() => this.handleTouchTap(bar)}
             >
               <div
                 style={styleItem}
-                >
-                <img src="images/glass.svg" style={styleAvatar}/>
+              >
+                <img src="images/glass.svg" style={styleAvatar} />
                 <ListItem
-                  style={styleListItem}
                   disabled={true}
+                  style={styleListItem}
                 >
                 {bar.name}
                 </ListItem>
               </div>
             </List>
-          </div>
+          </div>;
         })}
 
       </div>
-    </div>
+    </div>;
+
+    /* eslint-disable react/jsx-no-bind */
   }
-})
+});
 
 export default Home;
