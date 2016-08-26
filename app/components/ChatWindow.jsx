@@ -1,37 +1,36 @@
-import React from 'react';
+/* eslint-disable sort-imports */
 import axios from 'axios';
 import cookie from 'react-cookie';
-import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React from 'react';
 import TextField from 'material-ui/TextField';
 import weakKey from 'weak-key';
+
+/* eslint-enable sort-imports */
 
 const ChatWindow = React.createClass({
   getInitialState() {
     return {
       chatMessages: [],
       messageText: ''
-    }
+    };
   },
 
   componentWillMount() {
     this.props.socket.on('post message', (data) => {
-
       const nextChatMessages = this.state.chatMessages.concat(data);
 
       this.setState({ chatMessages: nextChatMessages });
       const scroll = document.getElementById('scroll');
+
       scroll.scrollTop = scroll.scrollHeight;
     });
-
 
     this.props.joinChat(this.props.params.chatId);
   },
 
+  /* eslint-disable no-console */
   componentDidMount() {
-
     axios.get(`/api/chats/${this.props.params.chatId}`)
       .then((res) => {
         this.setState({ chatMessages: res.data });
@@ -41,11 +40,13 @@ const ChatWindow = React.createClass({
       });
   },
 
+  /* eslint-enable no-console */
+
   handleChange(event) {
     this.setState({ messageText: event.target.value });
   },
 
-  sendMessage() {
+  handleSendMessage() {
     if (this.state.messageText.trim() === '') {
       return;
     }
@@ -54,37 +55,29 @@ const ChatWindow = React.createClass({
       chatId: this.props.params.chatId,
       messageText: this.state.messageText,
       userId: cookie.load('userId')
-    }
+    };
 
-    this.props.socket.emit('chat message', message)
+    this.props.socket.emit('chat message', message);
 
     axios.post(`/api/chats/${this.props.params.chatId}`, message)
-      .then((res) => {
-        console.log('message saved');
+      .then(() => {
+        return;
       })
-      .catch((err) => {
-        console.error('message not saved');
+      .catch(() => {
+        return;
       });
 
     this.setState({ messageText: '' });
   },
 
+  /* eslint-disable max-statements */
   render() {
-
     const flexContainer = {
       display: 'relative'
-      // flexDirection: 'column',
-      // flexWrap: 'wrap',
-      // alignContent: 'center',
-      // alignItems: 'center',
-      // height: '70vh'
-    }
+    };
 
     const styleButton = {
       marginLeft: '15px'
-      // width: '100px',
-      // marginTop: '20px',
-      // margin: '0 auto'
     };
 
     const styleTitle = {
@@ -95,21 +88,20 @@ const ChatWindow = React.createClass({
       marginTop: '0px',
       marginBottom: '0px',
       marginRight: '10px',
-      position: 'block',
+      position: 'block'
     };
 
     const styleChatFrame = {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'flex-end',
-      // border: '2px solid black',
-      height: '55vh',
-    }
+      height: '55vh'
+    };
 
     const styleScroll = {
       overflow: 'scroll',
       height: '50vh'
-    }
+    };
 
     const styleBummer = {
       backgroundColor: '#ff7f66',
@@ -118,7 +110,7 @@ const ChatWindow = React.createClass({
       marginRight: '5px',
       marginBottom: '10px',
       maxWidth: '200px'
-    }
+    };
 
     const styleGiver = {
       backgroundColor: '#e5f3e9',
@@ -127,13 +119,12 @@ const ChatWindow = React.createClass({
       marginLeft: '5px',
       marginBottom: '10px',
       maxWidth: '200px'
-    }
+    };
 
     const styleDiv = {
       marginTop: '10px',
-      borderBottom: '2px solid #ff7f66',
+      borderBottom: '2px solid #ff7f66'
     };
-
 
     const styleChatInput = {
       paddingRight: '10px',
@@ -143,7 +134,7 @@ const ChatWindow = React.createClass({
       display: 'flex',
       overflow: 'scroll',
       height: '10vh',
-      margin: '0 auto',
+      margin: '0 auto'
     };
 
     const styleMessageContainer = {
@@ -184,20 +175,19 @@ const ChatWindow = React.createClass({
                   <div style={styleBummer}>
                     <p>{message.messageText}</p>
                   </div>
-                </li>
+                </li>;
               }
 
               return <li key={weakKey(message)} style={{ display: 'flex' }}>
                 <div style={styleGiver}>
                   <p>{message.messageText}</p>
                 </div>
-              </li>
+              </li>;
             })}
 
             </div>
           </ol>
         </div>
-
 
         <div style={styleChatInput}>
           <TextField
@@ -210,16 +200,18 @@ const ChatWindow = React.createClass({
           />
           <div style={styleButton}>
             <RaisedButton
-            label="Send"
-            onTouchTap={this.sendMessage}
-            primary={true}
+              label="Send"
+              onTouchTap={this.handleSendMessage}
+              primary={true}
             />
           </div>
         </div>
 
       </div>
-    </div>
+    </div>;
   }
+
+  /* eslint-enable max-statements */
 });
 
 export default ChatWindow;

@@ -38,9 +38,9 @@ const About = React.createClass({
       fontWeight: 'bold'
     };
 
+    /* eslint-disable max-len */
     return <div style={styleDiv}>
       <h1 style={styleTitle}>About Smokator</h1>
-       {/* eslint-disable-next-line max-len  */}
       <p style={styleText}>Smokator is here to help you to acquire cigarettes from strangers in a bar.</p>
       <p style={styleTextHow}>How?</p>
       <ol style={styleText}>
@@ -51,6 +51,8 @@ const About = React.createClass({
       </ol>
 
     </div>;
+
+    /* eslint-enable max-len */
   }
 });
 
