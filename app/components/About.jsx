@@ -15,7 +15,9 @@ const About = React.createClass({
     };
 
     const styleDiv = {
-      textAlign: 'center'
+      textAlign: 'center',
+      overflow: 'scroll',
+      height: '80vh'
     };
 
     const styleText = {
@@ -49,7 +51,6 @@ const About = React.createClass({
         <li><span>-</span>CHAT<span>-</span></li>
         <li><span>-</span>SMOKE<span>-</span></li>
       </ol>
-
     </div>;
 
     /* eslint-enable max-len */
