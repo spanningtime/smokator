@@ -1,13 +1,9 @@
-import React from 'react';
 import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React from 'react';
 
 const LoginButtons = React.createClass({
-
   render() {
-
     const flexContainer = {
       display: 'flex',
       flexDirection: 'column',
@@ -16,7 +12,7 @@ const LoginButtons = React.createClass({
       alignContent: 'center',
       alignItems: 'center',
       height: '70vh'
-    }
+    };
 
     const styleButton = {
       display: 'flex',
@@ -26,14 +22,20 @@ const LoginButtons = React.createClass({
 
     return <div style={flexContainer}>
 
-      <Link to="/login" style={{textDecoration: 'none'}}>
-        <RaisedButton label="Login" primary={true} style={styleButton} />
+      <Link
+        style={{ textDecoration: 'none' }}
+        to="/login"
+      >
+        <RaisedButton
+          label="Login"
+          primary={true} style={styleButton}
+        />
       </Link>
 
-      <Link to="/register" style={{textDecoration: 'none'}}>
+      <Link style={{ textDecoration: 'none' }} to="/register">
         <RaisedButton label="Register" primary={true} style={styleButton} />
       </Link>
-    </div>
+    </div>;
   }
 });
 
