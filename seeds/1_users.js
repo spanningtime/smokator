@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint-disable */
+
 exports.seed = function(knex) {
   return knex('users').del()
     .then(() => {
