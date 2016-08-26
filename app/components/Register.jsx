@@ -1,8 +1,7 @@
-import React from 'react';
 import Joi from 'joi';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import React from 'react';
+import TextField from 'material-ui/TextField';
 
 const schema = {
   email: Joi.string()
@@ -10,7 +9,7 @@ const schema = {
     .trim()
     .required()
     .label('Email'),
-  password:  Joi.string()
+  password: Joi.string()
     .trim()
     .required()
     .min(5)
@@ -44,7 +43,7 @@ const Register = React.createClass({
         aboutMe: ''
 
       }
-    }
+    };
   },
 
   handleTouchTap() {
@@ -63,7 +62,7 @@ const Register = React.createClass({
       return this.setState({ errors: nextErrors });
     }
 
-    this.setState({ errors: {} });
+    this.setState({ errors: {}});
     this.props.register(this.state.user);
   },
 
@@ -73,7 +72,7 @@ const Register = React.createClass({
 
     this.setState({ user: nextUser });
 
-    const nextErrors = Object.assign({}, this.state.errors)
+    const nextErrors = Object.assign({}, this.state.errors);
     const result = Joi.validate({ [name]: value }, {
       [name]: schema[name] });
 
@@ -90,21 +89,25 @@ const Register = React.createClass({
     this.setState({ errors: nextErrors });
   },
 
-  handleScroll(){
+  handleScroll() {
     const scroll = document.getElementById('scroll');
+
     scroll.scrollTop = scroll.scrollHeight;
   },
 
   handleFocus(event) {
-    console.log(event.target.tagName)
-    if (event.target.tagName === "INPUT" || event.target.tagName === "TEXTAREA") {
-      document.getElementById('footer').style.display = "none";
+    const input = event.target.tagName;
+    const textArea = event.target.tagName;
+    const footer = document.getElementById('footer');
+
+    if (input === 'INPUT' || textArea === 'TEXTAREA') {
+      footer.style.display = 'none';
     }
   },
 
   handleBlur() {
     if (document.activeElement.nodeName === 'BODY') {
-      document.getElementById('footer').style.display = "inline-block"
+      document.getElementById('footer').style.display = 'inline-block';
     }
   },
 
@@ -137,93 +140,87 @@ const Register = React.createClass({
       <TextField
         errorText={errors.email}
         name="email"
-        placeholder="Email"
+        onBlur={this.handleBlur}
         onChange={this.handleChange}
         onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
+        placeholder="Email"
         underlineFocusStyle={styleLabel}
         value={user.email}
-      >
-      </TextField>
+      />
 
       <TextField
         errorText={errors.password}
         name="password"
-        placeholder="Password"
+        onBlur={this.handleBlur}
         onChange={this.handleChange}
         onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
+        placeholder="Password"
         type="password"
         underlineFocusStyle={styleLabel}
         value={user.password}
-      >
-      </TextField>
+      />
 
       <TextField
         errorText={errors.firstName}
         name="firstName"
-        placeholder="First Name"
+        onBlur={this.handleBlur}
         onChange={this.handleChange}
         onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
+        placeholder="First Name"
         underlineFocusStyle={styleLabel}
         value={user.firstName}
-      >
-      </TextField>
+      />
 
       <TextField
         errorText={errors.lastName}
         name="lastName"
-        placeholder="Last Name"
+        onBlur={this.handleBlur}
         onChange={this.handleChange}
         onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
+        placeholder="Last Name"
         underlineFocusStyle={styleLabel}
         value={user.lastName}
-      >
-      </TextField>
+      />
 
       <TextField
         errorText={errors.phone}
         name="phone"
-        placeholder="Phone Number"
+        onBlur={this.handleBlur}
         onChange={this.handleChange}
         onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
+        placeholder="Phone Number"
         underlineFocusStyle={styleLabel}
         value={user.phone}
-      >
-      </TextField>
+      />
 
-      <div id="scroll"
-        style={styleBigTextField}
+      <div
+        id="scroll"
         onChange={this.handleScroll}
+        style={styleBigTextField}
       >
         <TextField
+
           // errorText={errors.phone}
+          multiLine={true}
           name="aboutMe"
-          placeholder="About Me"
+          onBlur={this.handleBlur}
           onChange={this.handleChange}
           onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          multiLine={true}
+          placeholder="About Me"
           rows={2}
           underlineFocusStyle={styleLabel}
           value={user.aboutMe}
-          >
-        </TextField>
+        />
       </div>
 
-
       <RaisedButton
-        primary={true}
         label="Submit"
         onTouchTap={this.handleTouchTap}
+        primary={true}
         style={styleButton}
-      >
-      </RaisedButton>
-    </div>
+      />
+    </div>;
   }
-})
+});
 
 export default Register;
