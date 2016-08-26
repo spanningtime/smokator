@@ -13,7 +13,6 @@ const muiTheme = getMuiTheme({
     primary1Color: '#e5f3e9',
     alternateTextColor: '#000000'
   }
-  
 });
 
 ReactDOM.render(
