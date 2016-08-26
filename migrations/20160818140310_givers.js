@@ -1,6 +1,5 @@
 'use strict';
 
-
 exports.up = function(knex) {
   return knex.schema.createTable('givers', (table) => {
     table.increments();
@@ -17,6 +16,6 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex, Promise) {
+exports.down = function(knex) {
   return knex.schema.dropTable('givers');
 };
