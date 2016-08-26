@@ -173,11 +173,15 @@ const ChatWindow = React.createClass({
     };
 
     const styleTyping = {
-      display: 'block'
+      display: 'block',
+      fontFamily: 'Mallanna',
+      fontSize: '25px',
+      color: '#ff7f66',
+      marginLeft: '5px'
     };
 
     if (this.state.typing) {
-      styleTyping.display = 'block';
+      styleTyping.display = 'inline';
     }
     else {
       styleTyping.display = 'none';
@@ -197,7 +201,7 @@ const ChatWindow = React.createClass({
     return <div style={flexContainer}>
       <div>
         <div style={styleDiv}>
-          <h1 style={styleTitle}>{contact}</h1>
+          <h1 style={styleTitle}>{contact}<span style={styleTyping}>is typing</span></h1>
         </div>
 
         <div style={styleChatFrame}>
@@ -219,7 +223,6 @@ const ChatWindow = React.createClass({
                 </div>
               </li>;
             })}
-
             </div>
           </ol>
         </div>
@@ -240,9 +243,7 @@ const ChatWindow = React.createClass({
               primary={true}
             />
           </div>
-          <p style={styleTyping}>{contact} is typing...</p>
         </div>
-
       </div>
     </div>;
   }
