@@ -1,8 +1,6 @@
+import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
 import { withRouter } from 'react-router';
-import RaisedButton from 'material-ui/RaisedButton';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const StatusButtons = React.createClass({
 
@@ -17,7 +15,6 @@ const StatusButtons = React.createClass({
   },
 
   render() {
-
     const flexContainer = {
       display: 'flex',
       flexDirection: 'column',
@@ -31,10 +28,9 @@ const StatusButtons = React.createClass({
     const styleButton = {
       display: 'flex',
       width: '200px',
-      marginBottom: '10px',
       fontFamily: 'Mallanna',
       fontWeight: '200',
-      marginBottom: '30px',
+      marginBottom: '30px'
     };
 
     const styleTitle = {
@@ -50,7 +46,7 @@ const StatusButtons = React.createClass({
       display: 'flex',
       justifyContent: 'flex-start',
       alignItems: 'center',
-      borderBottom: '2px solid #ff7f66',
+      borderBottom: '2px solid #ff7f66'
     };
 
     return <div>
@@ -71,7 +67,7 @@ const StatusButtons = React.createClass({
           style={styleButton}
         />
       </div>
-    </div>
+    </div>;
   }
 });
 
