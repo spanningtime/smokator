@@ -11,6 +11,7 @@ import weakKey from 'weak-key';
 const ChatWindow = React.createClass({
   getInitialState() {
     return {
+      typing: false,
       chatMessages: [],
       messageText: ''
     };
@@ -24,6 +25,19 @@ const ChatWindow = React.createClass({
       const scroll = document.getElementById('scroll');
 
       scroll.scrollTop = scroll.scrollHeight;
+    });
+
+    this.props.socket.on('typing', (userId) => {
+      console.log(userId);
+      if (userId != cookie.load('userId')) {
+        this.setState({ typing: true });
+      }
+    });
+
+    this.props.socket.on('end typing', (userId) => {
+      if (userId != cookie.load('userId')) {
+        this.setState({ typing: false });
+      }
     });
 
     this.props.joinChat(this.props.params.chatId);
@@ -44,7 +58,15 @@ const ChatWindow = React.createClass({
 
   handleChange(event) {
     this.setState({ messageText: event.target.value });
+
+    if (event.target.value !== '') {
+      this.props.socket.emit('typing', this.props.params.chatId, cookie.load('userId'));
+    }
+    else {
+      this.props.socket.emit('end typing', this.props.params.chatId, cookie.load('userId'));
+    }
   },
+
 
   handleSendMessage() {
     if (this.state.messageText.trim() === '') {
@@ -56,6 +78,8 @@ const ChatWindow = React.createClass({
       messageText: this.state.messageText,
       userId: cookie.load('userId')
     };
+
+    this.props.socket.emit('end typing', this.props.params.chatId, cookie.load('userId'));
 
     this.props.socket.emit('chat message', message);
 
@@ -148,6 +172,17 @@ const ChatWindow = React.createClass({
       paddingLeft: '0px'
     };
 
+    const styleTyping = {
+      display: 'block'
+    };
+
+    if (this.state.typing) {
+      styleTyping.display = 'block';
+    }
+    else {
+      styleTyping.display = 'none';
+    }
+
     let contact;
 
     const { chatMembers } = this.props;
@@ -205,6 +240,7 @@ const ChatWindow = React.createClass({
               primary={true}
             />
           </div>
+          <p style={styleTyping}>{contact} is typing...</p>
         </div>
 
       </div>

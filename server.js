@@ -22,6 +22,14 @@ io.sockets.on('connection', (socket) => {
     io.sockets.in(chatId).emit('success', chatId);
   });
 
+  socket.on('typing', (chatId, userId) => {
+    io.sockets.in(chatId).emit('typing', userId);
+  });
+
+  socket.on('end typing', (chatId, userId) => {
+    io.sockets.in(chatId).emit('end typing', userId);
+  });
+
   socket.on('chat message', (data) => {
     io.sockets.in(data.chatId).emit('post message', data);
   });
