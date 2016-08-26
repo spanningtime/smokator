@@ -1,7 +1,9 @@
 'use strict';
 
+/* eslint-disable arrow-body-style */
+
 const express = require('express');
-const router = express.Router();
+const router = express.Router(); // eslint-disable-line new-cap
 
 const boom = require('boom');
 const bcrypt = require('bcrypt-as-promised');
@@ -27,7 +29,8 @@ router.post('/api/users', ev(validations.post), (req, res, next) => {
     })
     .then((hashedPassword) => {
       const { firstName, lastName, aboutMe, avatarId, phone } = req.body;
-      const user = {firstName, lastName, email, aboutMe, avatarId, phone, hashedPassword };
+      const user = { firstName, lastName, email, aboutMe, avatarId, phone,
+        hashedPassword };
       const row = decamelizeKeys(user);
 
       return knex('users').insert(row, '*');
@@ -36,12 +39,14 @@ router.post('/api/users', ev(validations.post), (req, res, next) => {
       const user = camelizeKeys(rows[0]);
 
       delete user.hashedPassword;
+
       return user;
     })
     .then((user) => {
       const expiry = new Date(Date.now() + 1000 * 60 * 60 * 3);
 
-      const token = jwt.sign({ userId: user.id}, process.env.SESSION_SECRET, { expiresIn: '3h' });
+      const token = jwt.sign({ userId: user.id }, process.env.SESSION_SECRET,
+        { expiresIn: '3h' });
 
       res.cookie('accessToken', token, {
         httpOnly: true,
@@ -50,6 +55,11 @@ router.post('/api/users', ev(validations.post), (req, res, next) => {
       });
 
       res.cookie('loggedIn', true, {
+        expires: expiry,
+        secure: router.get('env') === 'production'
+      });
+
+      res.cookie('userId', user.id, {
         expires: expiry,
         secure: router.get('env') === 'production'
       });
@@ -70,7 +80,7 @@ router.get('/api/users/:userId', (req, res, next) => {
       if (!rows) {
         return next();
       }
-      const user = camelizeKeys(rows[0])
+      const user = camelizeKeys(rows[0]);
 
       delete user.hashedPassword;
 
@@ -114,7 +124,7 @@ router.get('/api/users/chats/:chatId', (req, res, next) => {
           }
 
           res.send(users);
-        })
+        }) // eslint-disable-line semi
     })
     .catch((err) => {
       next(boom.wrap(err));
