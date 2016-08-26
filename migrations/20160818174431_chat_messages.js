@@ -1,3 +1,6 @@
+'use strict';
+
+/* eslint-disable semi */
 
 exports.up = function(knex) {
   return knex.schema.createTable('chat_messages', (table) => {
