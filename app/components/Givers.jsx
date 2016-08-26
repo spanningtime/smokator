@@ -1,27 +1,20 @@
-import React from 'react';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+/* eslint-disable sort-imports */
 import { Link } from 'react-router';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
-import Avatar from 'material-ui/Avatar';
+import React from 'react';
 import weakKey from 'weak-key';
+
+/* eslint-enable sort-imports */
 
 const Givers = React.createClass({
 
   render() {
-
     const flexContainer = {
       minWidth: '100px',
       maxWidth: '180px',
       margin: '0 auto'
-      // display: 'flex',
-      // flexDirection: 'row',
-      // flexWrap: 'wrap',
-      // alignContent: 'center',
-      // alignItems: 'center',
-      // height: '70vh'
-    }
+    };
 
     const styleItem = {
       backgroundColor: '#e5f3e9',
@@ -32,19 +25,19 @@ const Givers = React.createClass({
       alignContent: 'center',
       flexDirection: 'row',
       marginBottom: '20px'
-    }
+    };
 
     const styleAvatar = {
       maxHeight: '40px',
       position: 'none',
       margin: '0 auto'
-    }
+    };
 
     const styleListItem = {
       fontFamily: 'Mallanna',
       fontSize: '25px',
       fontWeight: '200'
-    }
+    };
 
     const styleTitle = {
       fontFamily: 'Mallanna',
@@ -54,27 +47,27 @@ const Givers = React.createClass({
       borderBottom: '2px solid #ff7f66',
       marginTop: '10px',
       textAlign: 'center'
-    }
+    };
 
     const styleScroll = {
       overflow: 'scroll',
       height: '65vh'
-    }
+    };
 
     const styleGiversTitle = {
-        display: 'inline-block',
-        fontFamily: 'Mallanna',
-        color: 'black',
-        textShadow: '2px 2px #e5f3e9',
-        fontSize: '2.5em',
-        fontWeight: '200',
-        borderBottom: '2px solid #ff7f66',
-        marginTop: '0px',
-    }
+      display: 'inline-block',
+      fontFamily: 'Mallanna',
+      color: 'black',
+      textShadow: '2px 2px #e5f3e9',
+      fontSize: '2.5em',
+      fontWeight: '200',
+      borderBottom: '2px solid #ff7f66',
+      marginTop: '0px'
+    };
 
     const styleGiversTitleContainer = {
       textAlign: 'center'
-    }
+    };
 
     const { givers } = this.props;
 
@@ -90,14 +83,13 @@ const Givers = React.createClass({
         <div style={flexContainer}>
           <List>
             {givers.map((giver) => {
-
-              return  <Link
+              return <Link
                 key={weakKey(giver)}
+                style={{ textDecoration: 'none' }}
                 to={`/profile/${giver.userId}`}
-                style={{textDecoration: 'none'}}
-                >
+              >
                 <div style={styleItem}>
-                  <img src={"images/cigarette.svg"} style={styleAvatar}/>
+                  <img src={"images/cigarette.svg"} style={styleAvatar} />
                   <ListItem
                     disabled={true}
                     style={styleListItem}
@@ -105,12 +97,12 @@ const Givers = React.createClass({
                     {giver.firstName}
                   </ListItem>
                 </div>
-              </Link>
+              </Link>;
             })}
           </List>
         </div>
       </div>
-    </div>
+    </div>;
   }
 });
 
