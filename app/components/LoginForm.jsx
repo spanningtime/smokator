@@ -28,6 +28,18 @@ const LoginForm = React.createClass({
     this.props.login(this.state.credentials);
   },
 
+  handleFocus(event) {
+    if (event.target.tagName === 'INPUT') {
+      document.getElementById('footer').style.display = "none";
+    };
+  },
+
+  handleBlur() {
+    if (document.activeElement.nodeName === 'BODY') {
+      document.getElementById('footer').style.display = "inline-block";
+    };
+  },
+
   render() {
     const styleContainer = {
       // height: '70vh',
@@ -59,6 +71,8 @@ const LoginForm = React.createClass({
         placeholder="Email"
         name="email"
         onChange={this.handleChange}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         style={styleTextField}
         underlineFocusStyle={styleLabel}
         type="email"
@@ -69,6 +83,8 @@ const LoginForm = React.createClass({
         placeholder="Password"
         name="password"
         onChange={this.handleChange}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         underlineFocusStyle={styleLabel}
         type="password"
         value={credentials.password}
