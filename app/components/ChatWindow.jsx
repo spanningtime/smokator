@@ -17,6 +17,7 @@ const ChatWindow = React.createClass({
     };
   },
 
+  /* eslint-disable eqeqeq */
   componentWillMount() {
     this.props.socket.on('post message', (data) => {
       const nextChatMessages = this.state.chatMessages.concat(data);
@@ -28,7 +29,6 @@ const ChatWindow = React.createClass({
     });
 
     this.props.socket.on('typing', (userId) => {
-      console.log(userId);
       if (userId != cookie.load('userId')) {
         this.setState({ typing: true });
       }
@@ -43,6 +43,8 @@ const ChatWindow = React.createClass({
     this.props.joinChat(this.props.params.chatId);
   },
 
+  /* eslint-enable eqeqeq */
+
   /* eslint-disable no-console */
   componentDidMount() {
     axios.get(`/api/chats/${this.props.params.chatId}`)
@@ -56,19 +58,26 @@ const ChatWindow = React.createClass({
 
   /* eslint-enable no-console */
 
+  /* eslint-disable no-negated-condition */
   handleChange(event) {
     this.setState({ messageText: event.target.value });
+    const socket = this.props.socket;
+    const chatId = this.props.params.chatId;
 
     if (event.target.value !== '') {
-      this.props.socket.emit('typing', this.props.params.chatId, cookie.load('userId'));
+      socket.emit('typing', chatId, cookie.load('userId'));
     }
     else {
-      this.props.socket.emit('end typing', this.props.params.chatId, cookie.load('userId'));
+      socket.emit('end typing', chatId, cookie.load('userId'));
     }
   },
 
+  /* eslint-enable no-negated-condition */
 
   handleSendMessage() {
+    const socket = this.props.socket;
+    const chatId = this.props.params.chatId;
+
     if (this.state.messageText.trim() === '') {
       return;
     }
@@ -79,11 +88,11 @@ const ChatWindow = React.createClass({
       userId: cookie.load('userId')
     };
 
-    this.props.socket.emit('end typing', this.props.params.chatId, cookie.load('userId'));
+    socket.emit('end typing', chatId, cookie.load('userId'));
 
-    this.props.socket.emit('chat message', message);
+    socket.emit('chat message', message);
 
-    axios.post(`/api/chats/${this.props.params.chatId}`, message)
+    axios.post(`/api/chats/${chatId}`, message)
       .then(() => {
         return;
       })
@@ -201,7 +210,10 @@ const ChatWindow = React.createClass({
     return <div style={flexContainer}>
       <div>
         <div style={styleDiv}>
-          <h1 style={styleTitle}>{contact}<span style={styleTyping}>is typing</span></h1>
+          <h1 style={styleTitle}>
+            {contact}
+            <span style={styleTyping}>is typing</span>
+          </h1>
         </div>
 
         <div style={styleChatFrame}>
@@ -226,7 +238,6 @@ const ChatWindow = React.createClass({
             </div>
           </ol>
         </div>
-
         <div style={styleChatInput}>
           <TextField
             multiLine={true}
@@ -243,7 +254,9 @@ const ChatWindow = React.createClass({
               primary={true}
             />
           </div>
+
         </div>
+
       </div>
     </div>;
   }
