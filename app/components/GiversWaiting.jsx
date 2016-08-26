@@ -2,7 +2,6 @@ import React from 'react';
 
 const GiversWaiting = React.createClass({
   render() {
-
     const styleTitle = {
       textAlign: 'center',
       display: 'inline-block',
@@ -13,23 +12,25 @@ const GiversWaiting = React.createClass({
       fontWeight: '200',
       borderBottom: '2px solid #ff7f66',
       marginTop: '0px'
-    }
+    };
 
     const styleDiv = {
       textAlign: 'center'
-    }
+    };
 
     const styleText = {
       fontFamily: 'Mallanna',
       fontSize: '18px',
       padding: '10px'
-    }
+    };
 
-  return <div style={styleDiv}>
+    /* eslint-disable max-len */
+    return <div style={styleDiv}>
       <h1 style={styleTitle}>Thank You!</h1>
-    <p style={styleText}>Wait for a text inviting you to chat with a bummer.</p>
+      <p style={styleText}>Wait for a text inviting you to chat with a bummer.</p>
+    </div>;
 
-  </div>
+    /* eslint-enable max-len */
   }
 });
 
