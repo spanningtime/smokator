@@ -95,13 +95,18 @@ const Register = React.createClass({
     scroll.scrollTop = scroll.scrollHeight;
   },
 
-  // handleFocus() {
-  //   if (window.screen.height < 400) {
-  //     console.log("<400");
-  //   }
-  //   document.getElementById('footer').style.display = "none";
-  // },
+  handleFocus(event) {
+    console.log(event.target.tagName)
+    if (event.target.tagName === "INPUT" || event.target.tagName === "TEXTAREA") {
+      document.getElementById('footer').style.display = "none";
+    }
+  },
 
+  handleBlur() {
+    if (document.activeElement.nodeName === 'BODY') {
+      document.getElementById('footer').style.display = "inline-block"
+    }
+  },
 
   render() {
     const styleContainer = {
@@ -134,7 +139,8 @@ const Register = React.createClass({
         name="email"
         placeholder="Email"
         onChange={this.handleChange}
-        // onFocus={this.handleFocus}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         underlineFocusStyle={styleLabel}
         value={user.email}
       >
@@ -145,6 +151,8 @@ const Register = React.createClass({
         name="password"
         placeholder="Password"
         onChange={this.handleChange}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         type="password"
         underlineFocusStyle={styleLabel}
         value={user.password}
@@ -156,6 +164,8 @@ const Register = React.createClass({
         name="firstName"
         placeholder="First Name"
         onChange={this.handleChange}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         underlineFocusStyle={styleLabel}
         value={user.firstName}
       >
@@ -166,6 +176,8 @@ const Register = React.createClass({
         name="lastName"
         placeholder="Last Name"
         onChange={this.handleChange}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         underlineFocusStyle={styleLabel}
         value={user.lastName}
       >
@@ -176,6 +188,8 @@ const Register = React.createClass({
         name="phone"
         placeholder="Phone Number"
         onChange={this.handleChange}
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
         underlineFocusStyle={styleLabel}
         value={user.phone}
       >
@@ -190,6 +204,8 @@ const Register = React.createClass({
           name="aboutMe"
           placeholder="About Me"
           onChange={this.handleChange}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
           multiLine={true}
           rows={2}
           underlineFocusStyle={styleLabel}
