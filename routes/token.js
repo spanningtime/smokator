@@ -27,7 +27,8 @@ router.post('/api/token', (req, res, next) => {
     .then(() => {
       const expiry = new Date(Date.now() + 1000 * 60 * 60 * 3);
 
-      const token = jwt.sign({ userId: user.id}, process.env.SESSION_SECRET, { expiresIn: '3h' });
+      const token = jwt.sign({ userId: user.id }, process.env.SESSION_SECRET,
+        { expiresIn: '3h' });
 
       res.cookie('accessToken', token, {
         httpOnly: true,
@@ -56,7 +57,6 @@ router.post('/api/token', (req, res, next) => {
 });
 
 router.delete('/api/token', (req, res) => {
-
   res.clearCookie('accessToken');
   res.clearCookie('loggedIn');
   res.clearCookie('userId');
