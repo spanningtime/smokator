@@ -190,6 +190,7 @@ const App = React.createClass({
   register(user) {
     axios.post('/api/users', user)
       .then((res) => {
+        this.getProfile();
         return this.props.router.push('/home');
       })
       .catch((err) => {
