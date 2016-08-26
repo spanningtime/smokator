@@ -7,36 +7,25 @@ const express = require('express');
 const port = process.env.PORT || 8080;
 const path = require('path');
 
-
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 
 const app = express();
 
-const http = require('http').Server(app);
+const http = require('http').Server(app); // eslint-disable-line new-cap
 const io = require('socket.io')(http);
 
 io.sockets.on('connection', (socket) => {
-  console.log('a user connected');
-
   socket.on('subscribe', (chatId) => {
-
-    if (true) {
-      socket.join(chatId);
-      io.sockets.in(chatId).emit('success', chatId);
-    }
+    socket.join(chatId);
+    io.sockets.in(chatId).emit('success', chatId);
   });
 
   socket.on('chat message', (data) => {
     io.sockets.in(data.chatId).emit('post message', data);
   });
-
-  socket.on('disconnect', () => {
-    console.log('a user disconnected');
-  });
 });
-
 
 app.disable('x-powered-by');
 
@@ -80,19 +69,18 @@ app.use((_req, res) => {
   res.sendStatus(404);
 });
 
+// eslint-disable-next-line max-params
 app.use((err, _req, res, _next) => {
-
   if (err.status || err.output && err.output.statusCode) {
-    console.log(err);
     return res.status(err.status || err.output.statusCode).send(err);
   }
 
-  console.error(err.stack);
+  console.error(err.stack); // eslint-disable-line no-console
   res.sendStatus(500);
 });
 
 http.listen(port, () => {
-  console.log('Listening on port,', port);
+  console.log('Listening on port,', port); // eslint-disable-line no-console
 });
 
 module.exports = app;
