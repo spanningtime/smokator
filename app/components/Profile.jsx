@@ -1,17 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React from 'react';
 
 const Profile = React.createClass({
-
   handleTouchTap(chatInfo) {
     this.props.createChat(chatInfo);
   },
 
   render() {
-
     const flexContainer = {
       display: 'flex',
       flexDirection: 'column',
@@ -19,18 +14,13 @@ const Profile = React.createClass({
       alignContent: 'center',
       alignItems: 'center',
       height: '70vh'
-    }
+    };
 
     const styleButton = {
       display: 'flex',
       width: '100px',
       marginTop: '20px',
       margin: '0 auto'
-    };
-
-    const styleAvatar = {
-      maxHeight: '40px',
-      display: 'inline'
     };
 
     const styleTitle = {
@@ -59,7 +49,7 @@ const Profile = React.createClass({
       marginRight: '30px',
       marginTop: '30px',
       marginBottom: '20px',
-      fontFamily: 'Mallanna',
+      fontFamily: 'Mallanna'
     };
 
     let profileOwner;
@@ -73,8 +63,8 @@ const Profile = React.createClass({
       const thisGiverArr = this.props.givers.filter((giver) => {
         return giver.userId === Number.parseInt(this.props.params.userId);
       });
-      profileOwner = thisGiverArr[0];
 
+      profileOwner = thisGiverArr[0];
     }
 
     const chatInfo = {
@@ -85,6 +75,7 @@ const Profile = React.createClass({
       phone: profileOwner.phone
     };
 
+    /* eslint-disable react/jsx-no-bind */
     return <div style={flexContainer}>
       <div>
         <div style={styleDiv}>
@@ -98,7 +89,9 @@ const Profile = React.createClass({
           style={styleButton}
         />
       </div>
-    </div>
+    </div>;
+
+    /* eslint-enable react/jsx-no-bind */
   }
 });
 
