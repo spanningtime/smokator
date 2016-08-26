@@ -1,7 +1,5 @@
-import Joi from 'joi';
 import RaisedButton from 'material-ui/RaisedButton';
 import React from 'react';
-import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 
 const LoginForm = React.createClass({
@@ -12,7 +10,7 @@ const LoginForm = React.createClass({
         email: '',
         password: ''
       }
-    }
+    };
   },
 
   handleChange(event) {
@@ -30,14 +28,14 @@ const LoginForm = React.createClass({
 
   handleFocus(event) {
     if (event.target.tagName === 'INPUT') {
-      document.getElementById('footer').style.display = "none";
-    };
+      document.getElementById('footer').style.display = 'none';
+    }
   },
 
   handleBlur() {
     if (document.activeElement.nodeName === 'BODY') {
-      document.getElementById('footer').style.display = "inline-block";
-    };
+      document.getElementById('footer').style.display = 'inline-block';
+    }
   },
 
   render() {
@@ -52,7 +50,7 @@ const LoginForm = React.createClass({
 
     const styleTextField = {
       marginBottom: '10px'
-    }
+    };
 
     const styleButton = {
       width: '100px',
@@ -68,37 +66,37 @@ const LoginForm = React.createClass({
     return <div style={styleContainer}>
 
       <TextField
-        placeholder="Email"
         name="email"
+        onBlur={this.handleBlur}
         onChange={this.handleChange}
         onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
+        placeholder="Email"
         style={styleTextField}
-        underlineFocusStyle={styleLabel}
         type="email"
+        underlineFocusStyle={styleLabel}
         value={credentials.email}
       />
 
       <TextField
-        placeholder="Password"
         name="password"
+        onBlur={this.handleBlur}
         onChange={this.handleChange}
         onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
-        underlineFocusStyle={styleLabel}
+        placeholder="Password"
         type="password"
+        underlineFocusStyle={styleLabel}
         value={credentials.password}
       />
 
       <RaisedButton
-        primary={true}
         label="Login"
         onTouchTap={this.handleTouchTap}
+        primary={true}
         style={styleButton}
       />
 
-    </div>
+    </div>;
   }
-})
+});
 
 export default LoginForm;
