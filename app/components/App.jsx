@@ -1,17 +1,12 @@
-import AppBar from 'material-ui/AppBar';
 import axios from 'axios';
+import cookie from 'react-cookie';
 import IconButton from 'material-ui/IconButton';
-import BottomNavigation from 'material-ui/BottomNavigation';
+import Menu from 'components/Menu';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import Paper from 'material-ui/Paper';
 import React from 'react';
-import cookie from 'react-cookie';
-import { withRouter } from 'react-router';
-import { Link } from 'react-router';
-import LoginButtons from 'components/LoginButtons';
 import Snackbar from 'material-ui/Snackbar';
-import StatusButtons from 'components/StatusButtons';
-import Menu from 'components/Menu';
+import { withRouter } from 'react-router';
 
 const App = React.createClass({
 
@@ -24,11 +19,7 @@ const App = React.createClass({
       coords: null,
       user: {},
       chatMembers: {}
-    }
-  },
-
-  componentDidMount() {
-    this.getLocation();
+    };
   },
 
   componentWillMount() {
@@ -43,6 +34,10 @@ const App = React.createClass({
     }
   },
 
+  componentDidMount() {
+    this.getLocation();
+  },
+
   joinChat(chatId) {
     this.socket.emit('subscribe', chatId);
 
@@ -53,21 +48,17 @@ const App = React.createClass({
         this.setState({ chatMembers: nextChatMembers });
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   },
 
   createChat(chatInfo) {
-
     const request = { giverId: chatInfo.giverId, bummerId: chatInfo.bummerId };
 
     axios.post('/api/chats', request)
       .then((res) => {
-
         chatInfo.id = res.data.id;
-
         this.socket.emit('subscribe', chatInfo.id);
-
         this.sendInvite(chatInfo);
       })
       .catch((err) => {
@@ -79,15 +70,15 @@ const App = React.createClass({
     const data = {
       number: chatInfo.phone,
       message: `Message from Smokator: ${chatInfo.bummerName} wants a cig! chat with them at https://smokator.herokuapp.com/chats/${chatInfo.id}`
-    }
+    };
 
     axios.post('http://textbelt.com/text', data)
-      .then((res) => {
+      .then(() => {
         return;
       })
       .catch((err) => {
         console.error(err);
-      })
+      });
   },
 
   getLocation() {
@@ -99,14 +90,13 @@ const App = React.createClass({
       const { latitude, longitude } = position.coords;
       const nextCoords = Object.assign({}, { latitude, longitude });
 
-
       this.setState({ coords: nextCoords });
       this.getBars();
     };
 
     const failure = () => {
       console.log('Could not obtain your location.');
-    }
+    };
 
     navigator.geolocation.getCurrentPosition(success, failure);
   },
@@ -133,21 +123,23 @@ const App = React.createClass({
       });
   },
 
-    getProfile() {
+  getProfile() {
     const userId = cookie.load('userId');
+
     axios.get(`/api/users/${userId}`)
       .then((res) => {
         this.setState({ user: res.data });
       })
       .catch((err) => {
-        console.error(err)
-      })
+        console.error(err);
+      });
   },
 
   login(credentials) {
     axios.post('/api/token', credentials)
       .then((res) => {
         this.getProfile();
+
         return this.props.router.push('/home');
       })
       .catch((err) => {
@@ -184,13 +176,14 @@ const App = React.createClass({
       })
       .catch((err) => {
         console.log('post user error');
-      })
+      });
   },
 
   register(user) {
     axios.post('/api/users', user)
       .then((res) => {
         this.getProfile();
+
         return this.props.router.push('/home');
       })
       .catch((err) => {
@@ -212,7 +205,7 @@ const App = React.createClass({
   },
 
   requestChange(open) {
-    this.setState({open});
+    this.setState({ open });
   },
 
   render() {
@@ -233,7 +226,6 @@ const App = React.createClass({
       backgroundColor: '#e5f3e9',
       marginBottom: '10px'
     };
-
 
     const styleContainer = {
       display: 'flex',
@@ -261,10 +253,6 @@ const App = React.createClass({
       fontFamily: 'Roboto'
     };
 
-    const styleFooter = {
-      backgroundColor: '#e5f3e9'
-    };
-
     const styleImage = {
       display: 'inlineBlock',
       width: '30%',
@@ -285,21 +273,21 @@ const App = React.createClass({
 
           <div style={styleTitle}>
             smokator
-            <img style={styleImage} src={'./images/cigarette.svg'} />
+            <img src={'./images/cigarette.svg'} style={styleImage} />
             <h1 style={styleTagline}>Connecting drunk smokers since 1776</h1>
           </div>
 
           <IconButton
             iconStyle={styleMenu.iconStyle}
-            style={styleMenu.style}
             onTouchTap={this.handleToggle}
+            style={styleMenu.style}
           >
-            <NavigationMenu color={'#ff7f66'}/>
+            <NavigationMenu color={'#ff7f66'} />
           </IconButton>
 
           <Menu
-            handleClose={this.handleClose}
             logout={this.logout}
+            handleClose={this.handleClose}
             open={this.state.open}
             requestChange={this.requestChange}
           />
@@ -308,31 +296,29 @@ const App = React.createClass({
       </Paper>
 
       <Snackbar
-          open={this.state.loginSnackbarOpen}
-          message="Invalid login credentials."
-          bodyStyle={styleSnackBar}
-        />
+        bodyStyle={styleSnackBar}
+        message="Invalid login credentials."
+        open={this.state.loginSnackbarOpen}
+      />
 
       {React.cloneElement(this.props.children, {
-        login: this.login,
-        updateBar: this.updateBar,
-        getGivers: this.getGivers,
-        getBars: this.getBars,
         bars: this.state.bars,
         bar: this.state.bar,
-        givers: this.state.givers,
-        register: this.register,
-        postGiver: this.postGiver,
+        chatMembers: this.state.chatMembers,
         createChat: this.createChat,
-        sendMessage: this.sendMessage,
-        socket: this.socket,
+        getGivers: this.getGivers,
+        getBars: this.getBars,
+        givers: this.state.givers,
         joinChat: this.joinChat,
-        user: this.state.user,
-        chatMembers: this.state.chatMembers
+        login: this.login,
+        postGiver: this.postGiver,
+        register: this.register,
+        socket: this.socket,
+        sendMessage: this.sendMessage,
+        updateBar: this.updateBar,
+        user: this.state.user
       })}
-
-
-    </div>
+    </div>;
   }
 });
 
