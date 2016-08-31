@@ -2,7 +2,7 @@
   "name": "smokator",
   "version": "0.1.0",
   "description": "An app to improve the experience of acquiring cigarettes from strangers in bars.",
-  "author": [
+  "contributors": [
     "William Knight <whkdev@gmail.com>",
     "Jesse Seligman <jesseseligman@gmail.com>"
   ],
