@@ -87,6 +87,13 @@ const Givers = React.createClass({
 
     const { givers } = this.props;
 
+
+    if(this.props.givers.length === 0) {
+      console.log(this.props.givers.length)
+      styleText.display = 'inline-block'
+    };
+
+
     return <div>
       <div>
         <h1 style={styleTitle}>{this.props.bar.name}</h1>
