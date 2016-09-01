@@ -69,6 +69,21 @@ const Givers = React.createClass({
       textAlign: 'center'
     };
 
+    const styleText = {
+      fontFamily: 'Mallanna',
+      fontSize: '18px',
+      marginTop: '0px',
+      marginBottom: '0px',
+      paddingLeft: '20px',
+      paddingRight: '20px'
+    };
+
+    const styleSpan = {
+      fontFamily: 'Mallanna',
+      fontSize: '18px',
+      borderBottom: '2px solid #ff7f66'
+    };
+
     const { givers } = this.props;
 
     return <div>
@@ -78,6 +93,7 @@ const Givers = React.createClass({
       <div style={styleGiversTitleContainer}>
         <h1 style={styleGiversTitle}>Givers</h1>
       </div>
+      <p style={styleText}>There is currently no one willing to bum you a cigarette at <span style={styleSpan}>{this.props.bar.name}</span></p>
 
       <div style={styleScroll}>
         <div style={flexContainer}>
