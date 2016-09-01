@@ -14,7 +14,7 @@ router.get('/api/givers/:placeId', (req, res, next) => {
   const placeId = req.params.placeId;
 
 // eslint-disable-next-line max-len
-  knex.select('first_name', 'about_me', 'avatar_id', 'phone', 'user_id', 'place_id', 'expiration')
+  knex.select('first_name', 'about_me', 'phone', 'user_id', 'place_id', 'expiration')
     .from('users')
     .innerJoin('givers', 'users.id', 'givers.user_id')
     .where('expiration', '>', new Date(Date.now()))

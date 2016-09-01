@@ -28,8 +28,8 @@ router.post('/api/users', ev(validations.post), (req, res, next) => {
       return bcrypt.hash(password, 12);
     })
     .then((hashedPassword) => {
-      const { firstName, lastName, aboutMe, avatarId, phone } = req.body;
-      const user = { firstName, lastName, email, aboutMe, avatarId, phone,
+      const { firstName, lastName, aboutMe, phone } = req.body;
+      const user = { firstName, lastName, email, aboutMe, phone,
         hashedPassword };
       const row = decamelizeKeys(user);
 
