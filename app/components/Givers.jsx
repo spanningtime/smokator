@@ -75,13 +75,14 @@ const Givers = React.createClass({
       marginTop: '0px',
       marginBottom: '0px',
       paddingLeft: '20px',
-      paddingRight: '20px'
+      paddingRight: '20px',
+      display: 'none'
     };
 
     const styleSpan = {
       fontFamily: 'Mallanna',
       fontSize: '18px',
-      borderBottom: '2px solid #ff7f66'
+      color: '#ff7f66',
     };
 
     const { givers } = this.props;
