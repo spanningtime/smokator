@@ -1,5 +1,7 @@
 Note: This app was intended for use on mobile browsers. It looks best on a desktop if viewed in the development tools in the phone simulator. It works on android, however it does not render properly on IOS. It should work fine on IOS 10.
 
+[![Smokator](http://i.imgur.com/RujSuQ2l.png )] (https://vimeo.com/181868561 "Smokator Demo, Giver use case - Click to Watch!")
+
 ##What is it?
 Smokator is mobile web application that seeks to improve the process of acquiring cigarettes from strangers in a bar.
 
